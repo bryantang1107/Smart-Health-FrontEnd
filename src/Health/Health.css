@@ -1,0 +1,421 @@
+#health-forum {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#health-forum h1 {
+  text-align: center;
+}
+
+#health-forum .health-article {
+  display: -ms-grid;
+  display: grid;
+  width: 90%;
+  margin: auto;
+  margin-top: 5em;
+  -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2em;
+}
+
+#health-forum .health-article .health-article-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 5em;
+  border-radius: 20px;
+  padding: 2em;
+  -webkit-box-shadow: var(--dark-shadow);
+          box-shadow: var(--dark-shadow);
+}
+
+#health-forum .health-article .health-article-item img {
+  width: 350px;
+  height: 250px;
+  image-resolution: from-image 30dpi;
+}
+
+#health-forum .health-article .health-article-item:hover {
+  -webkit-box-shadow: var(--light-shadow);
+          box-shadow: var(--light-shadow);
+}
+
+#health-forum .health-article .health-article-item a {
+  color: #3fbbc0;
+}
+
+#health-forum .health-article .health-article-item a:hover {
+  text-decoration: underline;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn {
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+  padding: 0.1em;
+  border-radius: 10px;
+  color: #1ca7e7;
+  font-size: 1.6rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn:hover {
+  background: #b3c3df;
+  color: #000;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn::before, #health-forum .health-article .health-article-item .health-article-content .toggle-btn::after {
+  --tooltip-color: #98d4d6;
+  --arrow-size: 10px;
+  position: absolute;
+  bottom: -0.35rem;
+  left: 50%;
+  --scale: 0;
+  -webkit-transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+          transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn::before {
+  --translate-y: calc(100% + var(--arrow-size));
+  font-size: 0.8rem;
+  content: attr(data-tooltip);
+  padding: 0.8rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--tooltip-color);
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn:hover::before, #health-forum .health-article .health-article-item .health-article-content .toggle-btn:hover::after {
+  --scale: 1;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn::after {
+  --translate-y: var(--arrow-size);
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-bottom-color: var(--tooltip-color);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+
+#health-forum .health-article .health-article-item .health-article-content .toggle-btn:hover {
+  cursor: pointer;
+}
+
+#health-forum .search-box {
+  border: solid 5px black;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+}
+
+#health-forum .search-box input[type="text"] {
+  font-family: Raleway, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  padding: 5px 40px 5px 10px;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 50px;
+  -webkit-transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+}
+
+#health-forum .search-box input[type="text"]:focus {
+  outline: none;
+}
+
+#health-forum .search-box input[type="text"]:focus, #health-forum .search-box input[type="text"]:not(:placeholder-shown) {
+  width: 300px;
+  -webkit-transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+#health-forum .search-box input[type="text"]:focus + button[type="reset"], #health-forum .search-box input[type="text"]:not(:placeholder-shown) + button[type="reset"] {
+  bottom: 13px;
+  right: 10px;
+  -webkit-transition: bottom 150ms ease-out 800ms, right 150ms ease-out 800ms;
+  transition: bottom 150ms ease-out 800ms, right 150ms ease-out 800ms;
+}
+
+#health-forum .search-box input[type="text"]:focus + button[type="reset"]:after, #health-forum .search-box input[type="text"]:not(:placeholder-shown) + button[type="reset"]:after {
+  top: 0;
+  right: 10px;
+  opacity: 1;
+  -webkit-transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
+  transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
+}
+
+#health-forum .search-box button[type="reset"] {
+  cursor: pointer;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  bottom: -13px;
+  right: -15px;
+  -webkit-transition: bottom 150ms ease-out 150ms, right 150ms ease-out 150ms;
+  transition: bottom 150ms ease-out 150ms, right 150ms ease-out 150ms;
+}
+
+#health-forum .search-box button[type="reset"]:before, #health-forum .search-box button[type="reset"]:after {
+  content: "";
+  height: 25px;
+  border-left: solid 5px black;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+#health-forum .search-box button[type="reset"]:after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  opacity: 0;
+  top: -20px;
+  right: -10px;
+  -webkit-transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
+  transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
+}
+
+.fundo {
+  -webkit-animation: scales 3s alternate infinite;
+          animation: scales 3s alternate infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.pao-baixo {
+  -webkit-animation: rotatepao 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+          animation: rotatepao 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.pao-cima {
+  -webkit-animation: rotatepao 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+          animation: rotatepao 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.olhos {
+  -webkit-animation: olhos 2s alternate infinite;
+          animation: olhos 2s alternate infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+.left-sparks {
+  -webkit-animation: left-sparks 4s alternate infinite;
+          animation: left-sparks 4s alternate infinite;
+  -webkit-transform-origin: 150px 156px;
+          transform-origin: 150px 156px;
+}
+
+.right-sparks {
+  -webkit-animation: left-sparks 4s alternate infinite;
+          animation: left-sparks 4s alternate infinite;
+  -webkit-transform-origin: 310px 150px;
+          transform-origin: 310px 150px;
+}
+
+.olhos {
+  -webkit-animation: olhos 2s alternate infinite;
+          animation: olhos 2s alternate infinite;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+@-webkit-keyframes scales {
+  from {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes scales {
+  from {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes rotatepao {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50%,
+  60% {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes rotatepao {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50%,
+  60% {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@-webkit-keyframes olhos {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(30deg);
+            transform: rotateX(30deg);
+  }
+}
+
+@keyframes olhos {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(30deg);
+            transform: rotateX(30deg);
+  }
+}
+
+@-webkit-keyframes left-sparks {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes left-sparks {
+  0% {
+    opacity: 0;
+  }
+}
+
+.main {
+  min-height: 600px;
+  margin: 0px auto;
+  width: auto;
+  max-width: 460px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  -webkit-animation: dash 4s alternate infinite;
+          animation: dash 4s alternate infinite;
+}
+
+@-webkit-keyframes dash {
+  0%,
+  30% {
+    fill: 4B4B62;
+    stroke-dashoffset: 0;
+  }
+  80%,
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -200;
+  }
+}
+
+@keyframes dash {
+  0%,
+  30% {
+    fill: 4B4B62;
+    stroke-dashoffset: 0;
+  }
+  80%,
+  100% {
+    fill: transparent;
+    stroke-dashoffset: -200;
+  }
+}
+/*# sourceMappingURL=Health.css.map */

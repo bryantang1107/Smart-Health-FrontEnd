@@ -1,0 +1,134 @@
+#find-pharmacy {
+  width: 100%;
+  background-color: #ddf0dd;
+  padding: 1em;
+}
+
+.location-container {
+  width: 80%;
+  margin: auto;
+
+  .how-to-pharmacy {
+    background: url("https://images.unsplash.com/photo-1640622308205-8ad9478c2386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: var(--dark-shadow);
+    color: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    &:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease-in;
+    }
+  }
+  li {
+    text-transform: none;
+    margin: 1em;
+  }
+  li:nth-child(2) {
+    display: flex;
+    align-items: center;
+    text-transform: none;
+    img {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  }
+  h1,
+  i {
+    text-align: center;
+    line-height: 2em;
+  }
+  .location-pharmacy {
+    width: 100%;
+    margin: 5em auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    iframe {
+      box-shadow: var(--dark-shadow);
+      outline: none;
+      border-radius: 10px;
+      border: none;
+    }
+  }
+}
+
+.gradient-container {
+  $black: #1d1f20;
+  $blue: #83e4e2;
+  $green: #3fbbc0;
+  $yellow: #fddc32;
+  $white: #fafafa;
+
+  %boxshadow {
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+      0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+  }
+
+  ol.gradient-list {
+    counter-reset: gradient-counter;
+    list-style: none;
+    margin: 1.75rem 0;
+    padding-left: 1rem;
+    > li {
+      background: transparent;
+      border-radius: 0 0.5rem 0.5rem 0.5rem;
+      @extend %boxshadow;
+      counter-increment: gradient-counter;
+      margin-top: 1rem;
+      min-height: 3rem;
+      padding: 1rem 1rem 1rem 3rem;
+      position: relative;
+      &::before,
+      &::after {
+        background: linear-gradient(135deg, $blue 0%, $green 100%);
+        border-radius: 1rem 1rem 0 1rem;
+        content: "";
+        height: 3rem;
+        left: -1rem;
+        overflow: hidden;
+        position: absolute;
+        top: -1rem;
+        width: 3rem;
+      }
+      &::before {
+        align-items: flex-end;
+        @extend %boxshadow;
+        content: counter(gradient-counter);
+        color: $black;
+        display: flex;
+        font: 900 1.5em/1 "Montserrat";
+        justify-content: flex-end;
+        padding: 0.125em 0.25em;
+        z-index: 1;
+      }
+
+      &:hover {
+        box-shadow: var(--dark-shadow);
+      }
+      @for $i from 1 through 5 {
+        &:nth-child(10n + #{$i}):before {
+          background: linear-gradient(
+            135deg,
+            rgba($green, $i * 0.2) 0%,
+            rgba($yellow, $i * 0.2) 100%
+          );
+        }
+      }
+      @for $i from 6 through 10 {
+        &:nth-child(10n + #{$i}):before {
+          background: linear-gradient(
+            135deg,
+            rgba($green, 1 - (($i - 5) * 0.2)) 0%,
+            rgba($yellow, 1 - (($i - 5) * 0.2)) 100%
+          );
+        }
+      }
+      + li {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

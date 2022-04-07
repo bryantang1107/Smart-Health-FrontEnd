@@ -1,0 +1,139 @@
+.video-call-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .videoDisplay {
+    width: 500px;
+    border-radius: 10px;
+  }
+  @media screen and (max-width: 1660px) {
+    .video-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 570px) {
+    .videoDisplay {
+      width: 300px;
+    }
+  }
+}
+
+.myId {
+  margin-top: 2em;
+  border-radius: 5px;
+  background: #c9d6ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e2e2e2,
+    #c9d6ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    #c9d6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  padding: 2rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.call-button {
+  text-align: center;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.join-video {
+  filter: brightness(1.2);
+  padding: 0.1em;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  &:hover {
+    background: #b3c3df;
+    color: #000;
+    transition: all 0.5s ease-in-out;
+  }
+  &::before,
+  &::after {
+    --tooltip-color: #98d4d6;
+    --arrow-size: 10px;
+
+    position: absolute;
+    bottom: -0.35rem;
+    left: 50%;
+    --scale: 0;
+
+    transform: translateX((-50%)) translateY(var(--translate-y, 0))
+      scale(var(--scale));
+    transition: transform 0.2s ease-in;
+    transform-origin: top center;
+  }
+
+  &::before {
+    --translate-y: calc(100% + var(--arrow-size));
+    font-size: 0.8rem;
+    content: attr(data-tooltip);
+    padding: 0.8rem;
+    width: max-content;
+    border-radius: 20px;
+    text-align: center;
+
+    background: var(--tooltip-color);
+  }
+  &:hover::before,
+  &:hover::after {
+    --scale: 1;
+  }
+  &::after {
+    //arrow
+    --translate-y: var(--arrow-size);
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-bottom-color: var(--tooltip-color);
+    transform-origin: bottom center;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.caller {
+  text-align: center;
+  color: #fff;
+}
+
+.app {
+  text-align: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.time {
+  font-size: 3rem;
+  padding: 2rem;
+}

@@ -1,0 +1,188 @@
+.video-call-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.video-call-container .videoDisplay {
+  width: 500px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1660px) {
+  .video-call-container .video-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .video-call-container .videoDisplay {
+    width: 300px;
+  }
+}
+
+.myId {
+  margin-top: 2em;
+  border-radius: 5px;
+  background: #c9d6ff;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#e2e2e2), to(#c9d6ff));
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.call-button {
+  text-align: center;
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.join-video {
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+  padding: 0.1em;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.join-video:hover {
+  background: #b3c3df;
+  color: #000;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.join-video::before, .join-video::after {
+  --tooltip-color: #98d4d6;
+  --arrow-size: 10px;
+  position: absolute;
+  bottom: -0.35rem;
+  left: 50%;
+  --scale: 0;
+  -webkit-transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+          transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+}
+
+.join-video::before {
+  --translate-y: calc(100% + var(--arrow-size));
+  font-size: 0.8rem;
+  content: attr(data-tooltip);
+  padding: 0.8rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--tooltip-color);
+}
+
+.join-video:hover::before, .join-video:hover::after {
+  --scale: 1;
+}
+
+.join-video::after {
+  --translate-y: var(--arrow-size);
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-bottom-color: var(--tooltip-color);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+
+.join-video:hover {
+  cursor: pointer;
+}
+
+.video-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2em;
+}
+
+.caller {
+  text-align: center;
+  color: #fff;
+}
+
+.app {
+  text-align: center;
+  background-color: #282c34;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.time {
+  font-size: 3rem;
+  padding: 2rem;
+}
+/*# sourceMappingURL=video.css.map */

@@ -1,0 +1,171 @@
+.main-question-container {
+  min-height: 100vh;
+  /* using flex because of better browser support */
+
+  .question-container {
+    width: 100%;
+    margin: 5rem auto;
+    background: var(--clr-white);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    display: grid;
+
+    h1 {
+      text-align: center;
+      letter-spacing: 0.5em;
+    }
+  }
+}
+
+.question-info {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "general1 online1"
+    "general2 online2"
+    "general3 online3"
+    "general4 online4"
+    "general5 online5"
+    "vaccination1 covid1"
+    "vaccination2 covid2"
+    "vaccination3 covid3"
+    "vaccination4 covid4"
+    "vaccination5 covid5";
+}
+
+.question-item {
+  max-width: 800px;
+  margin: 3em;
+}
+
+@media (max-width: 860px) {
+  .question-container {
+    h1 {
+      font-size: 1rem;
+    }
+  }
+
+  .question-item {
+    margin: 0;
+  }
+}
+
+.question-general:nth-child(1) {
+  grid-area: general1;
+  &::before {
+    content: "General Questions";
+    margin: 2em;
+  }
+}
+
+.question-general:nth-child(2) {
+  grid-area: general2;
+}
+.question-general:nth-child(3) {
+  grid-area: general3;
+}
+.question-general:nth-child(4) {
+  grid-area: general4;
+}
+.question-general:nth-child(5) {
+  grid-area: general5;
+}
+
+.question-online:nth-child(7) {
+  grid-area: online1;
+  &::before {
+    content: "Online Consultation";
+    margin: 2em;
+  }
+}
+
+.question-online:nth-child(8) {
+  grid-area: online2;
+}
+.question-online:nth-child(8) {
+  grid-area: online3;
+}
+.question-online:nth-child(9) {
+  grid-area: online4;
+}
+.question-online:nth-child(10) {
+  grid-area: online5;
+}
+
+.question-covid:nth-child(16) {
+  grid-area: covid1;
+  &::before {
+    content: "Covid Test Kit";
+    margin: 2em;
+  }
+}
+
+.question-covid:nth-child(17) {
+  grid-area: covid2;
+}
+.question-covid:nth-child(18) {
+  grid-area: covid3;
+}
+.question-covid:nth-child(19) {
+  grid-area: covid4;
+}
+.question-covid:nth-child(20) {
+  grid-area: covid5;
+}
+
+.question-vaccination:nth-child(11) {
+  grid-area: vaccination1;
+  &::before {
+    content: "Covid Vaccination";
+    margin: 2em;
+  }
+}
+
+.question-vaccination:nth-child(12) {
+  grid-area: vaccination2;
+}
+.question-vaccination:nth-child(13) {
+  grid-area: vaccination3;
+}
+.question-vaccination:nth-child(14) {
+  grid-area: vaccination4;
+}
+.question-vaccination:nth-child(15) {
+  grid-area: vaccination5;
+}
+
+.question-item {
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--clr-grey-special);
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+  h4 {
+    text-transform: none;
+    line-height: 1.5;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .question-btn {
+    background: transparent;
+    border-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    background: #eae6eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #b4345c;
+    cursor: pointer;
+    margin-left: 1rem;
+    align-self: center;
+    min-width: 2rem;
+  }
+}

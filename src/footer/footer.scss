@@ -1,0 +1,181 @@
+.footer {
+  color: rgba(255, 255, 255, 0.979);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-area: "left center right";
+  background: url("https://images.unsplash.com/photo-1503925802536-c9451dcd87b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  gap: 3rem;
+  padding: 2em;
+  line-height: 1.5em;
+}
+.footer-left {
+  .detail {
+    display: flex;
+    flex-direction: column;
+    .social-container {
+      display: inline-flex;
+      color: rgb(37, 35, 35);
+      justify-content: space-between;
+      .socials {
+        position: relative;
+        background-color: #ffffff;
+        border-radius: 50%;
+        padding: 15px;
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        &:hover .tooltip {
+          top: -45px;
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+        &:hover span,
+        &:hover .tooltip {
+          text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .facebook:hover,
+      .facebook:hover .tooltip,
+      .facebook:hover .tooltip::before {
+        background-color: #3b5999;
+        color: #ffffff;
+      }
+      .twitter:hover,
+      .twitter:hover .tooltip,
+      .twitter:hover .tooltip::before {
+        background-color: #46c1f6;
+        color: #ffffff;
+      }
+      .instagram:hover,
+      .instagram:hover .tooltip,
+      .instagram:hover .tooltip::before {
+        background-color: #e1306c;
+        color: #ffffff;
+      }
+
+      .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background-color: #ffffff;
+        color: #ffffff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        &::before {
+          position: absolute;
+          content: "";
+          height: 8px;
+          width: 8px;
+          background-color: #ffffff;
+          bottom: -3px;
+          left: 50%;
+          transform: translate(-50%) rotate(45deg);
+          transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+      }
+    }
+    .contact,
+    .email {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      p {
+        margin-left: 1em;
+        text-decoration: underline;
+        text-transform: none;
+      }
+    }
+  }
+}
+
+.footer-right {
+  .form {
+    background: #c4c4c4;
+    color: #000;
+    border-radius: 10px;
+    padding: 1rem;
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea,
+    select {
+      width: 100%;
+
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      width: 100%;
+      background-color: #4caf50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  }
+}
+
+.footer-center {
+  grid-area: "center";
+  text-align: center;
+  .motto-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.copyright {
+  bottom: 0px;
+  padding: 3em 0;
+  text-align: center;
+  background: rgba($color: #c4c4c4, $alpha: 0.3);
+}
+
+@media (max-width: 860px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .footer-left {
+      text-align: center;
+      .detail {
+        align-items: center;
+      }
+    }
+  }
+}
