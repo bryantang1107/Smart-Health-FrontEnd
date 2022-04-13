@@ -46,8 +46,7 @@ const Doctor = () => {
 
       const information = response.data;
 
-      const { registry, conditions, service, ...data } =
-        information.information;
+      const { registry, conditions, service, ...data } = information;
 
       setInfo(data);
       setRegistry(registry);

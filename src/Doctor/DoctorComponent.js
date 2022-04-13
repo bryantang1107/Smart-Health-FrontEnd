@@ -21,21 +21,13 @@ const DoctorComponent = () => {
   const [defaultData, setDefaultData] = useState([]);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
-  useEffect(() => {
     const getDoctorData = async () => {
       const response = await axios.get("/find-doctor", {
         headers: {
           Authorization: "Bearer " + currentUser,
         },
       });
-      const data = response.data.doctor;
+      const data = response.data;
       setDoctorData(data);
       setDefaultData(data);
       if (data) {

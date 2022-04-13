@@ -16,7 +16,6 @@ const DoctorItem = ({ items }) => {
   const [doctorList, setDoctorList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   const getDoctorPage = (page = 1) => {
     const DOCTOR_LIMIT = 5;
     const startIndex = (page - 1) * DOCTOR_LIMIT;
@@ -24,7 +23,13 @@ const DoctorItem = ({ items }) => {
     const doctorArr = items.slice(startIndex, endIndex);
     setDoctorList(doctorArr);
   };
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
   useEffect(() => {
     const getDoctorPage = (page = 1) => {
       const DOCTOR_LIMIT = 5;
@@ -78,7 +83,7 @@ const DoctorItem = ({ items }) => {
       <div className="doctor-item-container">
         {doctorList.map((item) => {
           const {
-            id,
+            _id,
             name,
             image,
             experience,
@@ -89,13 +94,13 @@ const DoctorItem = ({ items }) => {
           } = item;
           return (
             <motion.div
-              key={id}
+              key={_id}
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-              <div key={id} className="doctor-item">
+              <div key={_id} className="doctor-item">
                 <img src={image} alt={name} className="photo"></img>
                 <div className="doctor-item-info">
                   <div className="doctor-name">
@@ -156,7 +161,7 @@ const DoctorItem = ({ items }) => {
                     <p>{experience}</p>
                   </div>
                 </div>
-                <Link to={`/doctor/${id}`} className="doctor-consult-btn">
+                <Link to={`/doctor/${_id}`} className="doctor-consult-btn">
                   Consult
                 </Link>
               </div>
