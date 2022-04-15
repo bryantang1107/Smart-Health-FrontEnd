@@ -11,11 +11,7 @@ export default function NavItem(props) {
   if (props.prop) {
     return (
       <li className="nav-item">
-        <a
-          href="/medical-services"
-          className="icon-button"
-          data-tooltip={props.name}
-        >
+        <a href="/schedule" className="icon-button" data-tooltip={props.name}>
           {props.icon}
         </a>
 

@@ -1,0 +1,32 @@
+.success-appointment {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(92, 83, 83);
+  text-align: center;
+  .chat-link {
+    text-decoration: underline;
+    margin-left: 0.3em;
+    &:hover {
+      color: #3fbbc0;
+    }
+  }
+  .done-booking-btn {
+    width: 50%;
+    margin: auto;
+    padding: 1em 3em;
+    text-align: center;
+    border-radius: 20%;
+    border: 1px solid #3fbbc0;
+    cursor: pointer;
+    color: #333;
+
+    &:hover {
+      background: #3fbbc0;
+      color: #f6f6f6;
+      transition: all 0.3s ease-in;
+    }
+  }
+}

@@ -553,7 +553,7 @@
   gap: 2em;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1260px) {
   .doctor-entire-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -622,6 +622,13 @@
 .doctor-about-container .doctor-other-info {
   margin-top: 2em;
   margin-bottom: 5em;
+}
+
+@media screen and (max-width: 1260px) {
+  .doctor-about-container {
+    width: 80%;
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 760px) {

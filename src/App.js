@@ -28,6 +28,7 @@ import Discussion from "./pages/Discussion";
 import Name from "./ChatRoom/Name";
 import Continue from "./ChatRoom/Continue";
 import Tnc from "./Doctor/Tnc";
+import Schedule from "./pages/Schedule";
 const App = () => {
   return (
     <>
@@ -118,6 +119,11 @@ const App = () => {
             exact
             path="/profile"
             component={Profile}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/schedule"
+            component={Schedule}
           ></PrivateRoute>
 
           <Route

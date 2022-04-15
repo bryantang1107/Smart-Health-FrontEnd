@@ -29,7 +29,7 @@ export default function Nav() {
             </span>
             <NavItem
               icon={<Appointment />}
-              name="Medical Record"
+              name="Appointment Schedule"
               prop="book"
             ></NavItem>
 

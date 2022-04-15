@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./auth.css";
 import { useAuth } from "../context/AuthContext";
 import Error from "../pages/Error";
+import axios from "../axios";
 const SignUpComponent = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -45,6 +46,7 @@ const SignUpComponent = () => {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+
       history.push("/");
     } catch (error) {
       if (

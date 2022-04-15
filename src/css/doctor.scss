@@ -415,7 +415,7 @@ $baby-blue: #f8faff;
     "about appointment";
   gap: 2em;
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1260px) {
   .doctor-entire-container {
     display: flex;
     flex-direction: column;
@@ -458,6 +458,12 @@ $baby-blue: #f8faff;
   .doctor-other-info {
     margin-top: 2em;
     margin-bottom: 5em;
+  }
+}
+@media screen and (max-width: 1260px) {
+  .doctor-about-container {
+    width: 80%;
+    margin-left: 0;
   }
 }
 

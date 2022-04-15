@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState();
+  const [userData, setUserData] = useState();
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -58,6 +59,8 @@ export const AuthProvider = ({ children }) => {
         });
         const signedToken = response.data.accessToken;
         setCurrentUser(signedToken);
+        const user_id = response.data.result;
+        setUserData(user_id._id);
       }
 
       setLoading(false);
@@ -75,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     updateEmail,
     updatePassword,
     loginWithGoogle,
+    userData,
   };
 
   return (

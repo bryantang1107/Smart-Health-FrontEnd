@@ -10,10 +10,12 @@ import Service from "./Service";
 import Reminder from "./Reminder";
 import { motion } from "framer-motion";
 import Welcome from "./Welcome";
+import { useAuth } from "../../context/AuthContext";
 
 //let arr = JSON.parse(localStorage.getItem("value"));
 const Home = () => {
   const [reminderData, setReminderData] = useState(false);
+  const { userData } = useAuth();
   // useEffect(() => {
   //   if (arr.length > 0) {
   //     setReminderData(arr);
