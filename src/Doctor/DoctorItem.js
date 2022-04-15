@@ -4,6 +4,7 @@ import { MdVerified, MdWork } from "react-icons/md";
 import { motion } from "framer-motion";
 import Loading from "../covid/Loading";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import {
   FaHandHoldingMedical,
@@ -15,6 +16,7 @@ import { BsPersonFill } from "react-icons/bs";
 const DoctorItem = ({ items }) => {
   const [doctorList, setDoctorList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { userRole } = useAuth();
 
   const getDoctorPage = (page = 1) => {
     const DOCTOR_LIMIT = 5;
@@ -161,9 +163,15 @@ const DoctorItem = ({ items }) => {
                     <p>{experience}</p>
                   </div>
                 </div>
-                <Link to={`/doctor/${_id}`} className="doctor-consult-btn">
-                  Consult
-                </Link>
+                {userRole === "doctor" ? (
+                  <Link to={`/doctor/${_id}`} className="doctor-consult-btn">
+                    View
+                  </Link>
+                ) : (
+                  <Link to={`/doctor/${_id}`} className="doctor-consult-btn">
+                    Consult
+                  </Link>
+                )}
               </div>
             </motion.div>
           );

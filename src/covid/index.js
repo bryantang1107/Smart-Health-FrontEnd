@@ -13,8 +13,10 @@ const CovidComponent = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [localdata, setLocalData] = useState();
+
   const getData = async () => {
     setLoading(true);
+
     try {
       const response = await axios.get("/covid", {
         headers: {
@@ -40,42 +42,11 @@ const CovidComponent = () => {
       console.log(err);
     }
   };
-
   useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get("/covid", {
-          headers: {
-            Authorization: "Bearer " + currentUser,
-          },
-        });
-
-        if (!response.data.message) {
-          //if no error
-          setState(true);
-          setTimeout(() => {
-            setData(response.data.globalData);
-            setLocalData(response.data.country);
-
-            setLoading(false);
-          }, 3000);
-          return;
-        } else {
-          setState(false);
-          setLoading(true);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getData();
-  }, [currentUser]);
+  }, []);
 
   if (loading) {
-    setInterval(() => {
-      setLoading(false);
-    }, 10000);
     return (
       <>
         <header>

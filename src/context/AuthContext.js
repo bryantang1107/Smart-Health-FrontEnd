@@ -3,6 +3,8 @@ import { auth } from "../firebase";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import axios from "../axios";
+import { storeUser } from "../actions/actionCreator";
+import { useDispatch } from "react-redux";
 
 const AuthContext = React.createContext();
 
@@ -12,7 +14,9 @@ export function useAuth() {
 }
 
 export const AuthProvider = ({ children }) => {
+  const dispatch = useDispatch();
   const [currentUser, setCurrentUser] = useState();
+  const [userRole, setUserRole] = useState();
   const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState();
   const [userData, setUserData] = useState();
@@ -61,6 +65,9 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser(signedToken);
         const user_id = response.data.result;
         setUserData(user_id._id);
+        const userRole = await axios.get(`/login/userRole/${user_id._id}`);
+        setUserRole(userRole.data);
+        dispatch(storeUser(userRole.data));
       }
 
       setLoading(false);
@@ -69,6 +76,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const value = {
+    userRole,
     userInfo,
     currentUser,
     signup,

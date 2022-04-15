@@ -8,7 +8,7 @@ import { ReactComponent as Caret } from "../icons/caret.svg";
 import Sidebar from "../sidebar/Sidebar";
 
 export default function Nav() {
-  const { currentUser } = useAuth();
+  const { currentUser, userRole } = useAuth();
 
   return (
     <>
@@ -24,9 +24,12 @@ export default function Nav() {
 
         {currentUser && (
           <ul className="navbar-nav">
-            <span className="find-doctor-btn">
-              <a href="/find-doctor">.</a>
-            </span>
+            {userRole === "user" && (
+              <span className="find-doctor-btn">
+                <a href="/find-doctor">.</a>
+              </span>
+            )}
+
             <NavItem
               icon={<Appointment />}
               name="Appointment Schedule"

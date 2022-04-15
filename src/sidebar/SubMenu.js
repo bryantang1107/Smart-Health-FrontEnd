@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useAuth } from "../context/AuthContext";
 
 const SidebarLink = styled(Link)`
   display: flex;
@@ -45,8 +46,7 @@ const DropdownLink = styled(Link)`
 `;
 
 const SubMenu = ({ item, toggleSidebar, toggleOpen }) => {
-  const [subnav, setSubnav] = useState(false);
-
+  const { userRole } = useAuth();
   const showSubnav = () => {
     toggleOpen(item.id);
   };
@@ -55,21 +55,57 @@ const SubMenu = ({ item, toggleSidebar, toggleOpen }) => {
     toggleSidebar();
   };
 
+  if (userRole === "doctor") {
+    return (
+      <>
+        {item.role && (
+          <SidebarLink
+            to={item.path}
+            onClick={item.subNav ? showSubnav : toggle}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {item.icon}
+              <SidebarLabel>{item.title}</SidebarLabel>
+            </div>
+            <div>
+              {item.subNav && item.open === true
+                ? item.iconOpened
+                : item.subNav
+                ? item.iconClosed
+                : null}
+            </div>
+          </SidebarLink>
+        )}
+
+        {item.open &&
+          item.subNav.map((item, index) => {
+            return (
+              <DropdownLink to={item.path} key={index} onClick={toggle}>
+                {item.icon}
+                <SidebarLabel>{item.title}</SidebarLabel>
+              </DropdownLink>
+            );
+          })}
+      </>
+    );
+  }
   return (
     <>
-      <SidebarLink to={item.path} onClick={item.subNav ? showSubnav : toggle}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {item.icon}
-          <SidebarLabel>{item.title}</SidebarLabel>
-        </div>
-        <div>
-          {item.subNav && item.open === true
-            ? item.iconOpened
-            : item.subNav
-            ? item.iconClosed
-            : null}
-        </div>
-      </SidebarLink>
+      {!item.role && (
+        <SidebarLink to={item.path} onClick={item.subNav ? showSubnav : toggle}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {item.icon}
+            <SidebarLabel>{item.title}</SidebarLabel>
+          </div>
+          <div>
+            {item.subNav && item.open === true
+              ? item.iconOpened
+              : item.subNav
+              ? item.iconClosed
+              : null}
+          </div>
+        </SidebarLink>
+      )}
 
       {item.open &&
         item.subNav.map((item, index) => {

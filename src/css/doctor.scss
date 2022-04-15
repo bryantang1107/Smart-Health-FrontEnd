@@ -415,6 +415,16 @@ $baby-blue: #f8faff;
     "about appointment";
   gap: 2em;
 }
+
+.doctor-role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .doctor-about-container {
+    margin: 1em;
+  }
+}
 @media screen and (max-width: 1260px) {
   .doctor-entire-container {
     display: flex;

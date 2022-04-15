@@ -24,3 +24,10 @@ export const NavOpen = (id) => {
     payload: id,
   };
 };
+
+export const storeUser = (state) => {
+  return {
+    type: "Role",
+    payload: state,
+  };
+};

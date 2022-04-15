@@ -25,16 +25,18 @@ import Contact from "./pages/Contact";
 import Pharmacy from "./pages/Pharmacy";
 import Location from "./pages/Location";
 import Discussion from "./pages/Discussion";
+import MedicalRecord from "./doctorPage/MedicalRecord";
 import Name from "./ChatRoom/Name";
-import Continue from "./ChatRoom/Continue";
 import Tnc from "./Doctor/Tnc";
 import Schedule from "./pages/Schedule";
+import Patient from "./doctorPage/Patient";
+import { useSelector } from "react-redux";
 const App = () => {
+  const data = useSelector((state) => state.roleReducer);
   return (
     <>
       <AuthProvider>
         <Nav></Nav>
-
         <Switch>
           <Route exact path="/">
             <Home></Home>
@@ -54,6 +56,21 @@ const App = () => {
             path="/covid-19/statistics"
             component={Covid}
           ></PrivateRoute>
+          {data.role === "doctor" && (
+            <PrivateRoute
+              exact
+              path="/patient-record"
+              component={Patient}
+            ></PrivateRoute>
+          )}
+          {data.role === "doctor" && (
+            <PrivateRoute
+              exact
+              path="/upload/medical-record"
+              component={MedicalRecord}
+            ></PrivateRoute>
+          )}
+
           <PrivateRoute
             exact
             path="/support/qna"
@@ -126,12 +143,7 @@ const App = () => {
             component={Schedule}
           ></PrivateRoute>
 
-          <Route
-            exact
-            path="/signin"
-            component={SignIn}
-            onLeave={Continue}
-          ></Route>
+          <Route exact path="/signin" component={SignIn}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
           <Route
             exact
