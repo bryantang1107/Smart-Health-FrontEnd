@@ -4,6 +4,16 @@
   text-transform: capitalize;
 }
 
+body::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 header {
   text-align: center;
 }

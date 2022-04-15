@@ -10,6 +10,7 @@ import { IconContext } from "react-icons/lib";
 import { useAuth } from "../context/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { NavOpen, storeNav } from "../actions/actionCreator";
+import "./sidebar.css";
 
 const Nav = styled.div`
   background: #3fbbc0;
@@ -77,7 +78,7 @@ const Sidebar = () => {
               </NavIcon>
             </Nav>
           )}
-          <SidebarNav sidebar={sidebar}>
+          <SidebarNav sidebar={sidebar} className="sidebar-slider">
             <SidebarWrap>
               <h1
                 style={{
