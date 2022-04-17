@@ -333,13 +333,25 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .doctor-item-container .doctor-iteration {
   letter-spacing: 0.2em;
+}
+
+.doctor-item-container .button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media (max-width: 1500px) {
@@ -492,7 +504,6 @@
   display: inline-block;
   font-size: 1em;
   padding: 0.5em;
-  margin: auto;
   margin-left: 1em;
   margin-bottom: 5em;
   -webkit-appearance: none;
@@ -569,8 +580,14 @@
           flex-direction: column;
 }
 
+.doctor-role .doctor-header-container {
+  margin-left: 0;
+}
+
 .doctor-role .doctor-about-container {
-  margin: 1em;
+  margin-top: 2em;
+  width: 100%;
+  margin-left: 0;
 }
 
 @media screen and (max-width: 1260px) {
@@ -590,7 +607,16 @@
             align-items: center;
   }
   .doctor-entire-container .doctor-header-container {
-    margin-left: 0;
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .doctor-entire-container .doctor-header-container,
+  .doctor-entire-container .doctor-about-container {
+    margin-top: 1em;
+    width: 100%;
   }
 }
 
@@ -651,13 +677,6 @@
   }
 }
 
-@media screen and (max-width: 760px) {
-  .doctor-about-container {
-    width: 80%;
-    margin-left: 0;
-  }
-}
-
 .doctor-appointment-container {
   -ms-grid-row: 1;
   -ms-grid-row-span: 3;
@@ -680,6 +699,13 @@
           box-shadow: var(--dark-shadow);
   -webkit-transition: var(--transition);
   transition: var(--transition);
+}
+
+@media (max-width: 780px) {
+  .doctor-appointment-container {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 .doctor-header-container {

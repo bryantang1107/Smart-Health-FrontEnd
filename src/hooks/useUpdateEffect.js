@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const useUpdateEffect = (callback, dependencies) => {
   const firstRenderRef = useRef(true);

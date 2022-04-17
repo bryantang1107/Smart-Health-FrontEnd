@@ -77,6 +77,8 @@
 }
 
 .reminder-list-container .reminder-list {
+  width: 80%;
+  margin: auto;
   background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: var(--dark-shadow);
@@ -86,7 +88,7 @@
 }
 
 .reminder-list-container .reminder-list .reminder-content {
-  border: 3px dotted #e0d4d4;
+  border: 3px groove #e0d4d4;
   padding: 2em;
 }
 
@@ -110,6 +112,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -124,14 +130,23 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 70%;
 }
 
 .reminder-list-container .reminder-list .reminder-item .reminder-item-label p {
+  text-align: center;
+  word-break: break-word;
   font-size: 1.1rem;
   font-weight: 600;
+  margin: 1em;
   letter-spacing: 0.3em;
-  margin-left: 1em;
+  padding: 1em;
   color: black;
+  width: 100%;
 }
 
 .reminder-list-container .reminder-list .reminder-item:hover {
@@ -141,7 +156,6 @@
   transition: -webkit-filter 0.3s ease-in;
   transition: filter 0.3s ease-in;
   transition: filter 0.3s ease-in, -webkit-filter 0.3s ease-in;
-  cursor: pointer;
 }
 
 .reminder-list-container .reminder-list .reminder-item .btn-container-reminder {
@@ -178,6 +192,29 @@
 
 .reminder-list-container .reminder-list .reminder-item .delete-btn:hover {
   color: var(--clr-red-dark);
+}
+
+@media (max-width: 860px) {
+  .reminder-list-container .reminder-list .reminder-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (max-width: 980px) {
+  .reminder-list-container {
+    width: 100%;
+    padding: 1em;
+  }
+  .reminder-list-container .reminder-list {
+    width: 100%;
+  }
+  .reminder-list-container .reminder-list .reminder-content {
+    padding: 0;
+    border: none;
+  }
 }
 
 .add-reminder {
@@ -235,6 +272,17 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.add-reminder .reminder-form .reminder-description textarea::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+.add-reminder .reminder-form .reminder-description textarea::-webkit-scrollbar-track {
+  background: transparent;
+  cursor: pointer;
 }
 
 .add-reminder .reminder-form .reminder-label label,

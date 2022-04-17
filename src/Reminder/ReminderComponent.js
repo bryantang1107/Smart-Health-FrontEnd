@@ -6,10 +6,14 @@ import { GiPlatform } from "react-icons/gi";
 import { MdOutlineDescription } from "react-icons/md";
 import Alert from "./Alert";
 import Empty from "./Empty";
+import axios from "../axios";
+import { useAuth } from "../context/AuthContext";
+import EmailNoti from "./EmailNoti";
 
 const ReminderComponent = () => {
   const [reminderData, setReminderData] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const { userData } = useAuth();
   const [alert, setAlert] = useState({
     show: false,
     msg: "",
@@ -19,7 +23,19 @@ const ReminderComponent = () => {
   const platformRef = useRef(null);
   const descriptionRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(`/reminder/get-reminder/${userData}`);
+        setReminderData(response.data);
+      } catch (error) {
+        showAlert(true, "danger", "Unable to retrieve information !");
+      }
+    };
+    getData();
+  }, []);
+
+  const handleSubmit = async (e) => {
     const labelValue = labelRef.current.value;
     const platformValue = platformRef.current.value;
     const descriptionValue = descriptionRef.current.value;
@@ -27,21 +43,57 @@ const ReminderComponent = () => {
     if (!labelValue || !platformValue || !descriptionValue) {
       showAlert(true, "danger", "The Form Is Not Complete !");
     } else {
-      showAlert(true, "success", "Reminder Added !");
+      showAlert(true, "success", "Reminder Added To Database!");
       setReminderData((data) => {
         labelRef.current.value = "";
         platformRef.current.value = "";
         descriptionRef.current.value = "";
         setToggle(false);
+        storeToDb({
+          label: labelValue,
+          date: platformValue,
+          description: descriptionValue,
+        });
         return [
           ...data,
           {
             label: labelValue,
-            platform: platformValue,
+            date: platformValue,
             description: descriptionValue,
           },
         ];
       });
+    }
+  };
+
+  const storeToDb = async (obj) => {
+    try {
+      await axios.post("/reminder/update", {
+        userData,
+        obj,
+      });
+    } catch (err) {
+      showAlert(true, "danger", "Unable to store reminder to database !");
+    }
+  };
+
+  const handleDelete = async (index) => {
+    try {
+      await axios.delete(`reminder/${index}`, {
+        data: {
+          userData,
+        },
+      });
+      const updatedData = reminderData.filter((x, i) => {
+        if (i !== index) {
+          return x;
+        }
+      });
+
+      showAlert(true, "success", "Successfully deleted");
+      setReminderData(updatedData);
+    } catch (err) {
+      showAlert(true, "danger", "Unable To Delete, Try again later!");
     }
   };
 
@@ -58,7 +110,6 @@ const ReminderComponent = () => {
     <div>
       <h1 className="reminder-title">Reminder</h1>
       <div className="underline"></div>
-
       <div className="reminder-banner">
         <div className="reminder-hero-container">
           <h2 className="reminder-header">Hello There,</h2>
@@ -67,36 +118,45 @@ const ReminderComponent = () => {
           </h1>
           <p className="reminder-text">
             Enjoy Our Free Reminder Feature. Get reminded for your upcoming
-            appointment via E-mail & SMS daily prior to your appointment.
+            appointment via E-mail daily prior to your appointment.
           </p>
         </div>
       </div>
-
+      <EmailNoti />
       <div className="reminder-list-container">
         <h3>Reminder List</h3>
         <div className="underline"></div>
 
-        <div className="reminder-list">
-          <div className="reminder-content">
-            {reminderData.length > 0 ? "" : <Empty></Empty>}
-            {alert.show && alert.type === "success" && (
-              <Alert {...alert} removeAlert={showAlert}></Alert>
-            )}
-            {reminderData.map((item, index) => {
-              return <ReminderItem key={index} {...item}></ReminderItem>;
-            })}
-          </div>
+        {reminderData && (
+          <div className="reminder-list">
+            <div className="reminder-content">
+              {reminderData.length > 0 ? "" : <Empty></Empty>}
+              {alert.show && alert.type === "success" && (
+                <Alert {...alert} removeAlert={showAlert}></Alert>
+              )}
+              {reminderData.map((item, index) => {
+                return (
+                  <ReminderItem
+                    key={index}
+                    {...item}
+                    index={index}
+                    handleDelete={handleDelete}
+                  ></ReminderItem>
+                );
+              })}
+            </div>
 
-          <button
-            className="doctor-consult-btn"
-            style={{ marginBottom: "1em", display: "flex", marginTop: "3em" }}
-            onClick={() => {
-              setToggle(!toggle);
-            }}
-          >
-            {!toggle ? "Add Reminder" : "Cancel"}
-          </button>
-        </div>
+            <button
+              className="doctor-consult-btn"
+              style={{ marginBottom: "1em", display: "flex", marginTop: "3em" }}
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            >
+              {!toggle ? "Add Reminder" : "Cancel"}
+            </button>
+          </div>
+        )}
 
         {toggle && (
           <div className="add-reminder">
@@ -115,13 +175,14 @@ const ReminderComponent = () => {
                 </div>
               </div>
               <div className="reminder-platform">
-                <label htmlFor="platform">Platform</label>
+                <label htmlFor="platform">Date & Time</label>
                 <div className="input-header">
                   <span>
                     <GiPlatform></GiPlatform>
                   </span>
                   <input
-                    type="text"
+                    style={{ textTransform: "uppercase" }}
+                    type="datetime-local"
                     name="platform"
                     ref={platformRef}
                     required
@@ -141,6 +202,7 @@ const ReminderComponent = () => {
                     rows="8"
                     ref={descriptionRef}
                     required
+                    style={{ resize: "none" }}
                   ></textarea>
                 </div>
               </div>

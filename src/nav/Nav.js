@@ -6,42 +6,51 @@ import { useAuth } from "../context/AuthContext";
 import { ReactComponent as Appointment } from "../images/appoinment.svg";
 import { ReactComponent as Caret } from "../icons/caret.svg";
 import Sidebar from "../sidebar/Sidebar";
+import { useEffect, useState } from "react";
 
 export default function Nav() {
   const { currentUser, userRole } = useAuth();
+  const [path, setPath] = useState(false);
+
+  useEffect(() => {
+    if (window.location.pathname === "/room") {
+      setPath(true);
+    }
+  }, []);
 
   return (
-    <>
-      <nav className="navbar">
-        <Logo></Logo>
+    !path && (
+      <>
+        <nav className="navbar">
+          <Logo></Logo>
 
-        {!currentUser && (
-          <NavBtn>
-            <NavBtnLink to="/signin">Sign In</NavBtnLink>
-            <NavBtnLink to="/signup">Sign Up</NavBtnLink>
-          </NavBtn>
-        )}
+          {!currentUser && (
+            <NavBtn>
+              <NavBtnLink to="/signin">Sign In</NavBtnLink>
+              <NavBtnLink to="/signup">Sign Up</NavBtnLink>
+            </NavBtn>
+          )}
 
-        {currentUser && (
-          <ul className="navbar-nav">
-            {userRole === "user" && (
-              <span className="find-doctor-btn">
-                <a href="/find-doctor">.</a>
-              </span>
-            )}
+          {currentUser && (
+            <ul className="navbar-nav">
+              {userRole === "user" && (
+                <span className="find-doctor-btn">
+                  <a href="/find-doctor">.</a>
+                </span>
+              )}
 
-            <NavItem
-              icon={<Appointment />}
-              name="Appointment Schedule"
-              prop="book"
-            ></NavItem>
+              <NavItem
+                icon={<Appointment />}
+                name="Appointment Schedule"
+                prop="book"
+              ></NavItem>
 
-            <NavItem icon={<Caret></Caret>} name="Settings"></NavItem>
-          </ul>
-        )}
-      </nav>
-
-      <Sidebar></Sidebar>
-    </>
+              <NavItem icon={<Caret></Caret>} name="Settings"></NavItem>
+            </ul>
+          )}
+        </nav>
+        <Sidebar></Sidebar>
+      </>
+    )
   );
 }

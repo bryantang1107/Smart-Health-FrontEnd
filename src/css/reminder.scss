@@ -64,6 +64,8 @@
     margin-bottom: 0.5em;
   }
   .reminder-list {
+    width: 80%;
+    margin: auto;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: var(--dark-shadow);
@@ -71,7 +73,7 @@
     margin-bottom: 3em;
 
     .reminder-content {
-      border: 3px dotted #e0d4d4;
+      border: 3px groove #e0d4d4;
       padding: 2em;
     }
 
@@ -88,6 +90,7 @@
       padding: 1em;
       display: flex;
       align-items: center;
+      flex-direction: column;
       justify-content: space-between;
       border-radius: 5px;
       margin-bottom: 2em;
@@ -95,19 +98,25 @@
       .reminder-item-label {
         display: flex;
         align-items: center;
+        flex-direction: column;
+        width: 70%;
+
         p {
+          text-align: center;
+          word-break: break-word;
           font-size: 1.1rem;
           font-weight: 600;
+          margin: 1em;
           letter-spacing: 0.3em;
-          margin-left: 1em;
+          padding: 1em;
           color: black;
+          width: 100%;
         }
       }
 
       &:hover {
         filter: brightness(1.1);
         transition: filter 0.3s ease-in;
-        cursor: pointer;
       }
       .btn-container-reminder {
         display: flex;
@@ -133,6 +142,25 @@
       }
       .delete-btn:hover {
         color: var(--clr-red-dark);
+      }
+    }
+    @media (max-width: "860px") {
+      .reminder-item {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media (max-width: "980px") {
+  .reminder-list-container {
+    width: 100%;
+    padding: 1em;
+    .reminder-list {
+      width: 100%;
+      .reminder-content {
+        padding: 0;
+        border: none;
       }
     }
   }
@@ -164,6 +192,17 @@
       grid-area: description;
       display: flex;
       flex-direction: column;
+      textarea {
+        &::-webkit-scrollbar-thumb {
+          background-clip: padding-box;
+          border: 4px solid transparent;
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          cursor: pointer;
+        }
+      }
     }
     .reminder-label,
     .reminder-platform,

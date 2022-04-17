@@ -235,9 +235,14 @@
 .doctor-item-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
   .doctor-iteration {
     letter-spacing: 0.2em;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -362,7 +367,6 @@ $baby-blue: #f8faff;
   display: inline-block;
   font-size: 1em;
   padding: 0.5em;
-  margin: auto;
   margin-left: 1em;
   margin-bottom: 5em;
   -webkit-appearance: none;
@@ -421,8 +425,13 @@ $baby-blue: #f8faff;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  .doctor-header-container {
+    margin-left: 0;
+  }
   .doctor-about-container {
-    margin: 1em;
+    margin-top: 2em;
+    width: 100%;
+    margin-left: 0;
   }
 }
 @media screen and (max-width: 1260px) {
@@ -432,7 +441,17 @@ $baby-blue: #f8faff;
     justify-content: center;
     align-items: center;
     .doctor-header-container {
-      margin-left: 0;
+      width: 80%;
+      margin: auto;
+    }
+  }
+}
+@media screen and (max-width: 1260px) {
+  .doctor-entire-container {
+    .doctor-header-container,
+    .doctor-about-container {
+      margin-top: 1em;
+      width: 100%;
     }
   }
 }
@@ -477,13 +496,6 @@ $baby-blue: #f8faff;
   }
 }
 
-@media screen and (max-width: 760px) {
-  .doctor-about-container {
-    width: 80%;
-    margin-left: 0;
-  }
-}
-
 .doctor-appointment-container {
   grid-area: appointment;
   background: #fff;
@@ -496,6 +508,13 @@ $baby-blue: #f8faff;
   &:hover {
     box-shadow: var(--dark-shadow);
     transition: var(--transition);
+  }
+}
+
+@media (max-width: 780px) {
+  .doctor-appointment-container {
+    width: 100%;
+    margin-right: 0;
   }
 }
 
@@ -564,13 +583,6 @@ $baby-blue: #f8faff;
     }
   }
 }
-
-// @media screen and (max-width: 760px) {
-//   .doctor-header-container {
-//     width: 100%;
-//     max-width: 500px;
-//   }
-// }
 
 .doctor-info-container {
   width: 70%;

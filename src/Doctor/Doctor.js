@@ -345,13 +345,7 @@ const Doctor = () => {
           <div className="doctor-appointment-container">
             <AppointmentForm />
 
-            {/* <p style={{ textTransform: "none" }}>
-          room id = {roomCredentials.roomId}
-        </p>
-        <p style={{ textTransform: "none" }}>
-          password = {roomCredentials.password}
-        </p> */}
-            {/* <p>prevent user from booking appointment if he/she already booked</p> */}
+       
           </div>
         </div>
       </motion.div>

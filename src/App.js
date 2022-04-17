@@ -81,16 +81,21 @@ const App = () => {
             path="/covid-19/articles"
             component={Article}
           ></PrivateRoute>
-          <PrivateRoute
-            exact
-            path="/health-forum"
-            component={HealthForum}
-          ></PrivateRoute>
-          <PrivateRoute
-            exact
-            path="/medical-services/discussion"
-            component={Discussion}
-          ></PrivateRoute>
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/health-forum"
+              component={HealthForum}
+            ></PrivateRoute>
+          )}
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/medical-services/discussion"
+              component={Discussion}
+            ></PrivateRoute>
+          )}
+
           <PrivateRoute
             exact
             path="/health-content"
@@ -106,12 +111,13 @@ const App = () => {
             path="/pharmacy/location"
             component={Location}
           ></PrivateRoute>
-
-          <PrivateRoute
-            exact
-            path="/reminder"
-            component={Reminder}
-          ></PrivateRoute>
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/reminder"
+              component={Reminder}
+            ></PrivateRoute>
+          )}
 
           <PrivateRoute exact path="/room" component={ChatRoom}></PrivateRoute>
           <PrivateRoute exact path="/join/name" component={Name}></PrivateRoute>

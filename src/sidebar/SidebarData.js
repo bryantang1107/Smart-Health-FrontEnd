@@ -75,6 +75,46 @@ export const SidebarData = [
     icon: <GiNurseMale className="sidebar-icon"></GiNurseMale>,
   },
   {
+    id: 13,
+    title: "Activity Log",
+    path: "/find-doctor",
+    icon: <GiNurseMale className="sidebar-icon"></GiNurseMale>,
+  },
+  {
+    id: 3,
+    role: true,
+    title: "Join Consultation",
+    path: "/join",
+    icon: <BsChatRightDotsFill className="sidebar-icon" />,
+  },
+  {
+    id: 16,
+    title: "Consultation",
+    path: "#",
+    icon: <RiUserHeartLine className="sidebar-icon" />,
+
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Join Consultation",
+        path: "/join",
+        icon: <BsChatRightDotsFill className="sidebar-icon" />,
+      },
+      {
+        title: "Pharmacy",
+        path: "/pharmacy",
+        icon: <FaIcons.FaCartPlus className="sidebar-icon" />,
+      },
+      {
+        title: "Reminder",
+        path: "/reminder",
+        icon: <GiClockwork className="sidebar-icon" />,
+      },
+    ],
+  },
+  {
     id: 14,
     title: "For Doctor",
     role: true,
@@ -97,13 +137,6 @@ export const SidebarData = [
       },
     ],
   },
-  {
-    id: 11,
-    title: "Consultation",
-    role: true,
-    path: "/join",
-    icon: <BsChatRightDotsFill className="sidebar-icon" />,
-  },
 
   {
     id: 2,
@@ -111,17 +144,40 @@ export const SidebarData = [
     path: "/find-doctor",
     icon: <GiNurseMale className="sidebar-icon"></GiNurseMale>,
   },
-  {
-    id: 3,
-    title: "Consultation",
-    path: "/join",
-    icon: <BsChatRightDotsFill className="sidebar-icon" />,
-  },
+
   {
     id: 3,
     title: "Medical Record",
     path: "/medical-record",
     icon: <BsChatRightDotsFill className="sidebar-icon" />,
+  },
+  {
+    id: 15,
+    title: "Medical Services",
+    role: true,
+    path: "#",
+    icon: <FaIcons.FaEnvelopeOpenText className="sidebar-icon" />,
+
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Pharmacy",
+        path: "/pharmacy",
+        icon: <FaIcons.FaCartPlus className="sidebar-icon" />,
+      },
+      {
+        title: "Health Forum",
+        path: "/health-forum",
+        icon: <IoIcons.IoIosPaper className="sidebar-icon" />,
+      },
+      {
+        title: "Find Pharmacy",
+        path: "/pharmacy/location",
+        icon: <RiHospitalFill className="sidebar-icon" />,
+      },
+    ],
   },
   {
     id: 7,
@@ -196,25 +252,6 @@ export const SidebarData = [
         cName: "sub-nav",
       },
     ],
-  },
-  {
-    id: 13,
-    title: "Pharmacy",
-    role: true,
-    path: "/pharmacy",
-    icon: <FaIcons.FaCartPlus className="sidebar-icon" />,
-  },
-  {
-    id: 5,
-    title: "Pharmacy",
-    path: "/pharmacy",
-    icon: <FaIcons.FaCartPlus className="sidebar-icon" />,
-  },
-  {
-    id: 6,
-    title: "Reminder",
-    path: "/reminder",
-    icon: <GiClockwork className="sidebar-icon" />,
   },
 
   {

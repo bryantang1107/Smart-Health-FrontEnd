@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import "./chat.css";
 
 const Name = () => {
-  const [name, setName] = useState();
-
-  const handleChange = (e) => {
-    setName(e.target.value);
+  const nameRef = useRef();
+  const handleClick = () => {
+    localStorage.setItem("username", nameRef.current.value);
   };
   return (
     <div className="join-name-container">
@@ -18,13 +17,14 @@ const Name = () => {
             type="text"
             className="name-input-1"
             placeholder="Your Name..."
-            onChange={handleChange}
+            ref={nameRef}
             style={{ textTransform: "none" }}
           />
         </div>
         <a
-          href={`/room?room=${localStorage.getItem("room")}&username=${name}`}
+          href={`/room?room=${localStorage.getItem("room")}`}
           className="join-room-btn-34"
+          onClick={handleClick}
         >
           Join
         </a>

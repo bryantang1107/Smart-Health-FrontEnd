@@ -5,7 +5,6 @@ import useUpdateEffect from "../hooks/useUpdateEffect";
 import axios from "../axios";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  //rest includes the path and exact
   const { currentUser, logout } = useAuth();
   const [state, setState] = useState(false);
   const history = useHistory();
@@ -13,6 +12,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     setState(!state);
   }, []);
   useUpdateEffect(() => {
+    //use this custom hook, because currentuser state has not been updated in the authcontext
+    //to prevent this effect to run in the first render --> so it will not log user out
     const checkAuth = async () => {
       try {
         await axios.get("/check", {
