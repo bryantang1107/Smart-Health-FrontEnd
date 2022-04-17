@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import "./chat.css";
 import axios from "../axios";
@@ -20,6 +20,10 @@ const Join = () => {
   const [loading, setLoading] = useState("");
 
   const history = useHistory();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   const authenticateRoom = async () => {
     try {

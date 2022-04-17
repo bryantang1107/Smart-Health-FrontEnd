@@ -247,6 +247,11 @@
           box-shadow: 0 4px 20px rgba(19, 124, 228, 0.2);
 }
 
+#reminder-email .subscribe .verified-icon {
+  color: #38d3a8;
+  font-size: 5rem;
+}
+
 #reminder-email .subscribe__title {
   font-weight: bold;
   font-size: 26px;
@@ -274,6 +279,7 @@
   width: 431px;
   font-size: 18px;
   color: #0f121f;
+  text-transform: none;
 }
 
 #reminder-email .form__email:focus {

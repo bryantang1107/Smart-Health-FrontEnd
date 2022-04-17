@@ -11,20 +11,42 @@ import Reminder from "./Reminder";
 import { motion } from "framer-motion";
 import Welcome from "./Welcome";
 import { useAuth } from "../../context/AuthContext";
+import axios from "../../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-//let arr = JSON.parse(localStorage.getItem("value"));
+toast.configure();
 const Home = () => {
   const [reminderData, setReminderData] = useState(false);
-  const { userData } = useAuth();
-  // useEffect(() => {
-  //   if (arr.length > 0) {
-  //     setReminderData(arr);
-  //     return;
-  //   }
-  //   return;
-  // }, []);
+  const { userData, currentUser } = useAuth();
+  const [reminderLength, setReminderLength] = useState();
 
-  //check if user has logged in
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    if (currentUser) {
+      const notify = () => {
+        toast.info("Please Remember to constantly check your reminder !", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: false,
+        });
+      };
+      const getReminder = async () => {
+        try {
+          const response = await axios.get(
+            `/reminder/get-reminder/${userData}`
+          );
+          if (response.data) {
+            setReminderLength(response.data.length);
+            return setReminderData(true);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      notify();
+      getReminder();
+    }
+  }, []);
 
   return (
     <>
@@ -34,7 +56,9 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {reminderData && <Reminder data={reminderData}></Reminder>}
+        {currentUser && reminderData && (
+          <Reminder reminderLength={reminderLength}></Reminder>
+        )}
         <div className="head-hero">
           <Welcome></Welcome>
         </div>

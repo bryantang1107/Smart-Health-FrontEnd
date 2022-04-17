@@ -61,7 +61,7 @@ const Contact = () => {
             </div>
             <form action="#" method="post" id="contact_form">
               <div className="name">
-                <label for="name"></label>
+                <label htmlFor="name"></label>
                 <input
                   type="text"
                   placeholder="name"
@@ -71,17 +71,17 @@ const Contact = () => {
                 ></input>
               </div>
               <div className="email">
-                <label for="email"></label>
+                <label htmlFor="email"></label>
                 <input
                   type="email"
                   placeholder="E-mail"
                   name="email"
                   id="email_input"
-                  requireddc
+                  required
                 ></input>
               </div>
               <div className="telephone">
-                <label for="name"></label>
+                <label htmlFor="name"></label>
                 <input
                   type="text"
                   placeholder="Tel no:"
@@ -91,14 +91,15 @@ const Contact = () => {
                 ></input>
               </div>
               <div className="subject">
-                <label for="subject"></label>
+                <label htmlFor="subject"></label>
                 <select
                   placeholder="Subject line"
                   name="subject"
                   id="subject_input"
                   required
+                  defaultValue={"Subject line"}
                 >
-                  <option disabled hidden selected>
+                  <option disabled hidden>
                     Subject line
                   </option>
                   <option>Consultation</option>
@@ -107,7 +108,7 @@ const Contact = () => {
                 </select>
               </div>
               <div className="message">
-                <label for="message"></label>
+                <label htmlFor="message"></label>
                 <textarea
                   name="message"
                   placeholder="write message..."

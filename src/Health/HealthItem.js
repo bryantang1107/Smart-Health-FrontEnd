@@ -18,9 +18,9 @@ const HealthItem = ({ x }) => {
         <h5>Related Content/Article</h5>
         <ol className="gradient-list">
           {toggle
-            ? x.RelatedItems.RelatedItem.map((y) => {
+            ? x.RelatedItems.RelatedItem.map((y, index) => {
                 return (
-                  <li>
+                  <li key={index}>
                     <p>{y.Title}</p>
                     <a href={y.Url} target="_blank">
                       Read More Here
@@ -31,7 +31,7 @@ const HealthItem = ({ x }) => {
             : x.RelatedItems.RelatedItem.map((y, index) => {
                 if (index > 1) return;
                 return (
-                  <li>
+                  <li key={index}>
                     <p>{y.Title}</p>
                     <a href={y.Url} target="_blank">
                       Read More Here

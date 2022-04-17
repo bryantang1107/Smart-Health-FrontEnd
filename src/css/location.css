@@ -74,6 +74,16 @@
   outline: none;
   border-radius: 10px;
   border: none;
+  width: 100%;
+}
+
+@media (max-width: 870px) {
+  .location-container .location-pharmacy {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .gradient-container ol.gradient-list > li, .gradient-container ol.gradient-list > li::before {

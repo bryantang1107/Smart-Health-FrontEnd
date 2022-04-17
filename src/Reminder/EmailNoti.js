@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import axios from "../axios";
+import { useAuth } from "../context/AuthContext";
 
 const EmailNoti = () => {
   //check for user if they have already entered, only render if user have not yet subscribe
   //allow user to cancel the reminder only if they have already entered
+  const emailRef = useRef();
+  const checkboxRef = useRef();
+  const { userData } = useAuth();
+  const [error, setError] = useState();
+
+  const handleClick = () => {
+    setError("");
+  };
+
+  const submitEmail = async () => {
+    try {
+      if (checkboxRef.current.checked) {
+        await axios.post("/reminder/email-reminder", {
+          userData,
+          email: emailRef.current.value,
+        });
+      } else {
+        setError("Please tick the checkbox !");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <section id="reminder-email">
       <div className="subscribe">
@@ -19,16 +44,26 @@ const EmailNoti = () => {
             reminder in the reminder list.
           </strong>
         </p>
-        <div className="form">
+        <form className="form">
           <input
             type="email"
             className="form__email"
             placeholder="Enter your email address"
+            ref={emailRef}
+            required
           />
-          <button className="form__button">Submit</button>
-        </div>
+          <button className="form__button" onClick={submitEmail} type="submit">
+            Submit
+          </button>
+        </form>
+        {error && <p className="alert-primary">{error}</p>}
         <div className="notice">
-          <input type="checkbox" required />
+          <input
+            type="checkbox"
+            required
+            ref={checkboxRef}
+            onClick={handleClick}
+          />
           <span className="notice__copy">
             I agree to my email address being stored and uses to recieve daily
             reminder.<br></br>

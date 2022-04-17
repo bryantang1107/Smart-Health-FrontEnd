@@ -199,6 +199,10 @@
     &:hover {
       box-shadow: 0 4px 20px rgba(19, 124, 228, 0.2);
     }
+    .verified-icon {
+      color: #38d3a8;
+      font-size: 5rem;
+    }
   }
 
   .subscribe__title {
@@ -226,6 +230,7 @@
     width: 431px;
     font-size: 18px;
     color: #0f121f;
+    text-transform: none;
   }
 
   .form__email:focus {

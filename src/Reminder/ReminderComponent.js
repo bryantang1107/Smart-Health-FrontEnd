@@ -9,11 +9,13 @@ import Empty from "./Empty";
 import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import EmailNoti from "./EmailNoti";
+import Cancel from "./Cancel";
 
 const ReminderComponent = () => {
   const [reminderData, setReminderData] = useState([]);
   const [toggle, setToggle] = useState(false);
   const { userData } = useAuth();
+  const [reminder, setReminder] = useState();
   const [alert, setAlert] = useState({
     show: false,
     msg: "",
@@ -33,6 +35,20 @@ const ReminderComponent = () => {
       }
     };
     getData();
+  }, []);
+
+  useEffect(() => {
+    const checkEmail = async () => {
+      try {
+        const response = await axios.get(
+          `/reminder/email-reminder/${userData}`
+        );
+        setReminder(response.data);
+      } catch (error) {
+        showAlert(true, "danger", "Server Error, please try again later");
+      }
+    };
+    checkEmail();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -102,8 +118,7 @@ const ReminderComponent = () => {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 1000, left: 0, behavior: "smooth" });
-    localStorage.setItem("value", JSON.stringify(reminderData));
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [reminderData]);
 
   return (
@@ -122,7 +137,7 @@ const ReminderComponent = () => {
           </p>
         </div>
       </div>
-      <EmailNoti />
+      {!reminder ? <EmailNoti /> : <Cancel />}
       <div className="reminder-list-container">
         <h3>Reminder List</h3>
         <div className="underline"></div>

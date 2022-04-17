@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./nodoctor.css";
 
 const Tnc = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="tnc-container">
       <h3>SmartHealth Terms of Service</h3>

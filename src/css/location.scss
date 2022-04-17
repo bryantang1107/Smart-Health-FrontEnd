@@ -51,6 +51,12 @@
       outline: none;
       border-radius: 10px;
       border: none;
+      width: 100%;
+    }
+  }
+  @media (max-width: 870px) {
+    .location-pharmacy {
+      flex-direction: column;
     }
   }
 }

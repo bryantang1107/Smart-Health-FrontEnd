@@ -8,7 +8,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
-  console.log(process.env.PROJECT_ID);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

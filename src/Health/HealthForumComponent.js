@@ -73,8 +73,8 @@ const HealthForumComponent = () => {
         data &&
         !error && (
           <div className="health-article">
-            {data.map((x) => {
-              return <HealthItem x={x} />;
+            {data.map((x, index) => {
+              return <HealthItem x={x} key={index} />;
             })}
           </div>
         )

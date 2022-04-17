@@ -12,6 +12,8 @@ import { RiVirusFill } from "react-icons/ri";
 import { RiArticleLine } from "react-icons/ri";
 import { MdForum } from "react-icons/md";
 import { VscFilePdf } from "react-icons/vsc";
+import { FiActivity } from "react-icons/fi";
+import { AiOutlineFilePdf } from "react-icons/ai";
 
 export const SidebarData = [
   {
@@ -77,8 +79,8 @@ export const SidebarData = [
   {
     id: 13,
     title: "Activity Log",
-    path: "/find-doctor",
-    icon: <GiNurseMale className="sidebar-icon"></GiNurseMale>,
+    path: "/activity-log",
+    icon: <FiActivity className="sidebar-icon"></FiActivity>,
   },
   {
     id: 3,
@@ -149,7 +151,7 @@ export const SidebarData = [
     id: 3,
     title: "Medical Record",
     path: "/medical-record",
-    icon: <BsChatRightDotsFill className="sidebar-icon" />,
+    icon: <AiOutlineFilePdf className="sidebar-icon" />,
   },
   {
     id: 15,
