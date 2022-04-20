@@ -8,12 +8,33 @@ import { useAuth } from "../context/AuthContext";
 import { useParams } from "react-router-dom";
 import Loading from "../covid/Loading";
 import Success from "./Success";
+import TextField from "@material-ui/core/TextField";
+import DateFnsUtils from "@date-io/date-fns";
+import TimePicker from "./TimePicker";
+import Error from "./Error";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
+const TextFieldComponent = (props) => {
+  return <TextField {...props} disabled={true} />;
+};
 
 const AppointmentForm = () => {
+  const getMinDate = () => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  };
+
   const [gender, setGender] = useState("male");
+  const [time, setTime] = useState("");
+  const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const { id } = useParams();
   const { userData } = useAuth();
   const [success, setSuccess] = useState(false);
+  const [slotError, setSlotError] = useState();
   const [canBook, setCanBook] = useState(true);
   const [error, setError] = useState();
   const nameRef = useRef();
@@ -21,7 +42,6 @@ const AppointmentForm = () => {
   const phoneRef = useRef();
   const dobRef = useRef();
   const symptomsRef = useRef();
-  const dateRef = useRef();
   const termRef = useRef();
   const [loading, setLoading] = useState();
 
@@ -40,6 +60,10 @@ const AppointmentForm = () => {
     };
     checkAppointment();
   }, []);
+
+  const handleError = () => {
+    setSlotError(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +84,8 @@ const AppointmentForm = () => {
         phone: phoneRef.current.value,
         dob: dobRef.current.value,
         symptoms: symptomsRef.current.value,
-        date: dateRef.current.value,
+        date: selectedDate.toISOString().split("T")[0],
+        time,
         gender,
         doctorInfo: id,
       };
@@ -75,11 +100,12 @@ const AppointmentForm = () => {
           setSuccess(true);
         }, 3000);
       } catch (err) {
-        console.log(err);
+        setLoading(false);
+        setSlotError("The time slot is unavailable, please try other slot");
       }
     };
     if (!termRef.current.checked) {
-      setError("Please check the terms and condition");
+      setError("Please accept the terms and condition");
       window.scrollTo({
         top: 0,
         left: 0,
@@ -96,6 +122,10 @@ const AppointmentForm = () => {
     return <Success></Success>;
   }
 
+  if (slotError) {
+    return <Error error={slotError} handleError={handleError} />;
+  }
+
   if (!canBook) {
     //use userdata to check if this user has booked appointment
     return (
@@ -109,6 +139,12 @@ const AppointmentForm = () => {
       </div>
     );
   }
+
+  const getMaxDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 2);
+    return date;
+  };
 
   return (
     <>
@@ -198,13 +234,49 @@ const AppointmentForm = () => {
           </div>
         </div>
         <div className="row-appointment">
-          <h4>
-            Select your appointment date&time (verify if the date is taken)
-          </h4>
-          <div className="input-group">
-            <label htmlFor="localtime">Date & Time:</label>
-            <input type="datetime-local" name="localtime" ref={dateRef} />
-          </div>
+          <h4>Select your appointment date&time</h4>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              InputProps={{
+                disableUnderline: true,
+              }}
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Select Date"
+              value={selectedDate}
+              minDate={getMinDate()}
+              maxDate={getMaxDate()}
+              autoOk={true}
+              onChange={(date) => {
+                setSelectedDate(date);
+                setTime();
+              }}
+              required
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+              TextFieldComponent={TextFieldComponent}
+            />
+          </MuiPickersUtilsProvider>
+          <p
+            style={{
+              fontSize: "0.8rem",
+              color: "rgba(0, 0, 0, 0.7)",
+              letterSpacing: "0.01em",
+            }}
+          >
+            Select Time *
+          </p>
+          <TimePicker
+            selectedDate={selectedDate}
+            time={time}
+            setTime={setTime}
+            id={id}
+          />
+          <div></div>
         </div>
 
         <div className="row-appointment">

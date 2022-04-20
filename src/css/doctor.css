@@ -683,6 +683,7 @@
   -ms-grid-column: 2;
   grid-area: appointment;
   background: #fff;
+  margin-bottom: 2em;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
