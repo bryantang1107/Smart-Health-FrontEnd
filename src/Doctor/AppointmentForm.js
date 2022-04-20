@@ -63,6 +63,7 @@ const AppointmentForm = () => {
 
   const handleError = () => {
     setSlotError(false);
+    setTime();
   };
 
   const handleSubmit = (e) => {
