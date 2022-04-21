@@ -433,6 +433,10 @@ $baby-blue: #f8faff;
     width: 100%;
     margin-left: 0;
   }
+  .w-80 {
+    width: 80%;
+    padding: 3em;
+  }
 }
 @media screen and (max-width: 1260px) {
   .doctor-entire-container {
@@ -512,10 +516,11 @@ $baby-blue: #f8faff;
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 1260px) {
   .doctor-appointment-container {
-    width: 100%;
-    margin-right: 0;
+    margin: auto;
+    width: 80%;
+    margin-bottom: 2em;
   }
 }
 

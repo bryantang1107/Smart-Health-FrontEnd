@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./nodoctor.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation, faPen } from "@fortawesome/free-solid-svg-icons";
 import axios from "../axios";
 import short from "short-uuid";
 import { useAuth } from "../context/AuthContext";
@@ -12,6 +12,8 @@ import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
 import TimePicker from "./TimePicker";
 import Error from "./Error";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -66,6 +68,24 @@ const AppointmentForm = () => {
     setTime();
   };
 
+  const handleCancel = () => {
+    confirmAlert({
+      title: "Are you Sure You want to cancel your appointment?",
+      message: `By Clicking "Cancel", you acknowledge that you want to cancel the appointment 
+      and your room credentials will no longer be valid. Please reschedule
+      with your doctor if necessary.`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => alert("Click Yes"),
+          //cancel the appointment here,same as "done appointment" route
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const bookAppointment = async () => {
@@ -90,6 +110,7 @@ const AppointmentForm = () => {
         gender,
         doctorInfo: id,
       };
+
       try {
         await axios.post("/authroom/register", {
           room_id: roomId,
@@ -130,13 +151,33 @@ const AppointmentForm = () => {
   if (!canBook) {
     //use userdata to check if this user has booked appointment
     return (
-      <div>
-        You have a pending appointment, please ensure that you have clicked
-        "Done" in your appointment schedule. Warning: By clicking "Done", you
-        acknowledge that the appointment is conducted successfully and your room
-        credentials will no longer be valid. Please reschedule with your doctor
-        if necessary. click done delete the info (don allow user to have
-        multiple consultation)
+      <div className="invalid-booking">
+        <FontAwesomeIcon
+          icon={faCircleExclamation}
+          style={{ fontSize: "3rem", color: "#DC143C" }}
+        />
+        <p className="invalid-content">
+          It Seems Like You have a pending appointment.
+        </p>
+        <h3 style={{ color: "#00bbcf" }}>
+          Cant Book An Appointment? Here are some options that may help you.
+        </h3>
+        <ol className="gradient-list">
+          <li>
+            You have already made appointment with a doctor. Please note that
+            you are only entitled for one appointment at a time.
+          </li>
+          <li>
+            Please ensure that you have clicked "Done" in your appointment
+            schedule.
+          </li>
+        </ol>
+        <h2 style={{ color: "#00bbcf" }}>
+          If you wish to cancel your appointment:
+        </h2>
+        <span className="btn green" onClick={handleCancel}>
+          Click here
+        </span>
       </div>
     );
   }
@@ -179,8 +220,11 @@ const AppointmentForm = () => {
           <div className="input-group input-group-icon">
             <input
               type="tel"
-              placeholder="012-345-7890"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="012-345-7890 or 012-3456-7890"
+              pattern={
+                ("[0-9]{3}-[0-9]{3}-[0-9]{4}", "[0-9]{3}-[0-9]{4}-[0-9]{4}")
+              }
+              multiple
               ref={phoneRef}
             />
             <div className="input-icon">

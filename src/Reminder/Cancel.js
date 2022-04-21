@@ -2,20 +2,39 @@ import React, { useState } from "react";
 import { VscVerified } from "react-icons/vsc";
 import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Cancel = () => {
   const [error, setError] = useState();
   const { userData } = useAuth();
   const cancelEmail = async (e) => {
-    try {
-      await axios.delete("/reminder/cancel-email-reminder", {
-        data: {
-          userData,
+    e.preventDefault();
+    confirmAlert({
+      title: "Are you Sure You want to cancel the daily reminder?",
+      message: `If you would like to subscribe to the daily reminder again in the future, please enter your email again!`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            try {
+              await axios.delete("/reminder/cancel-email-reminder", {
+                data: {
+                  userData,
+                },
+              });
+              window.location.reload(false);
+            } catch (error) {
+              setError(error);
+            }
+          },
+          //cancel the appointment here,same as "done appointment" route
         },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+        {
+          label: "No",
+        },
+      ],
+    });
   };
 
   return (

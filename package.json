@@ -26,6 +26,7 @@
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-chat-engine": "^1.11.22",
+    "react-confirm-alert": "^2.8.0",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
     "react-emoji": "^0.5.0",

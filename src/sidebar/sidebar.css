@@ -1,6 +1,5 @@
-@media (max-width: 1080px) {
+@media (orientation: landscape), (max-width: 860px) {
   .sidebar-slider {
-    width: 100%;
     overflow-y: scroll;
   }
   .sidebar-slider::-webkit-scrollbar-thumb {

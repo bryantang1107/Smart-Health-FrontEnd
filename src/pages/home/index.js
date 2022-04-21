@@ -43,7 +43,9 @@ const Home = () => {
           console.log(err);
         }
       };
-      notify();
+      if (reminderData.length > 0) {
+        notify();
+      }
       getReminder();
     }
   }, []);
@@ -56,7 +58,7 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {currentUser && reminderData && (
+        {currentUser && reminderData.length > 0 && (
           <Reminder reminderLength={reminderLength}></Reminder>
         )}
         <div className="head-hero">

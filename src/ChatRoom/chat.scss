@@ -16,10 +16,10 @@
   .room-creds-container {
     background: #f6f6f6;
     border-radius: 15%;
+    margin-right: 0;
+    width: 80%;
+    margin: auto;
     box-shadow: var(--dark-shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 2em;
     .room-credentials {
       text-transform: none;
@@ -27,23 +27,20 @@
   }
 }
 
-@media (max-width: 980px) {
-  .joinOuterContainer {
-    flex-direction: column;
-  }
-}
-
 .joinInnerContainer {
-  width: 40%;
   background-color: #48546146;
   background-image: linear-gradient(
     315deg,
     #4854613a 0% rgba (40, 49, 59, 0.267) 3b 74%
   );
   padding: 3em;
-  min-width: 300px;
+  min-width: 500px;
 }
-
+@media (max-width: 980px) {
+  .joinOuterContainer {
+    flex-direction: column;
+  }
+}
 .joinInput {
   border-radius: 0;
   padding: 15px 20px;
@@ -90,10 +87,6 @@
 @media (min-width: 320px) and (max-width: 480px) {
   .joinOuterContainer {
     height: 100%;
-  }
-
-  .joinInnerContainer {
-    width: 90%;
   }
 }
 

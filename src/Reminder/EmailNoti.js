@@ -14,15 +14,16 @@ const EmailNoti = () => {
     setError("");
   };
 
-  const submitEmail = async () => {
+  const submitEmail = async (e) => {
     try {
       if (checkboxRef.current.checked) {
-        await axios.post("/reminder/email-reminder", {
+        return await axios.post("/reminder/email-reminder", {
           userData,
           email: emailRef.current.value,
         });
       } else {
-        setError("Please tick the checkbox !");
+        e.preventDefault();
+        return setError("Please tick the checkbox !");
       }
     } catch (error) {
       setError(error.message);

@@ -40,34 +40,30 @@ const Dropdownmenu = ({ closeMenu }) => {
           to={props.linkTo}
           className="menu-item"
           onClick={() => {
-            //props.goToMenu && setActiveMenu(props.goToMenu);
             closeMenu();
           }}
         >
           <span className="icon-button-menu">{props.leftIcon}</span>
-          <p>{props.children}</p>
+          <p style={{ color: "#f6f6f6" }}>{props.children}</p>
           <span className="icon-right">{props.rightIcon}</span>
         </Link>
       );
     } else if (props.logout) {
       return (
-        <a
-          href="/#"
+        <span
           className="menu-item"
           onClick={() => {
-            //props.goToMenu && setActiveMenu(props.goToMenu);
             handleLogOut();
           }}
         >
           <span className="icon-button-menu">{props.leftIcon}</span>
-          <p>{props.children}</p>
+          <p style={{ color: "#f6f6f6" }}>{props.children}</p>
           <span className="icon-right">{props.rightIcon}</span>
-        </a>
+        </span>
       );
     } else {
       return (
-        <a
-          href="/#"
+        <span
           className="menu-item"
           onClick={(e) => {
             e.preventDefault();
@@ -75,9 +71,9 @@ const Dropdownmenu = ({ closeMenu }) => {
           }}
         >
           <span className="icon-button-menu">{props.leftIcon}</span>
-          <p>{props.children}</p>
+          <p style={{ color: "#f6f6f6" }}>{props.children}</p>
           <span className="icon-right">{props.rightIcon}</span>
-        </a>
+        </span>
       );
     }
   };
@@ -99,7 +95,7 @@ const Dropdownmenu = ({ closeMenu }) => {
             rightIcon={<Chevron style={{ height: "30px" }}></Chevron>}
             goToMenu="settings"
           >
-            Settings
+            Site Settings
           </Dropdownitem>
           <Dropdownitem
             leftIcon={<RiLogoutBoxLine></RiLogoutBoxLine>}
@@ -123,13 +119,13 @@ const Dropdownmenu = ({ closeMenu }) => {
             goToMenu="main"
           ></Dropdownitem>
           <Dropdownitem leftIcon={<Cog></Cog>} linkTo="/settings">
-            Settings
+            Feature coming soon !
           </Dropdownitem>
           <Dropdownitem leftIcon={<Cog></Cog>} linkTo="/settings">
-            Settings
+            Feature coming soon !
           </Dropdownitem>
           <Dropdownitem leftIcon={<Cog></Cog>} linkTo="/settings">
-            Settings
+            Feature coming soon !
           </Dropdownitem>
         </div>
       </CSSTransition>

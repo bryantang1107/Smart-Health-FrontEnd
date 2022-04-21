@@ -86,7 +86,7 @@ a {
   &::after {
     --tooltip-color: #3fbbc0;
     --arrow-size: 10px;
-
+    color: #f6f6f6;
     position: absolute;
     bottom: -0.25rem;
     left: 50%;
@@ -160,7 +160,7 @@ a {
   margin: 0.5em 0;
 
   &:hover {
-    background-color: #f6f6f6;
+    background-color: #689494;
     color: #000;
   }
   .icon-button-menu {
@@ -176,6 +176,7 @@ a {
     justify-content: center;
     position: relative;
     z-index: 35;
+    color: #f6f6f6;
     &:hover {
       filter: brightness(1.2);
     }

@@ -31,6 +31,7 @@ import Tnc from "./Doctor/Tnc";
 import Schedule from "./pages/Schedule";
 import Patient from "./doctorPage/Patient";
 import { useSelector } from "react-redux";
+import Appointment from "./doctorPage/Appointment";
 const App = () => {
   const data = useSelector((state) => state.roleReducer);
   return (
@@ -68,6 +69,13 @@ const App = () => {
               exact
               path="/upload/medical-record"
               component={MedicalRecord}
+            ></PrivateRoute>
+          )}
+          {data.role === "doctor" && (
+            <PrivateRoute
+              exact
+              path="/appointment"
+              component={Appointment}
             ></PrivateRoute>
           )}
 

@@ -118,7 +118,7 @@ const Doctor = () => {
               </div>
             </div>
           </div>
-          <div className="doctor-about-container">
+          <div className="doctor-about-container w-80">
             <h1>About Doctor</h1>
             <p>{Info.about}</p>
             <div className="doctor-about-good">

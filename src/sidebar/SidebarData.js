@@ -13,7 +13,7 @@ import { RiArticleLine } from "react-icons/ri";
 import { MdForum } from "react-icons/md";
 import { VscFilePdf } from "react-icons/vsc";
 import { FiActivity } from "react-icons/fi";
-import { AiOutlineFilePdf } from "react-icons/ai";
+import { AiOutlineFilePdf, AiOutlineSchedule } from "react-icons/ai";
 
 export const SidebarData = [
   {
@@ -77,11 +77,47 @@ export const SidebarData = [
     icon: <GiNurseMale className="sidebar-icon"></GiNurseMale>,
   },
   {
+    id: 14,
+    title: "For Doctor",
+    role: true,
+    path: "#",
+    icon: <RiUserHeartLine className="sidebar-icon" />,
+
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "View Appointment",
+        path: "/appointment",
+        icon: <AiOutlineSchedule className="sidebar-icon" />,
+      },
+      {
+        title: "Upload Medical Record",
+        path: "/upload/medical-record",
+        icon: <BsCloudUpload className="sidebar-icon" />,
+      },
+      {
+        title: "Patient Record",
+        path: "/patient-record",
+        icon: <VscFilePdf className="sidebar-icon" />,
+      },
+    ],
+  },
+  {
     id: 13,
     title: "Activity Log",
     path: "/activity-log",
     icon: <FiActivity className="sidebar-icon"></FiActivity>,
   },
+  {
+    id: 17,
+    title: "Activity Log",
+    role: true,
+    path: "/activity-log",
+    icon: <FiActivity className="sidebar-icon"></FiActivity>,
+  },
+
   {
     id: 3,
     role: true,
@@ -113,29 +149,6 @@ export const SidebarData = [
         title: "Reminder",
         path: "/reminder",
         icon: <GiClockwork className="sidebar-icon" />,
-      },
-    ],
-  },
-  {
-    id: 14,
-    title: "For Doctor",
-    role: true,
-    path: "#",
-    icon: <RiUserHeartLine className="sidebar-icon" />,
-
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-
-    subNav: [
-      {
-        title: "Upload Medical Record",
-        path: "/upload/medical-record",
-        icon: <BsCloudUpload className="sidebar-icon" />,
-      },
-      {
-        title: "Patient Record",
-        path: "/patient-record",
-        icon: <VscFilePdf className="sidebar-icon" />,
       },
     ],
   },

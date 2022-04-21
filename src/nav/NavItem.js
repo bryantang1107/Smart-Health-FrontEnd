@@ -22,8 +22,7 @@ export default function NavItem(props) {
 
   return (
     <li className="nav-item">
-      <a
-        href="/#"
+      <span
         className="icon-button"
         data-tooltip={props.name}
         onClick={(e) => {
@@ -32,7 +31,7 @@ export default function NavItem(props) {
         }}
       >
         {props.icon}
-      </a>
+      </span>
 
       {open && <Dropdownmenu closeMenu={closeMenu}></Dropdownmenu>}
     </li>

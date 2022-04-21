@@ -768,4 +768,89 @@
             transform: scaleY(0);
   }
 }
+
+.invalid-booking {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: auto;
+}
+
+.invalid-booking p {
+  line-height: 2rem;
+  letter-spacing: 0.3rem;
+}
+
+.invalid-booking .invalid-content {
+  background-color: #f08080;
+  border-radius: 10px;
+  color: #f6f6f6;
+  padding: 2em;
+  -webkit-box-shadow: var(--dark-shadow);
+          box-shadow: var(--dark-shadow);
+}
+
+@media (max-width: 1260px) {
+  .invalid-booking {
+    width: 80%;
+  }
+}
+
+.btn {
+  --blue: #0e0620;
+  --white: #fff;
+  --green: #3fbbc0;
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 2px;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  font-weight: bold;
+  margin: 5px 0px;
+}
+
+.btn.green {
+  border: 4px solid var(--green);
+  color: var(--blue);
+}
+
+.btn.green:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--green);
+  z-index: -1;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.btn.green:hover {
+  color: var(--white);
+  background: var(--green);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.btn.green:hover:before {
+  width: 100%;
+}
 /*# sourceMappingURL=nodoctor.css.map */

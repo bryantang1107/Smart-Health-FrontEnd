@@ -31,7 +31,6 @@ const TimePicker = ({ selectedDate, time, setTime, id }) => {
           Authorization: "Bearer " + currentUser,
         },
       });
-      console.log(response.data);
       const date = response.data.find((x) => {
         return x.date === selectedDate.toISOString().split("T")[0];
       });
