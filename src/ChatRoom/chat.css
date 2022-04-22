@@ -16,6 +16,7 @@
 }
 
 .joinOuterContainer .room-creds-container {
+  max-width: 500px;
   background: #f6f6f6;
   border-radius: 15%;
   margin-right: 0;

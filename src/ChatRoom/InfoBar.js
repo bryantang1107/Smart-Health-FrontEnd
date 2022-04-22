@@ -22,10 +22,6 @@ const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
     hiddenFileInput.current.click();
   };
 
-  const leaveRoom = () => {
-    localStorage.removeItem("room");
-    localStorage.removeItem("username");
-  };
   return (
     <div className="infoBar">
       <div className="leftInnerContainer">
@@ -71,7 +67,7 @@ const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
           href="/"
           className="leaveRoom"
           data-tooltip="leave room"
-          onClick={leaveRoom}
+          style={{ cursor: "pointer" }}
         >
           <MdOutlineExitToApp style={{ fontSize: "2rem" }} />
         </a>

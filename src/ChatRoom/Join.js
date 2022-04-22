@@ -88,15 +88,20 @@ const Join = () => {
                     <p className="alert-primary">{roomError}</p>
                   ) : (
                     <>
-                      <h4 style={{ color: "#00bbcf" }}>Room ID: </h4>
+                      <h4
+                        className="room-credentials"
+                        style={{ color: "#00bbcf" }}
+                      >
+                        Room ID:{" "}
+                      </h4>
                       <p className="room-credentials">{roomInfo}</p>
                       <h4
                         className="room-credentials"
                         style={{ color: "#00bbcf" }}
                       >
-                        Password:{" "}
+                        Password:
                       </h4>
-                      <p>{roomPw}</p>
+                      <p className="room-credentials">{roomPw}</p>
                     </>
                   )}
                 </div>

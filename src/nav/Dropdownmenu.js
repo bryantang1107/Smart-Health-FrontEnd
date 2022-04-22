@@ -6,14 +6,18 @@ import { ReactComponent as Cog } from "../icons/cog.svg";
 import { useAuth } from "../context/AuthContext";
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import useClickOutside from "../hooks/useClickOutside";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
-const Dropdownmenu = ({ closeMenu }) => {
+import useClickOutside from "../hooks/useClickOutside";
+const Dropdownmenu = ({ setOpen, dropRef }) => {
+  const drop = useRef();
   const history = useHistory();
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(null);
   const { logout } = useAuth();
+  useClickOutside(drop, () => {
+    setOpen(false);
+  });
 
   const handleLogOut = async () => {
     try {
@@ -23,11 +27,6 @@ const Dropdownmenu = ({ closeMenu }) => {
       alert("Unable to log out");
     }
   };
-
-  const drop = useRef();
-  useClickOutside(drop, () => {
-    closeMenu();
-  });
 
   const calcHeight = (el) => {
     const height = el.offsetHeight;
@@ -40,7 +39,7 @@ const Dropdownmenu = ({ closeMenu }) => {
           to={props.linkTo}
           className="menu-item"
           onClick={() => {
-            closeMenu();
+            setOpen(false);
           }}
         >
           <span className="icon-button-menu">{props.leftIcon}</span>

@@ -31,10 +31,3 @@ export const storeUser = (state) => {
     payload: state,
   };
 };
-
-export const storeAppointment = (state) => {
-  return {
-    type: "Appointment",
-    payload: state,
-  };
-};

@@ -4,7 +4,6 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../axios";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import {
   faIdCard,
   faEnvelope,
@@ -43,6 +42,7 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
       }
     };
     if (appointmentData) {
+      localStorage.setItem("appointment", JSON.stringify(appointmentData));
       consultBtn(appointmentData.roomInfo);
     }
   }, [appointmentData]);

@@ -1,8 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./chat.css";
 
 const Name = () => {
   const nameRef = useRef();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   const handleClick = () => {
     localStorage.setItem("username", nameRef.current.value);
   };

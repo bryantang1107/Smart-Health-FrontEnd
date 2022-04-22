@@ -82,6 +82,11 @@ const ChatRoomComponent = () => {
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
+
+    return () => {
+      localStorage.removeItem("room");
+      localStorage.removeItem("username");
+    };
   }, [location.search]);
 
   const sendMessage = (e) => {

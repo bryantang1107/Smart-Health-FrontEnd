@@ -32,8 +32,10 @@ import Schedule from "./pages/Schedule";
 import Patient from "./doctorPage/Patient";
 import { useSelector } from "react-redux";
 import Appointment from "./doctorPage/Appointment";
+import CancelAppointment from "./Doctor/CancelAppointment";
 const App = () => {
   const data = useSelector((state) => state.roleReducer);
+
   return (
     <>
       <AuthProvider>
@@ -94,6 +96,13 @@ const App = () => {
               exact
               path="/health-forum"
               component={HealthForum}
+            ></PrivateRoute>
+          )}
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/cancel-appointment"
+              component={CancelAppointment}
             ></PrivateRoute>
           )}
           {data.role === "user" && (

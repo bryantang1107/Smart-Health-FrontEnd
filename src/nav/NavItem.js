@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Dropdownmenu from "./Dropdownmenu";
 import { NavLink } from "./NavbarElements";
+
 
 export default function NavItem(props) {
   const [open, setOpen] = useState(false);
 
-  const closeMenu = () => {
-    setOpen(false);
-  };
+  
+
   if (props.prop) {
     return (
       <li className="nav-item">
         <a href="/schedule" className="icon-button" data-tooltip={props.name}>
           {props.icon}
         </a>
-
-        {open && <Dropdownmenu closeMenu={closeMenu}></Dropdownmenu>}
       </li>
     );
   }
@@ -33,7 +31,7 @@ export default function NavItem(props) {
         {props.icon}
       </span>
 
-      {open && <Dropdownmenu closeMenu={closeMenu}></Dropdownmenu>}
+      {open && <Dropdownmenu open={open} setOpen={setOpen}></Dropdownmenu>}
     </li>
   );
 }

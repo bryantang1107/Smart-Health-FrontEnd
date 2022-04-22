@@ -5,15 +5,13 @@ import { faCircleExclamation, faPen } from "@fortawesome/free-solid-svg-icons";
 import axios from "../axios";
 import short from "short-uuid";
 import { useAuth } from "../context/AuthContext";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Loading from "../covid/Loading";
 import Success from "./Success";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
 import TimePicker from "./TimePicker";
 import Error from "./Error";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -24,6 +22,7 @@ const TextFieldComponent = (props) => {
 };
 
 const AppointmentForm = () => {
+  const history = useHistory();
   const getMinDate = () => {
     const date = new Date();
     date.setDate(date.getDate() + 1);
@@ -69,22 +68,7 @@ const AppointmentForm = () => {
   };
 
   const handleCancel = () => {
-    confirmAlert({
-      title: "Are you Sure You want to cancel your appointment?",
-      message: `By Clicking "Cancel", you acknowledge that you want to cancel the appointment 
-      and your room credentials will no longer be valid. Please reschedule
-      with your doctor if necessary.`,
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => alert("Click Yes"),
-          //cancel the appointment here,same as "done appointment" route
-        },
-        {
-          label: "No",
-        },
-      ],
-    });
+    history.push("/cancel-appointment");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -218,15 +202,7 @@ const AppointmentForm = () => {
             </div>
           </div>
           <div className="input-group input-group-icon">
-            <input
-              type="tel"
-              placeholder="012-345-7890 or 012-3456-7890"
-              pattern={
-                ("[0-9]{3}-[0-9]{3}-[0-9]{4}", "[0-9]{3}-[0-9]{4}-[0-9]{4}")
-              }
-              multiple
-              ref={phoneRef}
-            />
+            <input type="tel" placeholder="Phone No" multiple ref={phoneRef} />
             <div className="input-icon">
               <i className="fa fa-phone"></i>
             </div>
