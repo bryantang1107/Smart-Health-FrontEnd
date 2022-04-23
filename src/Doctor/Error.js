@@ -5,12 +5,12 @@ const Error = ({ error, handleError }) => {
   return (
     <div className="time-slot-error">
       <h3 className="alert-primary">{error}</h3>
-      <div class="cloak__wrapper">
-        <div class="cloak__container">
-          <div class="cloak"></div>
+      <div className="cloak__wrapper">
+        <div className="cloak__container">
+          <div className="cloak"></div>
         </div>
       </div>
-      <div class="info">
+      <div className="info">
         <button onClick={handleError} className="book-appointment-btn">
           Try Other Slot
         </button>

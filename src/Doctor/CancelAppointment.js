@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import axios from "../axios";
@@ -22,13 +22,13 @@ const CancelAppointment = () => {
   const [conditions, setConditions] = useState();
   const [service, setService] = useState();
   const [Info, setInfo] = useState({});
-  const { userData } = useAuth();
+  const { userData, userInfo } = useAuth();
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const reasonRef = useRef();
+  const [name, setName] = useState("");
+  const [reason, setReason] = useState("");
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -41,10 +41,9 @@ const CancelAppointment = () => {
       try {
         const response = await axios.get(`/user/userDoctor/${userData}`);
         if (!response) return setError(true);
-        const information = response.data;
-
+        const information = response.data[0];
         const { registry, conditions, service, ...data } = information;
-
+        setName(response.data[1]);
         setInfo(data);
         setRegistry(registry);
         setConditions(conditions);
@@ -59,11 +58,9 @@ const CancelAppointment = () => {
   }, []);
   const cancel = (e) => {
     e.preventDefault();
-    if (
-      nameRef.current.value ||
-      emailRef.current.value ||
-      reasonRef.current.value
-    ) {
+
+    if (name || reason) {
+      setLoading(true);
       confirmAlert({
         title: "Are you Sure You want to cancel your appointment?",
         message: `By Clicking "Cancel", you acknowledge that you want to cancel the appointment 
@@ -74,20 +71,29 @@ const CancelAppointment = () => {
             label: "Yes",
             onClick: async () => {
               setLoading(true);
-              await axios.delete(`appointment/${userData}`);
+              await axios.delete(`appointment/${userData}`, {
+                data: {
+                  name,
+                  email: userInfo._delegate.email,
+                  reason,
+                },
+              });
+              setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+              }, 3000);
             },
             //cancel the appointment here,same as "done appointment" route
           },
           {
             label: "No",
+            onClick: () => {
+              setLoading(false);
+            },
           },
         ],
       });
     }
-    setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-    }, 3000);
   };
   const goBack = () => {
     history.goBack();
@@ -119,26 +125,12 @@ const CancelAppointment = () => {
             <form className="form" onSubmit={cancel}>
               <h2>Cancel Appointment</h2>
 
-              <p type="Name:">
-                <input
-                  type="text"
-                  placeholder="Enter Your Name.."
-                  required
-                  ref={nameRef}
-                ></input>
-              </p>
-              <p type="Email:">
-                <input
-                  type="email"
-                  placeholder="Enter Your Email.."
-                  required
-                  ref={emailRef}
-                ></input>
-              </p>
-              <p type="Reason of cancellation:" required ref={reasonRef}>
+              <p type="Reason of cancellation:" required>
                 <input
                   type="text"
                   placeholder="Please tell us your reason of cancellation.."
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
                 ></input>
               </p>
               <button type="submit">Cancel</button>

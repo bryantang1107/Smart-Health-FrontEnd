@@ -18,29 +18,28 @@ import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 const Home = () => {
   const [reminderData, setReminderData] = useState(false);
-  const { userData, currentUser } = useAuth();
+  const { userData, currentUser, userRole } = useAuth();
   const [reminderLength, setReminderLength] = useState();
-
+  const notify = () => {
+    toast.info("Please Remember to constantly check your reminder !", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: false,
+    });
+  };
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     if (currentUser) {
-      const notify = () => {
-        toast.info("Please Remember to constantly check your reminder !", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: false,
-        });
-      };
       const getReminder = async () => {
         try {
           const response = await axios.get(
             `/reminder/get-reminder/${userData}`
           );
-          if (response.data) {
+          if (response.data.length > 0) {
             setReminderLength(response.data.length);
             return setReminderData(true);
           }
         } catch (err) {
-          console.log(err);
+          setReminderData(false);
         }
       };
       if (reminderData.length > 0) {
@@ -49,7 +48,6 @@ const Home = () => {
       getReminder();
     }
   }, []);
-
   return (
     <>
       <motion.div
@@ -58,7 +56,7 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {currentUser && reminderData.length > 0 && (
+        {currentUser && reminderData && userRole === "doctor" && (
           <Reminder reminderLength={reminderLength}></Reminder>
         )}
         <div className="head-hero">

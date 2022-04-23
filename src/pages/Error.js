@@ -491,7 +491,7 @@ const Error = () => {
           </g>
         </g>
       </svg>
-      <p id="errorText">O-o-oh! Something broke.</p>
+      <p id="errorText">O-o-oh! Page Not Found.</p>
       <a id="errorLink" href="/">
         Go Back
       </a>

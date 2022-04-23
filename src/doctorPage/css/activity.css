@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
+.activity-body {
+  width: 70%;
+  margin: auto;
+  min-height: 70vh;
+}
+
+.activity-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+
+.activity-header h1 {
+  margin: 0.5em auto;
+}
+
+.activity-item {
+  position: relative;
+  height: 400px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background: #f6f6f6;
+  -webkit-box-shadow: var(--dark-shadow);
+          box-shadow: var(--dark-shadow);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2em;
+  border-bottom: 1px solid #13121242;
+  gap: 5em;
+}
+
+.activity-item h3,
+.activity-item p,
+.activity-item strong {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 0.3rem;
+  line-height: 1.5rem;
+}
+
+.activity-item h3 {
+  color: #00bbcf;
+}
+
+.activity-item .delete-activity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+  font-size: 2rem;
+  color: #00bbcf;
+}
+
+.activity-item .delete-activity:hover {
+  background: transparent;
+  color: #dd4f4a;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.activity-item .delete-activity::before, .activity-item .delete-activity::after {
+  --tooltip-color: #98d4d6;
+  --arrow-size: 10px;
+  font-weight: 600;
+  position: absolute;
+  bottom: -0.35rem;
+  left: 50%;
+  --scale: 0;
+  -webkit-transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+          transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+}
+
+.activity-item .delete-activity::before {
+  --translate-y: calc(100% + var(--arrow-size));
+  font-size: 0.8rem;
+  content: attr(data-tooltip);
+  padding: 0.8rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--tooltip-color);
+}
+
+.activity-item .delete-activity:hover::before, .activity-item .delete-activity:hover::after {
+  --scale: 1;
+}
+
+.activity-item .delete-activity::after {
+  --translate-y: var(--arrow-size);
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-bottom-color: var(--tooltip-color);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+
+.activity-item .delete-activity:hover {
+  cursor: pointer;
+}
+
+.activity-item .logo {
+  font-size: 2rem;
+  border-radius: 50%;
+}
+
+.activity-item .small {
+  font-size: 1rem;
+}
+
+.activity-item .cancel {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  color: #dc143c;
+  background-color: #f0808093;
+  border-color: #e6c5c3;
+}
+
+.activity-item .activity-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.activity-item .activity-content .activity-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2em;
+}
+
+.activity-item:hover {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.activity-item .email {
+  color: #00bbcf;
+}
+
+@media (max-width: 870px) {
+  .activity-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    text-align: center;
+  }
+  .activity-item .activity-time {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+/*# sourceMappingURL=activity.css.map */

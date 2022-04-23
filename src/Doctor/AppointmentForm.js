@@ -33,13 +33,13 @@ const AppointmentForm = () => {
   const [time, setTime] = useState("");
   const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const { id } = useParams();
-  const { userData } = useAuth();
+  const { userData, userInfo } = useAuth();
+  const email = userInfo._delegate.email;
   const [success, setSuccess] = useState(false);
   const [slotError, setSlotError] = useState();
   const [canBook, setCanBook] = useState(true);
   const [error, setError] = useState();
   const nameRef = useRef();
-  const emailRef = useRef();
   const phoneRef = useRef();
   const dobRef = useRef();
   const symptomsRef = useRef();
@@ -85,7 +85,7 @@ const AppointmentForm = () => {
       const userInfo = {
         userId: userData,
         name: nameRef.current.value,
-        email: emailRef.current.value,
+        email,
         phone: phoneRef.current.value,
         dob: dobRef.current.value,
         symptoms: symptomsRef.current.value,
@@ -188,17 +188,6 @@ const AppointmentForm = () => {
             />
             <div className="input-icon">
               <i className="fa fa-user"></i>
-            </div>
-          </div>
-          <div className="input-group input-group-icon">
-            <input
-              type="email"
-              placeholder="Email Adress"
-              ref={emailRef}
-              required
-            />
-            <div className="input-icon">
-              <i className="fa fa-envelope"></i>
             </div>
           </div>
           <div className="input-group input-group-icon">

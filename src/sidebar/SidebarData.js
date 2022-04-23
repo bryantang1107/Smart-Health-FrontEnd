@@ -104,12 +104,7 @@ export const SidebarData = [
       },
     ],
   },
-  {
-    id: 13,
-    title: "Activity Log",
-    path: "/activity-log",
-    icon: <FiActivity className="sidebar-icon"></FiActivity>,
-  },
+
   {
     id: 17,
     title: "Activity Log",
