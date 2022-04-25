@@ -301,13 +301,14 @@
       font-weight: 600;
       font-size: 2rem;
     }
+    margin-bottom: 3em;
   }
   .how-to-btn {
     background: #3fbbc0;
     padding: 1em;
     color: #fff;
     border-radius: 5px;
-    margin-top: 1em;
+    margin-top: 2em;
     border: 2px solid #fff;
     font-weight: 600;
     letter-spacing: 0.3em;
@@ -964,9 +965,8 @@
   width: 260px;
   height: 260px;
 
-  top: -30%;
+  top: -20%;
   left: 8px;
-  box-shadow: 0 5px 20px rgba($color: #3fbbc0, $alpha: 0.3);
   z-index: 1;
   img {
     max-width: 100%;

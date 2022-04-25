@@ -88,11 +88,6 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "View Appointment",
-        path: "/appointment",
-        icon: <AiOutlineSchedule className="sidebar-icon" />,
-      },
-      {
         title: "Upload Medical Record",
         path: "/upload/medical-record",
         icon: <BsCloudUpload className="sidebar-icon" />,

@@ -27,6 +27,70 @@
   padding: 2em;
 }
 
+.joinOuterContainer .room-creds-container .clipboard {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #00bfff;
+  position: relative;
+}
+
+.joinOuterContainer .room-creds-container .clipboard:hover {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.joinOuterContainer .room-creds-container .clipboard::before, .joinOuterContainer .room-creds-container .clipboard::after {
+  --tooltip-color: #b5dabb;
+  --arrow-size: 10px;
+  position: absolute;
+  bottom: -0.35rem;
+  left: 50%;
+  --scale: 0;
+  -webkit-transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+          transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  font-weight: 600;
+}
+
+.joinOuterContainer .room-creds-container .clipboard::before {
+  --translate-y: calc(100% + var(--arrow-size));
+  font-size: 0.8rem;
+  content: attr(data-tooltip);
+  padding: 0.8rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--tooltip-color);
+}
+
+.joinOuterContainer .room-creds-container .clipboard:hover::before, .joinOuterContainer .room-creds-container .clipboard:hover::after {
+  --scale: 1;
+}
+
+.joinOuterContainer .room-creds-container .clipboard::after {
+  --translate-y: var(--arrow-size);
+  content: "";
+  border: var(--arrow-size) solid transparent;
+  border-bottom-color: var(--tooltip-color);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+
+.joinOuterContainer .room-creds-container .clipboard:hover {
+  cursor: pointer;
+}
+
+.joinOuterContainer .room-creds-container .green {
+  color: #20b2aa;
+}
+
 .joinOuterContainer .room-creds-container .room-credentials {
   text-transform: none;
 }

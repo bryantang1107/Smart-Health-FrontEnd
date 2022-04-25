@@ -42,7 +42,9 @@ const HowTo = () => {
           <p>Browse for information of the prescription provided</p>
         </div>
       </div>
-      <button className="how-to-btn">Make An Appointment </button>
+      <a href="/find-doctor" className="how-to-btn">
+        Make An Appointment
+      </a>
       <p style={{ marginTop: "3em", fontSize: "0.7rem" }}>
         Struggling to use our website? Contact our admin for real-time customer
         support by clicking on the "Hello" button at the bottom right of the

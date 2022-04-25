@@ -7,6 +7,11 @@ import Loading from "../covid/Loading";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import DoctorJoin from "./DoctorJoin";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClipboard,
+  faClipboardCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Join = () => {
   const roomIdRef = useRef();
@@ -19,6 +24,7 @@ const Join = () => {
   const [error, setError] = useState();
   const passwordRef = useRef();
   const [loading, setLoading] = useState("");
+  const [successCopied, setSuccessCopied] = useState();
 
   const history = useHistory();
 
@@ -66,6 +72,21 @@ const Join = () => {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(roomInfo);
+    setSuccessCopied("Copied Room ID to clipboard");
+    setTimeout(() => {
+      setSuccessCopied("");
+    }, 1500);
+  };
+  const copyPassword = () => {
+    navigator.clipboard.writeText(roomPw);
+    setSuccessCopied("Copied Password to clipboard");
+    setTimeout(() => {
+      setSuccessCopied("");
+    }, 1500);
+  };
+
   return (
     <motion.div
       initial={{ x: 1000, opacity: 0 }}
@@ -88,6 +109,14 @@ const Join = () => {
                     <p className="alert-primary">{roomError}</p>
                   ) : (
                     <>
+                      {successCopied && (
+                        <div className="success">
+                          <span onClick={copyToClipboard} className=" green">
+                            <FontAwesomeIcon icon={faClipboardCheck} />
+                            <p style={{ fontSize: "1rem" }}>{successCopied}</p>
+                          </span>
+                        </div>
+                      )}
                       <h4
                         className="room-credentials"
                         style={{ color: "#00bbcf" }}
@@ -95,6 +124,13 @@ const Join = () => {
                         Room ID:{" "}
                       </h4>
                       <p className="room-credentials">{roomInfo}</p>
+                      <span
+                        onClick={copyToClipboard}
+                        className="clipboard"
+                        data-tooltip="Copy To Clipboard"
+                      >
+                        <FontAwesomeIcon icon={faClipboard} />
+                      </span>
                       <h4
                         className="room-credentials"
                         style={{ color: "#00bbcf" }}
@@ -102,6 +138,13 @@ const Join = () => {
                         Password:
                       </h4>
                       <p className="room-credentials">{roomPw}</p>
+                      <span
+                        onClick={copyPassword}
+                        className="clipboard"
+                        data-tooltip="Copy To Clipboard"
+                      >
+                        <FontAwesomeIcon icon={faClipboard} />
+                      </span>
                     </>
                   )}
                 </div>
@@ -132,7 +175,6 @@ const Join = () => {
                     placeholder="Room ID"
                     className="joinInput"
                     ref={roomIdRef}
-                    // onChange={(e) => setRoom(e.target.value)}
                   />
                 </div>
                 <div>
@@ -141,7 +183,6 @@ const Join = () => {
                     placeholder="Password"
                     className="joinInput mt-20"
                     ref={passwordRef}
-                    // onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 

@@ -45,6 +45,7 @@ const AppointmentForm = () => {
   const symptomsRef = useRef();
   const termRef = useRef();
   const [loading, setLoading] = useState();
+  const [appointmentData, setAppointmentData] = useState();
 
   useEffect(() => {
     const checkAppointment = async () => {
@@ -94,7 +95,7 @@ const AppointmentForm = () => {
         gender,
         doctorInfo: id,
       };
-
+      setAppointmentData(userInfo);
       try {
         await axios.post("/authroom/register", {
           room_id: roomId,
@@ -125,7 +126,7 @@ const AppointmentForm = () => {
     return <Loading />;
   }
   if (success) {
-    return <Success></Success>;
+    return <Success appointmentData={appointmentData}></Success>;
   }
 
   if (slotError) {
@@ -175,6 +176,12 @@ const AppointmentForm = () => {
   return (
     <>
       <form id="appointment-submit" onSubmit={handleSubmit}>
+        <h3 className="alert-primary">
+          Please ensure you select the correct appointment date & time. You will
+          not be able to change the date & time after you have made a booking.
+          (Please cancel and make a new booking for appointment if you would
+          like to change the appointment date/time.
+        </h3>
         <div className="row-appointment">
           <h4>Patient Information</h4>
           {error && <p className="alert-primary">{error}</p>}

@@ -84,7 +84,7 @@ const App = () => {
           {data.role === "doctor" && (
             <PrivateRoute
               exact
-              path="/appointment"
+              path="/schedule"
               component={Appointment}
             ></PrivateRoute>
           )}
@@ -168,11 +168,13 @@ const App = () => {
             path="/profile"
             component={Profile}
           ></PrivateRoute>
-          <PrivateRoute
-            exact
-            path="/schedule"
-            component={Schedule}
-          ></PrivateRoute>
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/schedule"
+              component={Schedule}
+            ></PrivateRoute>
+          )}
 
           <Route exact path="/signin" component={SignIn}></Route>
           <Route exact path="/signup" component={SignUp}></Route>

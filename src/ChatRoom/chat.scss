@@ -22,6 +22,62 @@
     margin: auto;
     box-shadow: var(--dark-shadow);
     padding: 2em;
+    .clipboard {
+      font-size: 2rem;
+      cursor: pointer;
+      color: #00bfff;
+      position: relative;
+      &:hover {
+        transition: all 0.5s ease-in-out;
+      }
+      &::before,
+      &::after {
+        --tooltip-color: #b5dabb;
+        --arrow-size: 10px;
+
+        position: absolute;
+        bottom: -0.35rem;
+        left: 50%;
+        --scale: 0;
+
+        transform: translateX((-50%)) translateY(var(--translate-y, 0))
+          scale(var(--scale));
+        transition: transform 0.2s ease-in;
+        transform-origin: top center;
+        font-weight: 600;
+      }
+
+      &::before {
+        --translate-y: calc(100% + var(--arrow-size));
+        font-size: 0.8rem;
+        content: attr(data-tooltip);
+        padding: 0.8rem;
+        width: max-content;
+        border-radius: 20px;
+        text-align: center;
+
+        background: var(--tooltip-color);
+      }
+      &:hover::before,
+      &:hover::after {
+        --scale: 1;
+      }
+      &::after {
+        //arrow
+        --translate-y: var(--arrow-size);
+        content: "";
+        border: var(--arrow-size) solid transparent;
+        border-bottom-color: var(--tooltip-color);
+        transform-origin: bottom center;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .green {
+      color: #20b2aa;
+    }
     .room-credentials {
       text-transform: none;
     }

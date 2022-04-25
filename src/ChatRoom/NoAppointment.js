@@ -680,6 +680,7 @@ const NoAppointment = ({ data = false }) => {
         </div>
         <div className="no-appointment-content">
           <h1>Your Activity Log is Empty</h1>
+          <p>Sit Back & Relax</p>
           <button className="btn green" onClick={goHome}>
             HOME
           </button>

@@ -105,3 +105,18 @@
     margin: 0 5px 0 15px;
   }
 }
+
+.appointment-details {
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: var(--light-shadow);
+  margin: 2em;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 1270px) {
+  .appointment-details {
+    width: 90%;
+  }
+}

@@ -85,11 +85,25 @@ const ActivityComponent = () => {
   };
 
   if (error) {
-    return <NoAppointment data={true} />;
+    return (
+      <>
+        <div className="activity-header">
+          <h1>Activity</h1>
+        </div>
+        <NoAppointment data={true} />
+      </>
+    );
   }
 
   if (activityData && activityData.length < 1) {
-    return <NoAppointment data={true} />;
+    return (
+      <>
+        <div className="activity-header">
+          <h1>Activity</h1>
+        </div>
+        <NoAppointment data={true} />
+      </>
+    );
   }
   return (
     <>

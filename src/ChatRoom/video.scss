@@ -163,6 +163,12 @@
     margin: auto;
     align-items: center;
     justify-content: center;
+    .no-appointment-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .btn {

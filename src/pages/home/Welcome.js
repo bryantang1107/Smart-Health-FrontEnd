@@ -14,7 +14,7 @@ const Welcome = () => {
             <div className="welcome-image">
               <img
                 href="#"
-                src="https://i.pinimg.com/originals/a4/7b/a5/a47ba59b4a353e0928ef0551ca44f980.jpg"
+                src="https://d3e44x6tjqv3e6.cloudfront.net/sites/default/files/2019-08/Medical%20Aid%20Abroad.jpg"
               />
             </div>
             <div className="welcome-content">
