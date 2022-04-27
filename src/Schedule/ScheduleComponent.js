@@ -47,30 +47,34 @@ const ScheduleComponent = () => {
 
   const doneAppointment = async (e) => {
     e.preventDefault();
-    confirmAlert({
-      title: "Appointment Completion",
-      message: `By Clicking "Done", you acknowledge that you have successfully consulted your doctor and you will no longer have access to the consultation room. Please wait for your doctor to prescribe the digital prescription.`,
-      buttons: [
-        {
-          label: "Yes",
-          onClick: async () => {
-            setLoading(true);
-            await axios.post(`/appointment/done/${userData}`);
-            setTimeout(() => {
+    try {
+      confirmAlert({
+        title: "Appointment Completion",
+        message: `By Clicking "Done", you acknowledge that you have successfully consulted your doctor and you will no longer have access to the consultation room. Please wait for your doctor to prescribe the digital prescription.`,
+        buttons: [
+          {
+            label: "Yes",
+            onClick: async () => {
+              setLoading(true);
+              await axios.post(`/appointment/done/${userData}`);
+              setTimeout(() => {
+                setLoading(false);
+                setSuccess(true);
+              }, 3000);
+            },
+            //cancel the appointment here,same as "done appointment" route
+          },
+          {
+            label: "No",
+            onClick: () => {
               setLoading(false);
-              setSuccess(true);
-            }, 3000);
+            },
           },
-          //cancel the appointment here,same as "done appointment" route
-        },
-        {
-          label: "No",
-          onClick: () => {
-            setLoading(false);
-          },
-        },
-      ],
-    });
+        ],
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
   const saveChanges = async (e) => {
     e.preventDefault();

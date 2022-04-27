@@ -71,7 +71,7 @@ const CancelAppointment = () => {
             label: "Yes",
             onClick: async () => {
               setLoading(true);
-              await axios.delete(`appointment/${userData}`, {
+              await axios.delete(`/appointment/${userData}`, {
                 data: {
                   name,
                   email: userInfo._delegate.email,

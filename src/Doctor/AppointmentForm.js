@@ -51,7 +51,6 @@ const AppointmentForm = () => {
     const checkAppointment = async () => {
       try {
         const response = await axios.get(`/authroom/appointment/${userData}`);
-        console.log(response.data);
         if (response.data) {
           return setCanBook(true);
         } else {
