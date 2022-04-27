@@ -36,15 +36,14 @@ const Home = () => {
           );
           if (response.data.length > 0) {
             setReminderLength(response.data.length);
+            notify();
             return setReminderData(true);
           }
         } catch (err) {
           setReminderData(false);
         }
       };
-      if (reminderData.length > 0) {
-        notify();
-      }
+
       getReminder();
     }
   }, []);
@@ -56,7 +55,7 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {currentUser && reminderData && userRole === "doctor" && (
+        {currentUser && reminderData && userRole !== "doctor" && (
           <Reminder reminderLength={reminderLength}></Reminder>
         )}
         <div className="head-hero">

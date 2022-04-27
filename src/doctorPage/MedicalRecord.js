@@ -1,7 +1,8 @@
 import React from "react";
+import MedicalRecordComponent from "./component/MedicalRecordComponent";
 
 const MedicalRecord = () => {
-  return <div>MedicalRecord</div>;
+  return <MedicalRecordComponent />;
 };
 
 export default MedicalRecord;

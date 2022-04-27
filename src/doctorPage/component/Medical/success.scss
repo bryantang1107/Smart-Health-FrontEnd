@@ -1,0 +1,23 @@
+.success-page {
+  width: 30%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--dark-shadow);
+  padding: 2em;
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .success-logo {
+    font-size: 3rem;
+    color: #9acd32;
+  }
+  h4 {
+    color: #9acd32;
+  }
+  p {
+    text-align: center;
+  }
+}
