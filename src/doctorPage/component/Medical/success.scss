@@ -21,3 +21,39 @@
     text-align: center;
   }
 }
+
+.calendar {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 2em;
+  box-shadow: var(--dark-shadow);
+  .rbc-time-content {
+    &::-webkit-scrollbar-thumb {
+      background-clip: padding-box;
+      border: 4px solid transparent;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      cursor: pointer;
+    }
+  }
+}
+
+.add-schedule-container {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2em;
+  background: #c4c4c46c;
+  padding: 2em;
+  border-radius: 10px;
+  .title-input {
+    width: 50%;
+    border: none;
+    padding: 1em;
+  }
+}

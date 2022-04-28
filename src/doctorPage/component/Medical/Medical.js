@@ -3,6 +3,7 @@ import { HiChevronDoubleLeft } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrescriptionBottleMedical } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineComment } from "react-icons/ai";
 import data from "../../data/drug";
 import axios from "../../../axios";
 import Loading from "../../../covid/Loading";
@@ -16,6 +17,7 @@ const Medical = ({ setState, id }) => {
   const adminRef = useRef();
   const diagnosisRef = useRef();
   const prescriptionRef = useRef();
+  const additionalRef = useRef();
   const selectionRef = useRef();
   const [loading, setLoading] = useState();
   const [success, setSuccess] = useState();
@@ -30,6 +32,7 @@ const Medical = ({ setState, id }) => {
         drug: drug ? drug : drugRef.current.value,
         prescription: prescriptionRef.current.value,
         category: selectionRef.current.value,
+        additional: additionalRef.current.value,
       });
       setTimeout(() => {
         setLoading(false);
@@ -186,6 +189,28 @@ const Medical = ({ setState, id }) => {
                   <div className="input-icon">
                     <i>
                       <FontAwesomeIcon icon={faPrescriptionBottleMedical} />
+                    </i>
+                  </div>
+                </div>
+              </div>
+              <div className="row-appointment">
+                <h4>Additional Comment</h4>
+                <span>
+                  <p style={{ fontSize: "0.8rem", color: "#c4c4c4" }}>
+                    *This information is kept confidential from your patient
+                  </p>
+                </span>
+                <div className="input-group input-group-icon">
+                  <textarea
+                    name="prescription"
+                    rows="10"
+                    required
+                    placeholder="Write Prescription Details ..."
+                    ref={additionalRef}
+                  ></textarea>
+                  <div className="input-icon">
+                    <i>
+                      <AiOutlineComment />
                     </i>
                   </div>
                 </div>

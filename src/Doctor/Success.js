@@ -3,7 +3,6 @@ import { VscVerified } from "react-icons/vsc";
 import "./success.css";
 
 const Success = ({ appointmentData }) => {
-  console.log(appointmentData);
   return (
     <div className="success-appointment">
       <VscVerified style={{ fontSize: "3rem", color: "#3fbbc0" }} />

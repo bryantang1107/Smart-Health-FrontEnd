@@ -150,7 +150,10 @@
   --blue: #0e0620;
   --white: #fff;
   --green: #2ccf6d;
-
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .no-appointment-svg {
     width: 100%;
   }

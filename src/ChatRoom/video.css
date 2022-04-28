@@ -198,6 +198,16 @@
   --blue: #0e0620;
   --white: #fff;
   --green: #2ccf6d;
+  min-height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .no-appointment .no-appointment-svg {

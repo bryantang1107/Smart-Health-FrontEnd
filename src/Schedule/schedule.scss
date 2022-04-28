@@ -1,4 +1,10 @@
-#schedule-container {
+.user-container {
+  width: 80%;
+  margin: auto;
+}
+
+#schedule-container,
+.past {
   @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
 
   h1,
@@ -9,7 +15,7 @@
   p {
     font-family: "Barlow Condensed", sans-serif;
     letter-spacing: 0.3rem;
-    line-height: 1.5rem;
+    line-height: 2rem;
   }
   h1 {
     text-align: center;
@@ -18,7 +24,6 @@
     color: #cd5c5c;
   }
   margin-bottom: 5em;
-  min-height: 80vh;
   .appointment-information-container {
     width: 70%;
     margin: auto;
@@ -301,4 +306,63 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+.user-entire-container {
+  margin-top: 2em;
+}
+.appointment-container {
+  width: 80%;
+  margin: auto;
+  .nav-bar-appointment {
+    width: max-content;
+    background: #eff1f7;
+    border-radius: 10px;
+    padding: 1.1em;
+    margin-left: 2em;
+    .nav-btn {
+      margin-right: 2em;
+      padding: 1em;
+      cursor: pointer;
+      font-weight: 600;
+      color: #4d4747;
+    }
+    .active {
+      background: #fff;
+      border-radius: 10px;
+      color: #00bbcf;
+      transition: all 0.3s ease-in;
+    }
+  }
+}
+
+.past-appointment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .appointment-item {
+    background: #fff;
+    box-shadow: var(--light-shadow);
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .doctor-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+.past {
+  position: relative;
+}
+.medical-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #cd5c5c;
+  font-weight: 300;
+  text-decoration: underline;
 }
