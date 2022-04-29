@@ -23,17 +23,12 @@ const TextFieldComponent = (props) => {
 
 const AppointmentForm = () => {
   const history = useHistory();
-  const getMinDate = () => {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    return date;
-  };
 
   const [gender, setGender] = useState("male");
   const [time, setTime] = useState("");
-  const [selectedDate, setSelectedDate] = useState(() => getMinDate());
+
   const { id } = useParams();
-  const { userData, userInfo } = useAuth();
+  const { userData, userInfo, currentUser } = useAuth();
   const email = userInfo._delegate.email;
   const [success, setSuccess] = useState(false);
   const [slotError, setSlotError] = useState();
@@ -43,9 +38,17 @@ const AppointmentForm = () => {
   const phoneRef = useRef();
   const dobRef = useRef();
   const symptomsRef = useRef();
+  const [slot, setSlot] = useState();
+  const getMinDate = () => {
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  };
+  const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const termRef = useRef();
   const [loading, setLoading] = useState();
   const [appointmentData, setAppointmentData] = useState();
+  const [state, setState] = useState();
 
   useEffect(() => {
     const checkAppointment = async () => {
@@ -63,8 +66,22 @@ const AppointmentForm = () => {
     checkAppointment();
   }, []);
 
+  useEffect(() => {
+    const getDoctorInfo = async () => {
+      const response = await axios.get(`/find-doctor/time/${id}`, {
+        headers: {
+          Authorization: "Bearer " + currentUser,
+        },
+      });
+      setSlot(response.data[1]);
+    };
+
+    getDoctorInfo();
+  }, [state]);
+
   const handleError = () => {
     setSlotError(false);
+    setState(!state);
     setTime();
   };
 
@@ -172,7 +189,16 @@ const AppointmentForm = () => {
     date.setMonth(date.getMonth() + 2);
     return date;
   };
-
+  const disableDates = (date) => {
+    const newslot = slot.map((x) => {
+      const newdate = new Date(x);
+      return newdate.toLocaleString().split(",")[0];
+    });
+    return (
+      date.getDay() === 0 ||
+      newslot.includes(date.toLocaleString().split(",")[0])
+    );
+  };
   return (
     <>
       <form id="appointment-submit" onSubmit={handleSubmit}>
@@ -272,6 +298,7 @@ const AppointmentForm = () => {
                 setTime();
               }}
               required
+              shouldDisableDate={disableDates}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}

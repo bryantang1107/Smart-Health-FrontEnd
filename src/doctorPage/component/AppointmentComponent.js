@@ -54,12 +54,18 @@ const getEvent = (data) => {
 const AppointmentComponent = () => {
   const { userData, currentUser } = useAuth();
   const [slot, setSlot] = useState();
+  const [error, setError] = useState();
   const [time, setTime] = useState("");
   const getMinDate = () => {
     const date = new Date();
-    date.setDate(date.getDate() + 1);
+    date.setDate(date.getDate() + 2);
     return date;
   };
+  // const disableDates = (date) => {
+  //   return (
+  //     date.getDay() === 0 || slot.includes(date.toISOString().split("T")[0])
+  //   );
+  // };
   const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const [endDate, setEndDate] = useState(() => getMinDate());
   useEffect(() => {
@@ -88,26 +94,29 @@ const AppointmentComponent = () => {
     return date;
   };
 
-  const handleAddEvent = async () => {
+  const handleAddEvent = async (e) => {
+    e.preventDefault();
     const startDate = new Date(selectedDate.toISOString().split("T")[0]);
     const end = new Date(endDate.toISOString().split("T")[0]);
-    setSlot((prev) => {
-      return [
-        ...prev,
-        {
-          title: "Unavailable For Appointment",
-          start: startDate,
-          end: end,
-          allDay: true,
-        },
-      ];
-    });
+
     try {
       await axios.patch(`/appointment/unavailable/${userData}`, {
         startDate,
         endDate,
       });
+      setSlot((prev) => {
+        return [
+          ...prev,
+          {
+            title: "Unavailable For Appointment",
+            start: startDate,
+            end: end,
+            allDay: true,
+          },
+        ];
+      });
     } catch (error) {
+      setError("Your selected date is occupied, please check your schedule!");
       console.log(error);
     }
   };
@@ -125,6 +134,9 @@ const AppointmentComponent = () => {
         ></Calendar>
       )}
       <form className="add-schedule-container" onSubmit={handleAddEvent}>
+        <h3>Add Unavailable Dates</h3>
+        <div className="underline"></div>
+        {error && <p className="alert-primary">{error}</p>}
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             InputProps={{

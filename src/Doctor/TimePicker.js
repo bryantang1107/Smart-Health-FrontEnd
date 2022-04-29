@@ -31,9 +31,10 @@ const TimePicker = ({ selectedDate, time, setTime, id }) => {
           Authorization: "Bearer " + currentUser,
         },
       });
-      const date = response.data.find((x) => {
+      const date = response.data[0].find((x) => {
         return x.date === selectedDate.toISOString().split("T")[0];
       });
+  
       if (!date) {
         return setDoctorTime(availableTime);
       }
