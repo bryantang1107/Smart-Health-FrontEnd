@@ -54,9 +54,21 @@
   cursor: pointer;
 }
 
-.add-schedule-container {
+.date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: #c4c4c46c;
+  padding: 2em;
+  border-radius: 10px;
   width: 70%;
   margin: auto;
+  margin-top: 2em;
+}
+
+.add-schedule-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -70,10 +82,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 2em;
-  background: #c4c4c46c;
-  padding: 2em;
-  border-radius: 10px;
 }
 
 .add-schedule-container .title-input {

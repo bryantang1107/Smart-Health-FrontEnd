@@ -8,11 +8,13 @@ import data from "../../data/drug";
 import axios from "../../../axios";
 import Loading from "../../../covid/Loading";
 import Success from "./Success";
+import { useAuth } from "../../../context/AuthContext";
 
 const Medical = ({ setState, id }) => {
   const [drugData, setDrugData] = useState();
   const [drug, setDrug] = useState("");
   const [other, setOther] = useState(false);
+  const { userData } = useAuth();
   const drugRef = useRef();
   const adminRef = useRef();
   const diagnosisRef = useRef();
@@ -24,15 +26,31 @@ const Medical = ({ setState, id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    const diagnosis = diagnosisRef.current.value;
+    const route = adminRef.current.value;
+    const drugVal = drug ? drug : drugRef.current.value;
+    const prescription = prescriptionRef.current.value;
+    const category = selectionRef.current.value;
+    const additional = additionalRef.current.value;
     try {
       await axios.post("/user/store-medical-record", {
         id,
-        diagnosis: diagnosisRef.current.value,
-        route: adminRef.current.value,
-        drug: drug ? drug : drugRef.current.value,
-        prescription: prescriptionRef.current.value,
-        category: selectionRef.current.value,
-        additional: additionalRef.current.value,
+        diagnosis,
+        route,
+        drug: drugVal,
+        prescription,
+        category,
+      });
+
+      await axios.post("/user/store-patient-record", {
+        doctorId: userData,
+        patientId: id,
+        diagnosis,
+        route,
+        drug: drugVal,
+        prescription,
+        category,
+        additional,
       });
       setTimeout(() => {
         setLoading(false);

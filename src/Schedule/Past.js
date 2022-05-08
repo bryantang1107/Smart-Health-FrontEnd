@@ -32,7 +32,14 @@ const Past = () => {
         <p style={{ marginBottom: "4em" }}>
           Oops, It Seems Like you have not made any appointments yet.
         </p>
-        <a href="/find-doctor" className="btn green">
+        <a
+          href="/find-doctor"
+          style={{
+            color: "#00bbcf",
+            fontWeight: "600",
+            textDecoration: "underline",
+          }}
+        >
           Find A Doctor
         </a>
       </div>
@@ -43,7 +50,7 @@ const Past = () => {
         <a href="/medical-record" className="medical-link">
           View Medical Record
         </a>
-        <h1>Past Appointment</h1>
+        <h1 style={{ marginTop: "3em" }}>Past Appointment</h1>
         <div className="underline"></div>
         <div className="past-appointment-container">
           {historyData?.map((x, index) => {

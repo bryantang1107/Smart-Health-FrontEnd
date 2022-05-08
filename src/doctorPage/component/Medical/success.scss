@@ -40,17 +40,23 @@
   }
 }
 
-.add-schedule-container {
+.date {
+  display: flex;
+  justify-content: space-around;
+  background: #c4c4c46c;
+  padding: 2em;
+  border-radius: 10px;
   width: 70%;
   margin: auto;
+  margin-top: 2em;
+}
+
+.add-schedule-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 2em;
-  background: #c4c4c46c;
-  padding: 2em;
-  border-radius: 10px;
+
   .title-input {
     width: 50%;
     border: none;

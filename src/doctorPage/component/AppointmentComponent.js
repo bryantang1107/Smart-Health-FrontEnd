@@ -46,28 +46,25 @@ const getEvent = (data) => {
     };
   });
   return events;
-  // const d = new Date("2022-04-29");
-  // d.setHours(10); //use sethour
-  // const end = new Date("2022-04-29");
-  // end.setHours(11);
 };
 const AppointmentComponent = () => {
   const { userData, currentUser } = useAuth();
   const [slot, setSlot] = useState();
   const [error, setError] = useState();
   const [time, setTime] = useState("");
+  const [success, setSuccess] = useState();
+  const [successRemove, setSuccessRemove] = useState();
+  const [removeDate, setRemoveDate] = useState();
+  const [state, setState] = useState(true);
   const getMinDate = () => {
     const date = new Date();
     date.setDate(date.getDate() + 2);
     return date;
   };
-  // const disableDates = (date) => {
-  //   return (
-  //     date.getDay() === 0 || slot.includes(date.toISOString().split("T")[0])
-  //   );
-  // };
+
   const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const [endDate, setEndDate] = useState(() => getMinDate());
+  const [unavailable, setUnavailable] = useState();
   useEffect(() => {
     const getAppointment = async () => {
       const response = await axios.get(`/find-doctor/time/${userData}`, {
@@ -84,10 +81,11 @@ const AppointmentComponent = () => {
         allDay: true,
       };
       setSlot([...events, unavailable]);
+      setUnavailable(response.data[1]);
     };
 
     getAppointment();
-  }, []);
+  }, [state]);
   const getMaxDate = () => {
     const date = new Date();
     date.setMonth(date.getMonth() + 2);
@@ -115,8 +113,38 @@ const AppointmentComponent = () => {
           },
         ];
       });
+      setSuccess("Date Added");
+      setTimeout(() => {
+        setSuccess();
+      }, 3000);
+      setState(!state);
     } catch (error) {
       setError("Your selected date is occupied, please check your schedule!");
+      setTimeout(() => {
+        setError();
+      }, 3000);
+    }
+  };
+
+  const handleRemoveEvent = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(`/appointment/unavailable/${userData}`, {
+        data: {
+          removeDate,
+        },
+      });
+      const list = unavailable.filter((x) => {
+        return x !== removeDate;
+      });
+      setUnavailable(list);
+      setRemoveDate();
+      setSuccessRemove("Successfully Removed");
+      setTimeout(() => {
+        setSuccessRemove();
+      }, 3000);
+      setState(!state);
+    } catch (error) {
       console.log(error);
     }
   };
@@ -133,66 +161,132 @@ const AppointmentComponent = () => {
           style={{ height: 500 }}
         ></Calendar>
       )}
-      <form className="add-schedule-container" onSubmit={handleAddEvent}>
-        <h3>Add Unavailable Dates</h3>
-        <div className="underline"></div>
-        {error && <p className="alert-primary">{error}</p>}
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            InputProps={{
-              disableUnderline: true,
+      <div className="date">
+        <form className="add-schedule-container" onSubmit={handleAddEvent}>
+          <h3>Add Unavailable Dates</h3>
+          <div className="underline"></div>
+          {error && <p className="alert-primary">{error}</p>}
+          {success && (
+            <p className="alert-success" style={{ padding: "1em" }}>
+              {success}
+            </p>
+          )}
+
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              InputProps={{
+                disableUnderline: true,
+              }}
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Select Start Date"
+              value={selectedDate}
+              minDate={getMinDate()}
+              maxDate={getMaxDate()}
+              autoOk={true}
+              onChange={(date) => {
+                setSelectedDate(date);
+                setTime();
+              }}
+              required
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+              TextFieldComponent={TextFieldComponent}
+            />
+          </MuiPickersUtilsProvider>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              InputProps={{
+                disableUnderline: true,
+              }}
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Select End Date"
+              value={endDate}
+              minDate={getMinDate()}
+              maxDate={getMaxDate()}
+              autoOk={true}
+              onChange={(date) => {
+                setEndDate(date);
+                setTime();
+              }}
+              required
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+              TextFieldComponent={TextFieldComponent}
+            />
+          </MuiPickersUtilsProvider>
+          <button onClick={handleAddEvent} className="btn green">
+            Add Event
+          </button>
+        </form>
+
+        <form onSubmit={handleRemoveEvent}>
+          <h3 style={{ textAlign: "center" }}>Remove Date</h3>
+          <div className="underline"></div>
+          {successRemove && (
+            <p className="alert-success" style={{ padding: "1em" }}>
+              {successRemove}
+            </p>
+          )}
+          <div className="select-box">
+            <div className="select-box__current" tabIndex="1">
+              <div className="select-box__value">
+                <input
+                  className="select-box__input"
+                  type="radio"
+                  id="0"
+                  value="1"
+                  name="Ben"
+                  defaultChecked="checked"
+                />
+                <p className="select-box__input-text">{removeDate}</p>
+              </div>
+
+              <img
+                className="select-box__icon"
+                src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
+                alt="Arrow Icon"
+                aria-hidden="true"
+              />
+            </div>
+            <ul className="select-box__list">
+              {unavailable?.map((time, index) => {
+                return (
+                  <li key={index} onClick={() => setRemoveDate(time)}>
+                    <label
+                      className="select-box__option"
+                      htmlFor="0"
+                      aria-hidden="aria-hidden"
+                    >
+                      {time}
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "1em",
             }}
-            disableToolbar
-            variant="inline"
-            format="dd/MM/yyyy"
-            margin="normal"
-            id="date-picker-inline"
-            label="Select Start Date"
-            value={selectedDate}
-            minDate={getMinDate()}
-            maxDate={getMaxDate()}
-            autoOk={true}
-            onChange={(date) => {
-              setSelectedDate(date);
-              setTime();
-            }}
-            required
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-            TextFieldComponent={TextFieldComponent}
-          />
-        </MuiPickersUtilsProvider>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            InputProps={{
-              disableUnderline: true,
-            }}
-            disableToolbar
-            variant="inline"
-            format="dd/MM/yyyy"
-            margin="normal"
-            id="date-picker-inline"
-            label="Select End Date"
-            value={endDate}
-            minDate={getMinDate()}
-            maxDate={getMaxDate()}
-            autoOk={true}
-            onChange={(date) => {
-              setEndDate(date);
-              setTime();
-            }}
-            required
-            KeyboardButtonProps={{
-              "aria-label": "change date",
-            }}
-            TextFieldComponent={TextFieldComponent}
-          />
-        </MuiPickersUtilsProvider>
-        <button onClick={handleAddEvent} className="btn green">
-          Add Event
-        </button>
-      </form>
+          >
+            <button className="btn green" onClick={handleRemoveEvent}>
+              Remove
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

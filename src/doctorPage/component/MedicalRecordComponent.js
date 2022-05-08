@@ -68,19 +68,14 @@ const MedicalRecordComponent = () => {
                   <p> {x.name}</p>
                   <p style={{ textTransform: "none" }}> {x.email}</p>
                   <p> {x.phone}</p>
-                  {x.complete ? (
-                    <span className="upload-btn" data-tooltip="Done Upload">
-                      <MdCloudDone />
-                    </span>
-                  ) : (
-                    <span
-                      className="upload-btn"
-                      data-tooltip="Upload"
-                      onClick={() => handleClick(x._id)}
-                    >
-                      <BsCloudUpload />
-                    </span>
-                  )}
+
+                  <span
+                    className="upload-btn"
+                    data-tooltip="Upload"
+                    onClick={() => handleClick(x._id)}
+                  >
+                    <BsCloudUpload />
+                  </span>
                 </div>
               );
             })}

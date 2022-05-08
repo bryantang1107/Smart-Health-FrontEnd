@@ -83,6 +83,7 @@ const AppointmentForm = () => {
     setSlotError(false);
     setState(!state);
     setTime();
+    setSelectedDate(getMinDate());
   };
 
   const handleCancel = () => {

@@ -2078,8 +2078,8 @@ const NoAppointment = ({ data = false, lol }) => {
           <h1>No Upcoming Appointment</h1>
           <h2>Your Schedule Is Empty</h2>
           <p>
-            YAY! It seems like you have no upcoming appointment due. Sit and
-            back and relax !
+            YAY! It seems like you have no upcoming appointment due. Sit back
+            and relax !
           </p>
           <button className="btn green" onClick={goHome}>
             HOME

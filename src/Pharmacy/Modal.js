@@ -156,7 +156,9 @@ const Modal = ({ open, data, onClose }) => {
           <div className="modal-content">
             <div className="modal-image">
               <img src={image} alt={name} />
-              <strong style={{ marginTop: "2em" }}>{price}</strong>
+              <strong style={{ marginTop: "2em" }}>
+                RM {price.toFixed(2)}
+              </strong>
             </div>
             <div className="modal-category">
               <Category
