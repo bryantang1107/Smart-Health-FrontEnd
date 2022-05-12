@@ -1,7 +1,8 @@
 import React from "react";
+import PatientComponent from "./component/PatientComponent";
 
 const Patient = () => {
-  return <div>Patient</div>;
+  return <PatientComponent />;
 };
 
 export default Patient;

@@ -1,0 +1,131 @@
+.patient-container {
+  width: 90%;
+  margin: auto;
+  min-height: 70vh;
+
+  .patient-item {
+    background-color: #f6f6f6;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: var(--dark-shadow);
+    line-height: 2rem;
+    margin-bottom: 2em;
+    p {
+      letter-spacing: 0.3rem;
+      display: flex;
+      gap: 2em;
+    }
+    @media (max-width: 760px) {
+      p {
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+      }
+    }
+  }
+}
+.patient-information {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  margin-bottom: 2em;
+  box-shadow: var(--light-shadow);
+  padding: 2em;
+  align-items: center;
+  justify-content: space-around;
+  .patient-image {
+    margin-right: 2em;
+    img {
+      min-width: 100px;
+      max-width: 300px;
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 760px) {
+  .patient-information {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+.nav-bar-appointment {
+  width: max-content;
+  background: #eff1f7;
+  border-radius: 10px;
+  padding: 1.1em;
+  margin-left: 2em;
+  .nav-btn {
+    margin-right: 2em;
+    padding: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    color: #4d4747;
+  }
+  .active {
+    background: #fff;
+    border-radius: 10px;
+    color: #00bbcf;
+    transition: all 0.3s ease-in;
+  }
+}
+@media (max-width: 600px) {
+  .nav-bar-appointment {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.patient-medical-info {
+  width: 80%;
+  margin: 3rem auto;
+  box-shadow: var(--light-shadow);
+  padding: 2em;
+  border-radius: 10px;
+  h3 {
+    color: #00bbcf;
+    text-decoration: underline;
+  }
+  .patient-medical-item {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    .link {
+      color: #00bbcf;
+      &:hover {
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
+
+    .patient-medical-icon {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 1em;
+      color: #00bbcf;
+      position: relative;
+      .icon {
+        font-size: 2rem;
+        min-width: 50px;
+      }
+      &::after {
+        content: "";
+        background-color: #00bbcf;
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        top: 100%;
+        margin-top: 0.3em;
+        left: 0;
+        z-index: 100;
+      }
+    }
+  }
+}
+@media (max-width: 760px) {
+  .patient-medical-info {
+    width: 100%;
+    margin: 0;
+  }
+}

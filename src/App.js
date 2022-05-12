@@ -34,6 +34,7 @@ import { useSelector } from "react-redux";
 import Appointment from "./doctorPage/Appointment";
 import CancelAppointment from "./Doctor/CancelAppointment";
 import ActivityLog from "./doctorPage/ActivityLog";
+import PatientItem from "./doctorPage/component/Patient/PatientItem";
 const App = () => {
   const data = useSelector((state) => state.roleReducer);
 
@@ -65,6 +66,13 @@ const App = () => {
               exact
               path="/patient-record"
               component={Patient}
+            ></PrivateRoute>
+          )}
+          {data.role === "doctor" && (
+            <PrivateRoute
+              exact
+              path="/patient-record/:id"
+              component={PatientItem}
             ></PrivateRoute>
           )}
           {data.role === "doctor" && (

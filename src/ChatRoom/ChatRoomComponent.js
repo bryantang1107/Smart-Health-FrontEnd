@@ -29,12 +29,6 @@ const ChatRoomComponent = () => {
   const [callerSignal, setCallerSignal] = useState();
   const myVideo = useRef();
 
-  window.addEventListener("beforeunload", (e) => {
-    e.preventDefault();
-
-    e.returnValue = "";
-  });
-
   const toggleUser = () => {
     setState(!state);
   };

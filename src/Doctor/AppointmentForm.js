@@ -171,8 +171,9 @@ const AppointmentForm = () => {
             you are only entitled for one appointment at a time.
           </li>
           <li>
-            Please ensure that you have clicked "Done" in your appointment
-            schedule.
+            You have yet to receive the digital prescription from your doctor.
+            Please give them some time to provide you the neccessary
+            information.
           </li>
         </ol>
         <h2 style={{ color: "#00bbcf" }}>

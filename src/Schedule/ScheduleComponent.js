@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Upcoming from "./Upcoming";
-import { useAuth } from "../context/AuthContext";
 import Past from "./Past";
 import { motion } from "framer-motion";
 
@@ -8,7 +7,6 @@ import "./schedule.css";
 
 const ScheduleComponent = () => {
   const [nav, setNav] = useState("upcoming");
-  const { userData } = useAuth();
   const [past, setPast] = useState();
   const [upcoming, setUpcoming] = useState(true);
 

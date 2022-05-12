@@ -120,12 +120,18 @@
       gap: 2em;
     }
   }
+  @media (max-width: 870px) {
+    .activity-content {
+      align-items: center;
+    }
+  }
   &:hover {
     transform: translateY(-5px);
     transition: all 0.4s ease;
   }
   .email {
     color: #00bbcf;
+    width: max-content;
   }
 }
 

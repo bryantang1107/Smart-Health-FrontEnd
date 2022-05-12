@@ -28,6 +28,7 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
   const [roomId, setRoomId] = useState();
   const [password, setPassword] = useState();
   const [id, setId] = useState();
+  const [error, setError] = useState();
   useEffect(() => {
     const consultBtn = async (roomInfo) => {
       try {
@@ -38,7 +39,10 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
         setPassword(response.data.password);
         setId(response.data._id);
       } catch (error) {
-        console.log(error);
+        setError("You have already consulted this patient");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
       }
     };
     if (appointmentData) {
@@ -57,7 +61,10 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
 
       history.push("/join/name");
     } catch (error) {
-      console.log(error);
+      setError("You have already consulted this patient");
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 
@@ -146,6 +153,7 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
               <p>{appointmentData.time}</p>
             </div>
           </div>
+          {error && <p className="alert-primary">{error}</p>}
           <button
             className="btn green"
             style={{ marginTop: "2em" }}

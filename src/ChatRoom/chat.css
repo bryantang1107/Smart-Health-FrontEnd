@@ -916,6 +916,8 @@ select:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: #f6f6f6;
+  cursor: pointer;
   position: relative;
 }
 

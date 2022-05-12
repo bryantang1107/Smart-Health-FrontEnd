@@ -65,7 +65,8 @@ const CancelAppointment = () => {
         title: "Are you Sure You want to cancel your appointment?",
         message: `By Clicking "Cancel", you acknowledge that you want to cancel the appointment 
                   and your room credentials will no longer be valid. Please reschedule
-                  with your doctor if necessary.`,
+                  with your doctor if necessary. Please note that if you have consulted your doctor, 
+                  you will not receive your pending digital prescription from your doctor.`,
         buttons: [
           {
             label: "Yes",

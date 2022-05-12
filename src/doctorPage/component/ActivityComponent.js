@@ -155,7 +155,8 @@ const ActivityComponent = () => {
                     ) : (
                       <>
                         <h3>New Appointment</h3>
-                        <p>{x.message}</p>
+                        <p>{x.message.split("at")[0]}</p>
+                        <p>{x.message.split("at")[1]}</p>
                         <a href={`mailto: ${x.email}`} className="email">
                           Email {x.sender}
                         </a>

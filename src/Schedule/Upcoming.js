@@ -4,16 +4,12 @@ import "./schedule.css";
 import NoAppointment from "../ChatRoom/NoAppointment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../axios";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
-import Success from "./Success";
 import { useAuth } from "../context/AuthContext";
 import {
   faPenToSquare,
   faPen,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import Loading from "../covid/Loading";
 
 const Upcoming = () => {
   const [appointmentData, setAppointmentData] = useState();
@@ -22,8 +18,6 @@ const Upcoming = () => {
   const [error, setError] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [state, setState] = useState(true);
-  const [loading, setLoading] = useState();
-  const [success, setSuccess] = useState();
   const nameRef = useRef();
   const phoneRef = useRef();
   const dobRef = useRef();
@@ -44,37 +38,7 @@ const Upcoming = () => {
   const toggle = () => {
     setState(!state);
   };
-  const doneAppointment = async (e) => {
-    e.preventDefault();
-    try {
-      confirmAlert({
-        title: "Appointment Completion",
-        message: `By Clicking "Done", you acknowledge that you have successfully consulted your doctor and you will no longer have access to the consultation room. Please wait for your doctor to prescribe the digital prescription.`,
-        buttons: [
-          {
-            label: "Yes",
-            onClick: async () => {
-              setLoading(true);
-              await axios.post(`/appointment/done/${userData}`);
-              setTimeout(() => {
-                setLoading(false);
-                setSuccess(true);
-              }, 3000);
-            },
-            //cancel the appointment here,same as "done appointment" route
-          },
-          {
-            label: "No",
-            onClick: () => {
-              setLoading(false);
-            },
-          },
-        ],
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const saveChanges = async (e) => {
     e.preventDefault();
     try {
@@ -90,12 +54,6 @@ const Upcoming = () => {
     }
   };
 
-  if (success) {
-    return <Success />;
-  }
-  if (loading) {
-    return <Loading />;
-  }
   if (error)
     return (
       <div id="schedule-container">
@@ -138,18 +96,6 @@ const Upcoming = () => {
             </div>
             <div className="appointment-item">
               <p> Appointment Time: {appointmentData.time}</p>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "2em",
-              }}
-            >
-              <button className="btn green" onClick={doneAppointment}>
-                Done
-              </button>
             </div>
           </div>
         </>

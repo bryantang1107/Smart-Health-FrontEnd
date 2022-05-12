@@ -763,7 +763,8 @@ select:focus {
   border-radius: 10px;
   display: flex;
   align-items: center;
-
+  color: #f6f6f6;
+  cursor: pointer;
   position: relative;
   &::before,
   &::after {
