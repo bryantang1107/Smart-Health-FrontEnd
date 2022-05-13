@@ -35,6 +35,7 @@ const Medical = ({ setState, id }) => {
     try {
       await axios.post("/user/store-medical-record", {
         id,
+        doctorConsulted: userData,
         diagnosis,
         route,
         drug: drugVal,

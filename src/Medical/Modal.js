@@ -9,7 +9,6 @@ import { BsTrophy } from "react-icons/bs";
 import { GiNurseMale } from "react-icons/gi";
 import { GrCertificate } from "react-icons/gr";
 import axios from "../axios";
-import PatientInfo from "./PatientInfo";
 
 const OVERLAY_STYLES = {
   position: "fixed",
@@ -17,31 +16,27 @@ const OVERLAY_STYLES = {
   backgroundColor: "rgba(0,0,0,0.4)",
   zIndex: 1000,
 };
-const Modal = ({ open, onClose }) => {
-  const { userRole, userData, currentUser } = useAuth();
+const Modal = ({ open, onClose, doctorId }) => {
+  const { userRole, currentUser } = useAuth();
   const [doctorInfo, setDoctorInfo] = useState();
   const [registry, setRegistry] = useState();
   const [conditions, setConditions] = useState();
   const [service, setService] = useState();
   useEffect(() => {
     const getUserData = async () => {
-      if (userRole === "user") {
-        const response = await axios.get(`/user/${userData}`);
-        const doctorId = response.data.doctorInfo;
-        const doctorData = await axios.get(`/find-doctor/${doctorId}`, {
-          headers: {
-            Authorization: "Bearer " + currentUser,
-          },
-        });
-        const { registry, conditions, service, ...data } = doctorData.data;
-        setDoctorInfo(data);
-        setRegistry(registry);
-        setConditions(conditions);
-        setService(service);
-      }
+      const doctorData = await axios.get(`/find-doctor/${doctorId}`, {
+        headers: {
+          Authorization: "Bearer " + currentUser,
+        },
+      });
+      const { registry, conditions, service, ...data } = doctorData.data;
+      setDoctorInfo(data);
+      setRegistry(registry);
+      setConditions(conditions);
+      setService(service);
     };
-    getUserData();
-  }, []);
+    if (doctorId) getUserData();
+  }, [doctorId]);
   if (!open) return null;
   return ReactDom.createPortal(
     <>
@@ -58,7 +53,7 @@ const Modal = ({ open, onClose }) => {
             <IoIosCloseCircleOutline />
           </span>
         </div>
-        {userRole === "user" && (
+        {userRole === "user" && doctorInfo && (
           <div className="doctor-role ">
             <div className="doctor-header-container">
               <div className="doctor-header-info">
@@ -194,7 +189,6 @@ const Modal = ({ open, onClose }) => {
             </div>
           </div>
         )}
-        {userRole === "doctor" && <PatientInfo />}
       </div>
     </>,
     document.getElementById("portal")

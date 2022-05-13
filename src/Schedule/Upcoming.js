@@ -10,7 +10,9 @@ import {
   faPen,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 const Upcoming = () => {
   const [appointmentData, setAppointmentData] = useState();
   const [doctorData, setDoctorData] = useState();
@@ -22,7 +24,17 @@ const Upcoming = () => {
   const phoneRef = useRef();
   const dobRef = useRef();
   const symptomsRef = useRef();
+  const notify = () => {
+    toast.info(
+      "If you have consulted your doctor, please wait for the doctor to provide the digital prescription. Do not cancel the appointment!",
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: false,
+      }
+    );
+  };
   useEffect(() => {
+    notify();
     const getAppointmentData = async () => {
       try {
         const response = await axios.get(`/appointment/detail/${userData}`);

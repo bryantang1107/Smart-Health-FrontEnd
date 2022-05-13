@@ -61,6 +61,7 @@ const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
             label: "Yes",
             onClick: () => {
               history.push("/");
+              window.location.reload(false);
             },
           },
           {

@@ -437,4 +437,8 @@
             flex-direction: column;
   }
 }
+
+#doctor-join-section {
+  min-height: 80vh;
+}
 /*# sourceMappingURL=video.css.map */

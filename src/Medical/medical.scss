@@ -1,0 +1,79 @@
+.medical-record-container {
+  width: 90%;
+  margin: auto;
+  @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&family=Macondo&display=swap");
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    font-family: "Macondo", cursive;
+  }
+  .medical-record-item {
+    h3 {
+      color: #00bbc0;
+    }
+    .download {
+      filter: brightness(1.2);
+      padding: 0.1em;
+      border-radius: 10px;
+      font-size: 1.6rem;
+      display: flex;
+      position: relative;
+      width: max-content;
+      &:hover {
+        background: #b3c3df;
+        color: #00bbc0;
+        transition: all 0.5s ease-in-out;
+      }
+      &::before,
+      &::after {
+        --tooltip-color: #98d4d6;
+        --arrow-size: 10px;
+
+        position: absolute;
+        bottom: -0.35rem;
+        left: 50%;
+        --scale: 0;
+
+        transform: translateX((-50%)) translateY(var(--translate-y, 0))
+          scale(var(--scale));
+        transition: transform 0.2s ease-in;
+        transform-origin: top center;
+      }
+
+      &::before {
+        --translate-y: calc(100% + var(--arrow-size));
+        font-size: 0.8rem;
+        content: attr(data-tooltip);
+        padding: 0.8rem;
+        width: max-content;
+        border-radius: 20px;
+        text-align: center;
+
+        background: var(--tooltip-color);
+      }
+      &:hover::before,
+      &:hover::after {
+        --scale: 1;
+      }
+      &::after {
+        //arrow
+        --translate-y: var(--arrow-size);
+        content: "";
+        border: var(--arrow-size) solid transparent;
+        border-bottom-color: var(--tooltip-color);
+        transform-origin: bottom center;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .medical-record {
+      box-shadow: var(--light-shadow);
+      padding: 2em;
+    }
+  }
+}

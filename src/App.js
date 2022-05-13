@@ -35,6 +35,7 @@ import Appointment from "./doctorPage/Appointment";
 import CancelAppointment from "./Doctor/CancelAppointment";
 import ActivityLog from "./doctorPage/ActivityLog";
 import PatientItem from "./doctorPage/component/Patient/PatientItem";
+import MedicalRecordUser from "./pages/Medical";
 const App = () => {
   const data = useSelector((state) => state.roleReducer);
 
@@ -112,6 +113,13 @@ const App = () => {
               exact
               path="/health-forum"
               component={HealthForum}
+            ></PrivateRoute>
+          )}
+          {data.role === "user" && (
+            <PrivateRoute
+              exact
+              path="/medical-record"
+              component={MedicalRecordUser}
             ></PrivateRoute>
           )}
           {data.role === "user" && (

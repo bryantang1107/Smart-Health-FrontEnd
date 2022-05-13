@@ -17,6 +17,7 @@ const Patient = ({ id, handleClick }) => {
   }, []);
   return (
     <div className="patient-item">
+
       {patientData && (
         <div className="patient-info">
           <p>

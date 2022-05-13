@@ -53,7 +53,7 @@ const PatientItem = () => {
   const goBack = () => {
     history.goBack();
   };
-  
+
   return (
     <>
       <Arrow goBack={goBack} />
