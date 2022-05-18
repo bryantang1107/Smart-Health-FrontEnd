@@ -8,6 +8,7 @@ import {
 } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { AiOutlineFileDone } from "react-icons/ai";
+import fileDownload from "js-file-download";
 
 const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
   const [view, setView] = useState();
@@ -24,7 +25,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
           const response2 = await axios.get(
             `/user/get-medical-file/${userData}?file=${m.filename}`
           );
-          setData(response2.data);
+          setData(response2.data.filename);
           setImage(false);
           return;
         }
@@ -49,6 +50,36 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
 
   const handleView = () => {
     setView(!view);
+  };
+
+  const downloadFile = async () => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `/user/download-file/${userData}?file=${m.filename}`,
+        responseType: "text",
+      });
+      fileDownload(response.data, `${data}.txt`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const downloadPdf = async () => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `/user/download-file/${userData}?file=${m.filename}`,
+        responseType: "arraybuffer",
+      });
+      const blob = new Blob([response.data], {
+        type: "application/pdf",
+      });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="medical-record-item">
@@ -91,14 +122,6 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
                 <img
                   src={`/user/get-medical-record/${userData}?file=${m.filename}`}
                 ></img>
-                <a
-                  className="download"
-                  data-tooltip="Download"
-                  href={`/user/get-medical-record/${userData}?file=${m.filename}`}
-                  download
-                >
-                  <BsCloudDownload style={{ color: "#FF6347" }} />
-                </a>
               </div>
             ) : (
               data && (
@@ -113,14 +136,13 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
                   >
                     {data}
                   </p>
-                  <a
+                  <span
                     className="download"
                     data-tooltip="Download"
-                    href={`/user/get-medical-record/${userData}?file=${m.filename}`}
-                    download
+                    onClick={data === "text/plain" ? downloadFile : downloadPdf}
                   >
                     <BsCloudDownload style={{ color: "#FF6347" }} />
-                  </a>
+                  </span>
                 </div>
               )
             )}

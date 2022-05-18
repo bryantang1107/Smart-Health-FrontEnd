@@ -109,7 +109,8 @@ const Medical = ({ setState, id }) => {
     if (
       e.target.files[0].type === "image/png" ||
       e.target.files[0].type === "image/jpeg" ||
-      e.target.files[0].type === "text/plain"
+      e.target.files[0].type === "text/plain" ||
+      e.target.files[0].type === "application/pdf"
     ) {
       setFile(e.target.files[0]);
     } else {
@@ -290,7 +291,7 @@ const Medical = ({ setState, id }) => {
                   {file ? file.name : <p>Upload File</p>}
                 </span>
                 <p style={{ fontSize: "0.8rem", color: "#ff6347" }}>
-                  *Acceptable file type: PNG, JPEG, PDF, TXT
+                  *Acceptable file type: PNG, JPEG, TXT/Plain text
                 </p>
                 <input
                   type="file"
