@@ -9,6 +9,7 @@ import axios from "../../../axios";
 import Loading from "../../../covid/Loading";
 import Success from "./Success";
 import { useAuth } from "../../../context/AuthContext";
+import { GrAttachment } from "react-icons/gr";
 
 const Medical = ({ setState, id }) => {
   const [drugData, setDrugData] = useState();
@@ -23,6 +24,10 @@ const Medical = ({ setState, id }) => {
   const selectionRef = useRef();
   const [loading, setLoading] = useState();
   const [success, setSuccess] = useState();
+  const [error, setError] = useState();
+  const [file, setFile] = useState();
+  const hiddenFileInput = useRef();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,7 +37,9 @@ const Medical = ({ setState, id }) => {
     const prescription = prescriptionRef.current.value;
     const category = selectionRef.current.value;
     const additional = additionalRef.current.value;
+
     try {
+      const filename = await uploadFile();
       await axios.post("/user/store-medical-record", {
         id,
         doctorConsulted: userData,
@@ -40,6 +47,7 @@ const Medical = ({ setState, id }) => {
         route,
         drug: drugVal,
         prescription,
+        filename,
         category,
       });
 
@@ -53,6 +61,7 @@ const Medical = ({ setState, id }) => {
         category,
         additional,
       });
+
       setTimeout(() => {
         setLoading(false);
         setSuccess(true);
@@ -95,6 +104,42 @@ const Medical = ({ setState, id }) => {
   if (success) {
     return <Success setState={setState} />;
   }
+
+  const handleFileSelect = (e) => {
+    if (
+      e.target.files[0].type === "image/png" ||
+      e.target.files[0].type === "image/jpeg" ||
+      e.target.files[0].type === "text/plain"
+    ) {
+      setFile(e.target.files[0]);
+    } else {
+      setError("Please ensure the file type meets the requirement");
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+  };
+  const handleFile = (e) => {
+    hiddenFileInput.current.click();
+  };
+
+  const uploadFile = async () => {
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const response = await axios({
+        method: "post",
+        url: `/user/upload-file/${id}`,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -234,6 +279,27 @@ const Medical = ({ setState, id }) => {
                   </div>
                 </div>
               </div>
+              <>
+                {error && <p className="alert-primary">{error}</p>}
+                <span
+                  onClick={handleFile}
+                  className="file-input"
+                  data-tooltip="Upload"
+                >
+                  <GrAttachment />
+                  {file ? file.name : <p>Upload File</p>}
+                </span>
+                <p style={{ fontSize: "0.8rem", color: "#ff6347" }}>
+                  *Acceptable file type: PNG, JPEG, PDF, TXT
+                </p>
+                <input
+                  type="file"
+                  onChange={handleFileSelect}
+                  ref={hiddenFileInput}
+                  style={{ display: "none" }}
+                />
+              </>
+
               <button type="submit" className="btn green">
                 Upload
               </button>

@@ -3,7 +3,6 @@ import axios from "../../axios";
 import { useAuth } from "../../context/AuthContext";
 import NoAppointment from "../../ChatRoom/NoAppointment";
 import { BsCloudUpload } from "react-icons/bs";
-import { MdCloudDone } from "react-icons/md";
 import { motion } from "framer-motion";
 import Medical from "./Medical/Medical";
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../axios";
-import { useAuth } from "../../../context/AuthContext";
+import NoPatient from "./NoPatient";
 
 const Patient = ({ id, handleClick }) => {
   const [patientData, setPatientData] = useState();
+  const [error, setError] = useState(false);
   useEffect(() => {
     const getPatientData = async () => {
       try {
@@ -11,13 +12,19 @@ const Patient = ({ id, handleClick }) => {
         setPatientData(response.data.appointmentHistory);
       } catch (error) {
         console.log(error);
+        setError(true);
       }
     };
     getPatientData();
   }, []);
+  console.log(patientData);
+
+  if (patientData?.length < 1 || error) {
+    return <NoPatient />;
+  }
+
   return (
     <div className="patient-item">
-
       {patientData && (
         <div className="patient-info">
           <p>

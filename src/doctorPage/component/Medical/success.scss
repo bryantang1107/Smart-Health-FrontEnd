@@ -63,3 +63,67 @@
     padding: 1em;
   }
 }
+
+.file-input {
+  text-transform: none;
+  width: 100%;
+  padding: 1em;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  position: relative;
+  &:hover {
+    background: #b3c3df;
+    color: #000;
+    transition: all 0.5s ease-in-out;
+  }
+  &::before,
+  &::after {
+    --tooltip-color: #98d4d6;
+    --arrow-size: 10px;
+
+    position: absolute;
+    bottom: -0.35rem;
+    left: 50%;
+    --scale: 0;
+
+    transform: translateX((-50%)) translateY(var(--translate-y, 0))
+      scale(var(--scale));
+    transition: transform 0.2s ease-in;
+    transform-origin: top center;
+  }
+
+  &::before {
+    --translate-y: calc(100% + var(--arrow-size));
+    font-size: 0.8rem;
+    content: attr(data-tooltip);
+    padding: 0.8rem;
+    width: max-content;
+    border-radius: 20px;
+    text-align: center;
+
+    background: var(--tooltip-color);
+  }
+  &:hover::before,
+  &:hover::after {
+    --scale: 1;
+  }
+  &::after {
+    //arrow
+    --translate-y: var(--arrow-size);
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-bottom-color: var(--tooltip-color);
+    transform-origin: bottom center;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

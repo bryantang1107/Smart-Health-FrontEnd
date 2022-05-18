@@ -1,6 +1,7 @@
 .medical-record-container {
   width: 90%;
   margin: auto;
+  min-height: 100vh;
   @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&family=Macondo&display=swap");
   h1,
   h2,
@@ -11,6 +12,7 @@
     font-family: "Macondo", cursive;
   }
   .medical-record-item {
+    width: 100%;
     h3 {
       color: #00bbc0;
     }
@@ -74,6 +76,17 @@
     .medical-record {
       box-shadow: var(--light-shadow);
       padding: 2em;
+    }
+    .medical-record-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 3em;
+      img {
+        width: 100%;
+        max-width: 700px;
+      }
     }
   }
 }
