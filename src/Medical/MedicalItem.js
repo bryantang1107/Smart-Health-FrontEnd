@@ -13,7 +13,7 @@ import fileDownload from "js-file-download";
 const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
   const [view, setView] = useState();
   const { userData } = useAuth();
-  const [data, setData] = useState();
+  const [data, setData] = useState(false);
   const [image, setImage] = useState(false);
   useEffect(() => {
     const getdata = async () => {
@@ -25,7 +25,10 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
           const response2 = await axios.get(
             `/user/get-medical-file/${userData}?file=${m.filename}`
           );
-          setData(response2.data.filename);
+          if (response2.data.filename) {
+            setData(response2.data.filename);
+          }
+
           setImage(false);
           return;
         }
@@ -123,28 +126,44 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
                   src={`/user/get-medical-record/${userData}?file=${m.filename}`}
                 ></img>
               </div>
+            ) : data ? (
+              <div className="medical-record-content">
+                <AiOutlineFileDone
+                  style={{ fontSize: "2rem", color: "#20B2AA" }}
+                />
+                <p
+                  style={{
+                    textTransform: "none",
+                  }}
+                >
+                  {data}
+                </p>
+                <span
+                  className="download"
+                  data-tooltip="Download"
+                  onClick={data === "text/plain" ? downloadFile : downloadPdf}
+                >
+                  <BsCloudDownload style={{ color: "#FF6347" }} />
+                </span>
+              </div>
             ) : (
-              data && (
-                <div className="medical-record-content">
-                  <AiOutlineFileDone
-                    style={{ fontSize: "2rem", color: "#20B2AA" }}
-                  />
-                  <p
-                    style={{
-                      textTransform: "none",
-                    }}
-                  >
-                    {data}
-                  </p>
-                  <span
-                    className="download"
-                    data-tooltip="Download"
-                    onClick={data === "text/plain" ? downloadFile : downloadPdf}
-                  >
-                    <BsCloudDownload style={{ color: "#FF6347" }} />
-                  </span>
-                </div>
-              )
+              <div className="medical-record-content">
+                <AiOutlineFileDone
+                  style={{ fontSize: "2rem", color: "#20B2AA" }}
+                />
+                <p
+                  style={{
+                    textTransform: "none",
+                  }}
+                >
+                  No Downloadable Medical Record
+                </p>
+                <span
+                  className="download"
+                  data-tooltip="Download"
+                  onClick={data === "text/plain" ? downloadFile : downloadPdf}
+                ></span>
+              </div>
             )}
           </motion.div>
         ) : (

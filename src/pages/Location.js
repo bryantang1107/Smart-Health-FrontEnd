@@ -2,15 +2,34 @@ import React, { useEffect } from "react";
 import "../css/location.css";
 import icon from "../images/icon.PNG";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
+const customId = "custom-id-yes";
 const Location = () => {
+  const notify = () => {
+    toast("View Pharmacy across malaysia", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      delay: 1000,
+    });
+  };
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
+    notify();
   }, []);
+
   return (
     <motion.div
       animate={{ opacity: 1 }}

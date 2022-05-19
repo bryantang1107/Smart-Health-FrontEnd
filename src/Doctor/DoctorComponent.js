@@ -7,6 +7,7 @@ import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import NoDoctor from "./NoDoctor";
 
+
 const DoctorComponent = () => {
   const { currentUser } = useAuth();
 

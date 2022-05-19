@@ -11,13 +11,11 @@ const Patient = ({ id, handleClick }) => {
         const response = await axios.get(`/appointment/patient-record/${id}`);
         setPatientData(response.data.appointmentHistory);
       } catch (error) {
-        console.log(error);
         setError(true);
       }
     };
     getPatientData();
   }, []);
-  console.log(patientData);
 
   if (patientData?.length < 1 || error) {
     return <NoPatient />;

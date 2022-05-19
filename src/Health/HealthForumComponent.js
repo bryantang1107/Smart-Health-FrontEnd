@@ -7,8 +7,25 @@ import Loading from "../covid/Loading";
 import Error from "./Error";
 
 import HealthItem from "./HealthItem";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
+const customId = "custom-id-yes";
 const HealthForumComponent = () => {
+  const notify = () => {
+    toast("Keyword search: Cancer, smoking, alcohol, etc.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      delay: 1000,
+    });
+  };
   const [data, setData] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
@@ -17,6 +34,7 @@ const HealthForumComponent = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
   useEffect(() => {
+    notify();
     const getData = async () => {
       try {
         const response = await axios.get(

@@ -6,7 +6,11 @@ const SuccessCancel = () => {
   return (
     <div
       className="success-appointment"
-      style={{ marginTop: "5em", marginBottom: "5em" }}
+      style={{
+        marginTop: "5em",
+        marginBottom: "5em",
+        minHeight: "70vh",
+      }}
     >
       <VscVerified style={{ fontSize: "3rem", color: "#3fbbc0" }} />
       <h3 style={{ margin: "3em auto 0 auto" }}>
@@ -16,7 +20,7 @@ const SuccessCancel = () => {
         Appointment Cancelled Successfully! Thank You For Using smart Health !
       </p>
 
-      <a href="/" className="done-booking-btn">
+      <a href="/" className="btn green">
         <strong>Done</strong>
       </a>
     </div>

@@ -16,6 +16,10 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 const TextFieldComponent = (props) => {
   return <TextField {...props} disabled={true} />;
@@ -89,6 +93,7 @@ const AppointmentForm = () => {
   const handleCancel = () => {
     history.push("/cancel-appointment");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const bookAppointment = async () => {
@@ -114,6 +119,7 @@ const AppointmentForm = () => {
         doctorInfo: id,
       };
       setAppointmentData(userInfo);
+      const toastId = toast.loading("Booking your appointment...");
       try {
         await axios.post("/authroom/register", {
           room_id: roomId,
@@ -123,8 +129,20 @@ const AppointmentForm = () => {
         setTimeout(() => {
           setLoading(false);
           setSuccess(true);
+          toast.update(toastId, {
+            render: "Successfully Booked",
+            type: "success",
+            isLoading: false,
+            closeOnClick: true,
+          });
         }, 3000);
       } catch (err) {
+        toast.update(toastId, {
+          render: "The time slot is unavailable, please try other slot",
+          type: "error",
+          isLoading: false,
+          closeOnClick: true,
+        });
         setLoading(false);
         setSlotError("The time slot is unavailable, please try other slot");
       }

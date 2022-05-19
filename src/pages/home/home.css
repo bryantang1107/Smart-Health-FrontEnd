@@ -506,19 +506,35 @@
 
 .contact-header {
   background: url("https://images.unsplash.com/reserve/O7A9fAvYSXC7NTdz8gLQ_IMGP1039.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80");
-  padding: 10em;
+  width: 100%;
   text-align: center;
   background-size: cover;
+  background-position: center;
+  padding: 10em;
 }
 
-.contact-header a {
+.contact-header .contact-content {
+  width: 100%;
+  min-width: 400px;
+}
+
+.contact-header .contact-content h1 {
+  margin: 0;
+}
+
+.contact-header .contact-content a {
   color: #3fbbc0;
 }
 
-.contact-header a:hover {
+.contact-header .contact-content a:hover {
   -webkit-filter: brightness(1.2);
           filter: brightness(1.2);
-  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .contact-header {
+    padding: 5em;
+  }
 }
 
 .contact-hero {

@@ -440,6 +440,7 @@
 
 .user-entire-container {
   margin-top: 2em;
+  min-height: 80vh;
 }
 
 .appointment-container {

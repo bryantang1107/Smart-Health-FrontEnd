@@ -162,6 +162,7 @@ const Medical = ({ setState, id }) => {
         <div className="upload-container">
           <div className="form">
             <form onSubmit={handleSubmit}>
+              <h4>Name of Diagnosis</h4>
               <div className="input-group input-group-icon">
                 <input
                   type="text"
@@ -174,7 +175,7 @@ const Medical = ({ setState, id }) => {
                   <i className="fa fa-stethoscope"></i>
                 </div>
               </div>
-              <h4>Category</h4>
+              <h4>Drug Category</h4>
               <select
                 name="category"
                 className="category"

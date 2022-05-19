@@ -13,22 +13,39 @@ import Arrow from "./Arrow";
 import "../css/doctor.css";
 import { motion } from "framer-motion";
 import AppointmentForm from "./AppointmentForm";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
+const customId = "custom-id-yes";
 const Doctor = () => {
   const { id } = useParams();
   const { currentUser, userRole } = useAuth();
   const history = useHistory();
-  const [error, setError] = useState();
   const [Info, setInfo] = useState({});
   const [registry, setRegistry] = useState();
   const [conditions, setConditions] = useState();
   const [service, setService] = useState();
+  const notify = () => {
+    toast("You are only entitled to 1 hour of free consultation per booking.", {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      delay: 1000,
+    });
+  };
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
+    notify();
   }, []);
 
   const goBack = () => {
@@ -344,8 +361,6 @@ const Doctor = () => {
           </div>
           <div className="doctor-appointment-container">
             <AppointmentForm />
-
-       
           </div>
         </div>
       </motion.div>

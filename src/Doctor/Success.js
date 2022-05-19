@@ -40,7 +40,7 @@ const Success = ({ appointmentData }) => {
         </a>
       </p>
 
-      <a href="/" className="done-booking-btn">
+      <a href="/" className="btn green">
         <strong>Done</strong>
       </a>
     </div>

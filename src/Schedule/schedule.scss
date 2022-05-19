@@ -6,7 +6,6 @@
 #schedule-container,
 .past {
   @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
-
   h1,
   h2,
   h3,
@@ -310,6 +309,7 @@
 
 .user-entire-container {
   margin-top: 2em;
+  min-height: 80vh;
 }
 .appointment-container {
   width: 80%;
