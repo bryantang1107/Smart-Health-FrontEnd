@@ -28,7 +28,6 @@ const Cancel = () => {
               setError(error);
             }
           },
-          //cancel the appointment here,same as "done appointment" route
         },
         {
           label: "No",
@@ -40,16 +39,11 @@ const Cancel = () => {
   return (
     <section id="reminder-email">
       <div className="subscribe">
-        <h2 className="subscribe__title">Reminder Notification</h2>
+        <h2 className="subscribe__title">SMS Appointment Reminder</h2>
         <div className="underline"></div>
         <VscVerified className="verified-icon" />
         <p className="subscribe__copy">
-          You have activated the daily e-mail reminder feature !<br></br>
-          <br></br>
-          <strong>
-            If you wish to stop receiving the daily email reminder, please click
-            the "Cancel" button below
-          </strong>
+          You have enabled the SMS reminder feature !<br></br>
         </p>
         <form className="form">
           <button className="form__button" onClick={cancelEmail} type="submit">

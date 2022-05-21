@@ -27,7 +27,7 @@ const Success = ({ appointmentData }) => {
         <p> {appointmentData.date}</p>
         <h5>Appointment Time:</h5>
         <p> {appointmentData.time}</p>
-        <a href="/schedule" className="btn green">
+        <a href="/schedule-user" className="btn green">
           Edit Your Information Here
         </a>
       </div>

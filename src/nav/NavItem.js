@@ -1,17 +1,19 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Dropdownmenu from "./Dropdownmenu";
 import { NavLink } from "./NavbarElements";
-
+import { useAuth } from "../context/AuthContext";
 
 export default function NavItem(props) {
   const [open, setOpen] = useState(false);
-
-  
-
+  const { userRole } = useAuth();
   if (props.prop) {
     return (
       <li className="nav-item">
-        <a href="/schedule" className="icon-button" data-tooltip={props.name}>
+        <a
+          href={userRole === "doctor" ? "/schedule" : "/schedule-user"}
+          className="icon-button"
+          data-tooltip={props.name}
+        >
           {props.icon}
         </a>
       </li>

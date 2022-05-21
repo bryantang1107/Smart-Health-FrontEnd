@@ -221,6 +221,9 @@
   .form {
     margin-bottom: 25px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
   }
 
   .form__email {
@@ -283,4 +286,8 @@
       }
     }
   }
+}
+
+.css-b62m3t-container {
+  width: 431px;
 }

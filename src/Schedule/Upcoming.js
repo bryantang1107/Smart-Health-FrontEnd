@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-
+import { useParams } from "react-router-dom";
 import "./schedule.css";
 import NoAppointment from "../ChatRoom/NoAppointment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,9 +14,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 const Upcoming = () => {
+  const { id } = useParams();
+  const customId = "custom-id-yes";
   const [appointmentData, setAppointmentData] = useState();
   const [doctorData, setDoctorData] = useState();
-  const { userData } = useAuth();
+  const { userData, userRole } = useAuth();
   const [error, setError] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [state, setState] = useState(true);
@@ -28,23 +30,37 @@ const Upcoming = () => {
     toast.info(
       "If you have consulted your doctor, please wait for the doctor to provide the digital prescription. Do not cancel the appointment!",
       {
+        toastId: customId,
         position: toast.POSITION.TOP_RIGHT,
         autoClose: false,
       }
     );
   };
   useEffect(() => {
-    notify();
-    const getAppointmentData = async () => {
-      try {
-        const response = await axios.get(`/appointment/detail/${userData}`);
-        setAppointmentData(response.data[0]);
-        setDoctorData(response.data[1]);
-      } catch (error) {
-        setError(true);
-      }
-    };
-    getAppointmentData();
+    if (userRole === "user") {
+      const getAppointmentData = async () => {
+        try {
+          const response = await axios.get(`/appointment/detail/${userData}`);
+          setAppointmentData(response.data[0]);
+          setDoctorData(response.data[1]);
+        } catch (error) {
+          setError(true);
+        }
+      };
+      getAppointmentData();
+      notify();
+    } else {
+      const getAppointmentData = async () => {
+        try {
+          const response = await axios.get(`/appointment/detail/${id}`);
+          setAppointmentData(response.data[0]);
+          setDoctorData(response.data[1]);
+        } catch (error) {
+          setError(true);
+        }
+      };
+      getAppointmentData();
+    }
   }, []);
 
   const toggle = () => {
@@ -86,8 +102,24 @@ const Upcoming = () => {
               <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
             </span>
             <h4>Appointment Details</h4>
+            {appointmentData?.gender === "male" ? (
+              <img
+                src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png"
+                alt="male-image"
+                style={{ width: "100px" }}
+              />
+            ) : (
+              <img
+                src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png"
+                alt="female-image"
+                style={{ width: "100px" }}
+              />
+            )}
             <div className="appointment-item">
               <p>Name: {appointmentData.name}</p>
+            </div>
+            <div className="appointment-item">
+              <p>Gender: {appointmentData.gender}</p>
             </div>
             <div className="appointment-item">
               <p style={{ textTransform: "none" }}>

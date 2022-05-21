@@ -12,6 +12,8 @@ import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
 import TimePicker from "./TimePicker";
 import Error from "./Error";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -156,7 +158,25 @@ const AppointmentForm = () => {
       });
       return;
     }
-    bookAppointment();
+    confirmAlert({
+      title: "Book Appointment",
+      message: `Please ensure you select the correct appointment date & time. You will
+      not be able to change the date & time after you have made a booking.
+      (Please cancel and make a new booking for appointment if you would
+      like to change the appointment date/time.`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            bookAppointment();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
   };
   if (loading) {
     return <Loading />;
@@ -222,12 +242,6 @@ const AppointmentForm = () => {
   return (
     <>
       <form id="appointment-submit" onSubmit={handleSubmit}>
-        <h3 className="alert-primary">
-          Please ensure you select the correct appointment date & time. You will
-          not be able to change the date & time after you have made a booking.
-          (Please cancel and make a new booking for appointment if you would
-          like to change the appointment date/time.
-        </h3>
         <div className="row-appointment">
           <h4>Patient Information</h4>
           {error && <p className="alert-primary">{error}</p>}

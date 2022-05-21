@@ -4,13 +4,14 @@ import AppointmentModal from "./AppointmentModal";
 import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import NoAppointment from "./NoAppointment";
+import { useHistory } from "react-router-dom";
 
 const DoctorJoin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { userData } = useAuth();
   const [appointmentData, setAppointmentData] = useState();
   const [currentData, setCurrentData] = useState();
-
+  const history = useHistory();
   useEffect(() => {
     const getAppointmentData = async () => {
       try {
@@ -22,6 +23,9 @@ const DoctorJoin = () => {
     };
     getAppointmentData();
   }, []);
+  const handleClick = (id) => {
+    history.push(`/patient-info/${id}`);
+  };
   return (
     <div id="doctor-join-section">
       <div className="reminder-data-container">
@@ -37,31 +41,38 @@ const DoctorJoin = () => {
             </li>
             {appointmentData.map((x, index) => {
               return (
-                <li
-                  className="table-row hover-effect"
-                  onClick={() => {
-                    setIsOpen(true);
-                    setCurrentData(x);
-                  }}
-                  key={index}
-                >
-                  <div className="col col-1" data-label="Name:">
-                    {x.name}
-                  </div>
-                  <div
-                    className="col col-2"
-                    data-label="Email:"
-                    style={{ textTransform: "lowercase" }}
+                <div key={index}>
+                  <li
+                    className="table-row hover-effect"
+                    onClick={() => {
+                      setIsOpen(true);
+                      setCurrentData(x);
+                    }}
                   >
-                    {x.email}
-                  </div>
-                  <div className="col col-3" data-label="Gender:">
-                    {x.gender}
-                  </div>
-                  <div className="col col-3" data-label="Day Of Birth:">
-                    {x.dob.substring(0, x.dob.indexOf("T"))}
-                  </div>
-                </li>
+                    <div className="col col-1" data-label="Name:">
+                      {x.name}
+                    </div>
+                    <div
+                      className="col col-2"
+                      data-label="Email:"
+                      style={{ textTransform: "lowercase" }}
+                    >
+                      {x.email}
+                    </div>
+                    <div className="col col-3" data-label="Gender:">
+                      {x.gender}
+                    </div>
+                    <div className="col col-3" data-label="Day Of Birth:">
+                      {x.dob.substring(0, x.dob.indexOf("T"))}
+                    </div>
+                  </li>
+                  <button
+                    onClick={() => handleClick(x._id)}
+                    className="green btn"
+                  >
+                    Visit Profile
+                  </button>
+                </div>
               );
             })}
 

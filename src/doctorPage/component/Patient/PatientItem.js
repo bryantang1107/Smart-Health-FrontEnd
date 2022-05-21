@@ -15,7 +15,7 @@ import { GoCalendar } from "react-icons/go";
 
 const PatientItem = () => {
   const history = useHistory();
-  const { userData, currentUser } = useAuth();
+  const { userData } = useAuth();
   const [patientInfo, setPatientInfo] = useState();
   const [patient, setPatient] = useState([]);
   const [appointmentHistory, setAppointmentHistory] = useState([]);

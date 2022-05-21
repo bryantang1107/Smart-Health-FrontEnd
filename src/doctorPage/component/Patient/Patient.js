@@ -1,57 +1,75 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../axios";
-import NoPatient from "./NoPatient";
 
-const Patient = ({ id, handleClick }) => {
+const Patient = ({ x, handleClick, debouncedSearchTerm }) => {
   const [patientData, setPatientData] = useState();
-  const [error, setError] = useState(false);
+  const [exist, setExist] = useState(true);
   useEffect(() => {
     const getPatientData = async () => {
       try {
-        const response = await axios.get(`/appointment/patient-record/${id}`);
+        const response = await axios.get(
+          `/appointment/patient-record/${x.patientId}`
+        );
         setPatientData(response.data.appointmentHistory);
+        getData(response.data.appointmentHistory);
       } catch (error) {
-        setError(true);
+        console.log(error);
       }
     };
     getPatientData();
   }, []);
+  const getData = (data) => {
+    const filtered = data?.filter((x) => {
+      return (
+        x.name.toUpperCase().search(debouncedSearchTerm?.toUpperCase()) != -1 ||
+        x.email.toUpperCase().search(debouncedSearchTerm?.toUpperCase()) !=
+          -1 ||
+        x.phone.toUpperCase().search(debouncedSearchTerm?.toUpperCase()) != -1
+      );
+    });
+    if (filtered.length < 1) {
+      setExist(false);
+    }
+  };
 
-  if (patientData?.length < 1 || error) {
-    return <NoPatient />;
+  if (!exist) {
+    return <></>;
   }
-
   return (
-    <div className="patient-item">
+    <>
       {patientData && (
-        <div className="patient-info">
-          <p>
-            <strong>Name:</strong>
-            {patientData[0]?.name}
-          </p>
-          <p style={{ textTransform: "none" }}>
-            <strong>Email:</strong>
-            {patientData[0]?.email}
-          </p>
-          <p>
-            <strong>Gender:</strong>
-            {patientData[0]?.gender}
-          </p>
-          <p>
-            <strong>Phone Number:</strong>
-            {patientData[0]?.phone}
-          </p>
-          <p>
-            <strong>Day-Of-Birth:</strong>
-            {patientData[0]?.dob.split("T")[0]}
-          </p>
+        <div className="patient-item">
+          <div className="patient-info">
+            <p>
+              <strong>Name:</strong>
+              {patientData[0]?.name}
+            </p>
+            <p style={{ textTransform: "none" }}>
+              <strong>Email:</strong>
+              {patientData[0]?.email}
+            </p>
+            <p>
+              <strong>Gender:</strong>
+              {patientData[0]?.gender}
+            </p>
+            <p>
+              <strong>Phone Number:</strong>
+              {patientData[0]?.phone}
+            </p>
+            <p>
+              <strong>Day-Of-Birth:</strong>
+              {patientData[0]?.dob.split("T")[0]}
+            </p>
+          </div>
+          <button
+            className="green btn"
+            onClick={() => handleClick(x.patientId)}
+          >
+            View Patient
+          </button>
         </div>
       )}
-
-      <button className="green btn" onClick={() => handleClick(id)}>
-        View Patient
-      </button>
-    </div>
+    </>
   );
 };
 

@@ -39,7 +39,10 @@ const Medical = ({ setState, id }) => {
     const additional = additionalRef.current.value;
 
     try {
-      const filename = await uploadFile();
+      let filename;
+      if (file) {
+        filename = await uploadFile();
+      }
       await axios.post("/user/store-medical-record", {
         id,
         doctorConsulted: userData,

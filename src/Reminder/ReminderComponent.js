@@ -140,8 +140,7 @@ const ReminderComponent = () => {
       {!reminder ? <EmailNoti /> : <Cancel />}
       <div className="reminder-list-container">
         <h3>Reminder List</h3>
-        <div className="underline"></div>
-
+        <p>Use this to store all your reminders</p>
         {reminderData && (
           <div className="reminder-list">
             <div className="reminder-content">

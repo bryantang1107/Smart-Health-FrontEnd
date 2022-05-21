@@ -36,6 +36,7 @@ import CancelAppointment from "./Doctor/CancelAppointment";
 import ActivityLog from "./doctorPage/ActivityLog";
 import PatientItem from "./doctorPage/component/Patient/PatientItem";
 import MedicalRecordUser from "./pages/Medical";
+import PatientInfoComponent from "./doctorPage/PatientInfoComponent";
 const App = () => {
   const data = useSelector((state) => state.roleReducer);
 
@@ -72,7 +73,7 @@ const App = () => {
           {data.role === "doctor" && (
             <PrivateRoute
               exact
-              path="/patient-record/:id"
+              path="/patient/:id"
               component={PatientItem}
             ></PrivateRoute>
           )}
@@ -95,6 +96,13 @@ const App = () => {
               exact
               path="/schedule"
               component={Appointment}
+            ></PrivateRoute>
+          )}
+          {data.role === "doctor" && (
+            <PrivateRoute
+              exact
+              path="/patient-info/:id"
+              component={PatientInfoComponent}
             ></PrivateRoute>
           )}
 
@@ -187,7 +195,7 @@ const App = () => {
           {data.role === "user" && (
             <PrivateRoute
               exact
-              path="/schedule"
+              path="/schedule-user"
               component={Schedule}
             ></PrivateRoute>
           )}

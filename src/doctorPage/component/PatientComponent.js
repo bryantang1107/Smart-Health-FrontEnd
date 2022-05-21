@@ -5,28 +5,55 @@ import "./Patient/patient.css";
 import Patient from "./Patient/Patient";
 import { useHistory } from "react-router-dom";
 import NoPatient from "./Patient/NoPatient";
+import Search from "./Patient/Search";
+import useDebounce from "../../hooks/useDebounce";
+import Loading from "../../covid/Loading";
 const PatientComponent = () => {
   const { userData } = useAuth();
-  const [patient, setPatient] = useState([]);
   const [patientInfo, setPatientInfo] = useState();
   const history = useHistory();
   const [error, setError] = useState();
-
+  const [searchTerm, setSearchTerm] = useState();
+  const [isSearching, setIsSearching] = useState(false);
+  const [data, setData] = useState();
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get(`/user/patient-record/${userData}`);
-        setPatientInfo(response.data);
-        setPatient(Object.keys(response.data));
+        setPatientInfo(response.data.patient);
+        setData(response.data.patient);
       } catch (error) {
         setError(true);
       }
     };
     getData();
   }, []);
-  const handleClick = (id) => {
-    history.push(`/patient-record/${id}`);
+  const getData = async () => {
+    try {
+      const response = await axios.get(`/user/patient-record/${userData}`);
+      setPatientInfo(response.data.patient);
+      setData(response.data.patient);
+    } catch (error) {
+      setError(true);
+    }
   };
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      setTimeout(() => {
+        setIsSearching(false);
+      }, 1500);
+    } else {
+      setIsSearching(false);
+      setData();
+      getData();
+    }
+  }, [debouncedSearchTerm]);
+  const handleClick = (id) => {
+    history.push(`/patient/${id}`);
+  };
+
   if (error) {
     return (
       <>
@@ -40,17 +67,21 @@ const PatientComponent = () => {
     <div className="patient-container">
       <h1 style={{ textAlign: "center" }}>Patient Record</h1>
       <div className="underline"></div>
-      {patient?.map((x, index) => {
-        //y.date
-        return (
-          <Patient
-            key={index}
-            id={x}
-            patientInfo={patientInfo}
-            handleClick={handleClick}
-          />
-        );
-      })}
+      <Search setSearchTerm={setSearchTerm} />
+      {isSearching ? (
+        <Loading />
+      ) : (
+        data?.map((x, index) => {
+          return (
+            <Patient
+              key={index}
+              x={x}
+              handleClick={handleClick}
+              debouncedSearchTerm={debouncedSearchTerm}
+            />
+          );
+        })
+      )}
     </div>
   );
 };
