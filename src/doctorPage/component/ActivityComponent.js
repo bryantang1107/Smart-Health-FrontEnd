@@ -4,6 +4,7 @@ import axios from "../../axios";
 import { useAuth } from "../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { confirmAlert } from "react-confirm-alert";
+import { Link } from "react-router-dom";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {
   faCalendarXmark,
@@ -174,9 +175,9 @@ const ActivityComponent = () => {
                     </div>
                     {x.type === "appointment" && (
                       <div>
-                        <a href="/join">
+                        <Link to="/join">
                           <button className="btn green">View Info</button>
-                        </a>
+                        </Link>
                       </div>
                     )}
                   </div>

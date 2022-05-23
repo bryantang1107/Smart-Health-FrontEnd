@@ -1,5 +1,6 @@
 import React from "react";
 import "./home.css";
+import { Link } from "react-router-dom";
 const HowTo = () => {
   return (
     <section className="how-to-section">
@@ -42,9 +43,9 @@ const HowTo = () => {
           <p>Browse for information of the prescription provided</p>
         </div>
       </div>
-      <a href="/find-doctor" className="how-to-btn">
+      <Link to="/find-doctor" className="how-to-btn">
         Make An Appointment
-      </a>
+      </Link>
       <p style={{ marginTop: "3em", fontSize: "0.7rem" }}>
         Struggling to use our website? Contact our admin for real-time customer
         support by clicking on the "Hello" button at the bottom right of the

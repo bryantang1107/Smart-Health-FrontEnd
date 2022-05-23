@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./nodoctor.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation, faPen } from "@fortawesome/free-solid-svg-icons";
 import axios from "../axios";
@@ -371,12 +372,12 @@ const AppointmentForm = () => {
               and hereby confirm I have read the privacy policy.
               <p>
                 Read &nbsp;
-                <a
-                  href="/tnc-smarthealth"
+                <Link
+                  to="/tnc-smarthealth"
                   style={{ color: "#3fbbc0", textDecoration: "underline" }}
                 >
                   Terms & Conditions
-                </a>
+                </Link>
               </p>
             </label>
           </div>

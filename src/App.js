@@ -174,6 +174,11 @@ const App = () => {
 
           <PrivateRoute
             exact
+            path="https://smarthealthgroup.netlify.app/find-doctor"
+            component={Doctor}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
             path="/find-doctor"
             component={Doctor}
           ></PrivateRoute>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Arrow from "../../../Doctor/Arrow";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "../../../axios";
 import { useAuth } from "../../../context/AuthContext";
 import "./patient.css";
@@ -153,9 +153,9 @@ const PatientItem = () => {
                         <GiNurseMale className="icon" />
                         <strong>Doctor Consulted </strong>
                       </span>
-                      <a href={`/doctor/${x.doctorInfo}`} className="link">
+                      <Link to={`/doctor/${x.doctorInfo}`} className="link">
                         View Doctor Information
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 );

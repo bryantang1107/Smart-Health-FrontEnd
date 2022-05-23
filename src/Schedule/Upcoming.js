@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./schedule.css";
 import NoAppointment from "../ChatRoom/NoAppointment";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
@@ -244,9 +245,9 @@ const Upcoming = () => {
         <h4 style={{ marginRight: "1em" }}>
           To Cancel your appointment, Click here:
         </h4>
-        <a href="/cancel-appointment" className="btn green">
+        <Link to="/cancel-appointment" className="btn green">
           Cancel
-        </a>
+        </Link>
       </div>
       {doctorData && (
         <>

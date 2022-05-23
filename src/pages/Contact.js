@@ -3,7 +3,7 @@ import chat from "../images/chat.png";
 import "./home/home.css";
 import { ReactComponent as Yoursvg } from "../images/undraw_personal_email_re_4lx7.svg";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const Contact = () => {
   useEffect(() => {
     window.scrollTo({
@@ -35,7 +35,8 @@ const Contact = () => {
       <div className="contact-faq">
         <h3>How Can we help?</h3>
         <p>
-          Click <a href="/support/qna">here </a> to view related inquiries/FAQ.
+          Click <Link to="/support/qna">here </Link> to view related
+          inquiries/FAQ.
         </p>
         <p>
           <strong>If you don't find what you need:</strong>

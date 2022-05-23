@@ -2,6 +2,7 @@ import NavItem, { Logo } from "./NavItem";
 
 import { NavBtnLink } from "./NavbarElements";
 import { NavBtn } from "./NavbarElements";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ReactComponent as Appointment } from "../images/appoinment.svg";
 import { ReactComponent as Caret } from "../icons/caret.svg";
@@ -35,7 +36,7 @@ export default function Nav() {
             <ul className="navbar-nav">
               {userRole === "user" && (
                 <span className="find-doctor-btn">
-                  <a href="/find-doctor">.</a>
+                  <Link to="/find-doctor"></Link>
                 </span>
               )}
 

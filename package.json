@@ -2,7 +2,7 @@
   "name": "smarthealthfyp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:6100",
+  "proxy": "https://smarthealth-server.herokuapp.com/",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@date-io/date-fns": "^1.3.13",

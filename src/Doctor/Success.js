@@ -1,5 +1,6 @@
 import React from "react";
 import { VscVerified } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 import "./success.css";
 
 const Success = ({ appointmentData }) => {
@@ -27,22 +28,22 @@ const Success = ({ appointmentData }) => {
         <p> {appointmentData.date}</p>
         <h5>Appointment Time:</h5>
         <p> {appointmentData.time}</p>
-        <a href="/schedule-user" className="btn green">
+        <Link to="/schedule-user" className="btn green">
           Edit Information
-        </a>
+        </Link>
       </div>
 
       <p style={{ margin: "3em auto", lineHeight: "1.5rem" }}>
         Appointment Booked Successfully! Get the room credentials for your
         appointment
-        <a href="/join" className="chat-link">
+        <Link to="/join" className="chat-link">
           Here
-        </a>
+        </Link>
       </p>
 
-      <a href="/reminder" className="btn green">
+      <Link to="/reminder" className="btn green">
         <strong>Make Reminder</strong>
-      </a>
+      </Link>
     </div>
   );
 };

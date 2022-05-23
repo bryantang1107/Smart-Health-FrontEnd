@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./chat.css";
 
 const Name = () => {
@@ -24,13 +25,13 @@ const Name = () => {
             style={{ textTransform: "none" }}
           />
         </div>
-        <a
-          href={`/room?room=${localStorage.getItem("room")}`}
+        <Link
+          to={`/room?room=${localStorage.getItem("room")}`}
           className="join-room-btn-34"
           onClick={handleClick}
         >
           Join
-        </a>
+        </Link>
       </div>
     </div>
   );

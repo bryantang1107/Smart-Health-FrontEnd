@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../axios";
 import "./schedule.css";
 
@@ -63,8 +64,8 @@ const Past = () => {
         <p style={{ marginBottom: "4em" }}>
           Oops, It Seems Like you have not made any appointments yet.
         </p>
-        <a
-          href="/find-doctor"
+        <Link
+          to="/find-doctor"
           style={{
             color: "#00bbcf",
             fontWeight: "600",
@@ -72,15 +73,15 @@ const Past = () => {
           }}
         >
           Find A Doctor
-        </a>
+        </Link>
       </div>
     );
   } else {
     return (
       <div className="past">
-        <a href="/medical-record" className="medical-link">
+        <Link to="/medical-record" className="medical-link">
           View Medical Record
-        </a>
+        </Link>
         <h1 style={{ marginTop: "3em" }}>Past Appointment</h1>
         <div className="underline"></div>
         <div className="past-appointment-container">
