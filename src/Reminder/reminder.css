@@ -252,6 +252,32 @@
   font-size: 5rem;
 }
 
+#reminder-email .subscribe .container {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  padding: 2em;
+  min-width: 400px;
+}
+
+#reminder-email .subscribe .container .back {
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  left: 5%;
+  background-color: white;
+  color: #333;
+}
+
+#reminder-email .subscribe .container .edit {
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  right: 5%;
+  background-color: white;
+  color: #333;
+}
+
 #reminder-email .subscribe__title {
   font-weight: bold;
   font-size: 26px;

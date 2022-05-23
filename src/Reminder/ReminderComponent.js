@@ -10,12 +10,18 @@ import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import EmailNoti from "./EmailNoti";
 import Cancel from "./Cancel";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
+const customId = "lol";
 
 const ReminderComponent = () => {
   const [reminderData, setReminderData] = useState([]);
   const [toggle, setToggle] = useState(false);
   const { userData } = useAuth();
   const [reminder, setReminder] = useState();
+  const [canBook, setCanBook] = useState(true);
   const [alert, setAlert] = useState({
     show: false,
     msg: "",
@@ -24,12 +30,29 @@ const ReminderComponent = () => {
   const labelRef = useRef(null);
   const platformRef = useRef(null);
   const descriptionRef = useRef(null);
-
+  const notify = (text) => {
+    toast.info(text, {
+      toastId: customId,
+      position: toast.POSITION.TOP_RIGHT,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      autoClose: false,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get(`/reminder/get-reminder/${userData}`);
         setReminderData(response.data);
+        const response2 = await axios.get(`/authroom/appointment/${userData}`);
+        if (response2.data) {
+          return setCanBook(true);
+        } else {
+          setCanBook(false);
+        }
       } catch (error) {
         showAlert(true, "danger", "Unable to retrieve information !");
       }
@@ -84,7 +107,7 @@ const ReminderComponent = () => {
 
   const storeToDb = async (obj) => {
     try {
-      await axios.post("/reminder/update", {
+      await axios.post("/user/update", {
         userData,
         obj,
       });
@@ -137,10 +160,9 @@ const ReminderComponent = () => {
           </p>
         </div>
       </div>
-      {!reminder ? <EmailNoti /> : <Cancel />}
+      {!reminder && !canBook ? <EmailNoti /> : !canBook && <Cancel />}
       <div className="reminder-list-container">
         <h3>Reminder List</h3>
-        <p>Use this to store all your reminders</p>
         {reminderData && (
           <div className="reminder-list">
             <div className="reminder-content">
@@ -165,6 +187,11 @@ const ReminderComponent = () => {
               style={{ marginBottom: "1em", display: "flex", marginTop: "3em" }}
               onClick={() => {
                 setToggle(!toggle);
+                if (!toggle) {
+                  notify(
+                    "This Is A Free Feature By Smart Health That Allows You To Store Any Reminders. You Are Entitled To Use This Feature To Store Any Information."
+                  );
+                }
               }}
             >
               {!toggle ? "Add Reminder" : "Cancel"}
@@ -231,7 +258,6 @@ const ReminderComponent = () => {
               }}
               onClick={handleSubmit}
             >
-              {" "}
               Add Reminder
             </button>
           </div>

@@ -28,7 +28,7 @@ const Success = ({ appointmentData }) => {
         <h5>Appointment Time:</h5>
         <p> {appointmentData.time}</p>
         <a href="/schedule-user" className="btn green">
-          Edit Your Information Here
+          Edit Information
         </a>
       </div>
 
@@ -40,8 +40,8 @@ const Success = ({ appointmentData }) => {
         </a>
       </p>
 
-      <a href="/" className="btn green">
-        <strong>Done</strong>
+      <a href="/reminder" className="btn green">
+        <strong>Make Reminder</strong>
       </a>
     </div>
   );

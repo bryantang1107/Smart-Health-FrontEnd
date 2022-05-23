@@ -197,9 +197,6 @@ const AppointmentForm = () => {
           icon={faCircleExclamation}
           style={{ fontSize: "3rem", color: "#DC143C" }}
         />
-        <p className="invalid-content">
-          It Seems Like You have a pending appointment.
-        </p>
         <h3 style={{ color: "#00bbcf" }}>
           Cant Book An Appointment? Here are some options that may help you.
         </h3>

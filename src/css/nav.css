@@ -404,12 +404,6 @@ a {
           transform: translateY(1px);
 }
 
-@media (max-width: 960px) {
-  .nav-item:nth-child(2) {
-    display: none;
-  }
-}
-
 @media (max-width: 600px) {
   .find-doctor-btn {
     display: none;

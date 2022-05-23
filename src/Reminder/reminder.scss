@@ -203,6 +203,29 @@
       color: #38d3a8;
       font-size: 5rem;
     }
+    .container {
+      position: relative;
+      width: 70%;
+      margin: auto;
+      padding: 2em;
+      min-width: 400px;
+      .back {
+        position: absolute;
+        font-size: 2rem;
+        top: 0;
+        left: 5%;
+        background-color: white;
+        color: #333;
+      }
+      .edit {
+        position: absolute;
+        font-size: 2rem;
+        top: 0;
+        right: 5%;
+        background-color: white;
+        color: #333;
+      }
+    }
   }
 
   .subscribe__title {

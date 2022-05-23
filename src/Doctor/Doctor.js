@@ -20,14 +20,27 @@ toast.configure();
 const customId = "custom-id-yes";
 const Doctor = () => {
   const { id } = useParams();
-  const { currentUser, userRole } = useAuth();
+  const { currentUser, userRole, userData } = useAuth();
   const history = useHistory();
   const [Info, setInfo] = useState({});
   const [registry, setRegistry] = useState();
   const [conditions, setConditions] = useState();
   const [service, setService] = useState();
-  const notify = () => {
-    toast("You are only entitled to 1 hour of free consultation per booking.", {
+  const notify = (text, type) => {
+    if (type) {
+      return toast.error(text, {
+        toastId: customId,
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        delay: 1000,
+      });
+    }
+    toast(text, {
       toastId: customId,
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 5000,
@@ -45,7 +58,17 @@ const Doctor = () => {
       left: 0,
       behavior: "smooth",
     });
-    notify();
+    const getData = async () => {
+      const response = await axios.get(`/authroom/appointment/${userData}`);
+      if (response.data) {
+        notify(
+          "You are only entitled to 1 hour of free consultation per booking."
+        );
+      } else {
+        notify("It Seems Like You Have A Pending Appointment.", "danger");
+      }
+    };
+    getData();
   }, []);
 
   const goBack = () => {
