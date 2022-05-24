@@ -3,51 +3,75 @@ import { useAuth } from "../context/AuthContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "../axios";
+import Loading from "../covid/Loading";
 import "./schedule.css";
 
 const Past = () => {
   const { userData, currentUser, userRole } = useAuth();
   const [historyData, setHistoryData] = useState([]);
+  const [loading, setLoading] = useState();
   const { id } = useParams();
   useEffect(() => {
     if (userRole === "user") {
       const getPastAppointments = async () => {
-        const response = await axios.get(
-          `/appointment/past-appointment/${userData}`
-        );
+        try {
+          setLoading(true);
+          const response = await axios.get(
+            `/appointment/past-appointment/${userData}`
+          );
 
-        response.data.appointmentHistory.forEach(async (x) => {
-          const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
-            headers: {
-              Authorization: "Bearer " + currentUser,
-            },
+          response.data.appointmentHistory.forEach(async (x) => {
+            const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
+              headers: {
+                Authorization: "Bearer " + currentUser,
+              },
+            });
+            x.doctorInfo = doctor.data;
+            setTimeout(() => {
+              setHistoryData((prev) => {
+                return [...prev, x];
+              });
+              setLoading(false);
+            }, 1500);
           });
-          x.doctorInfo = doctor.data;
-          setHistoryData((prev) => {
-            return [...prev, x];
-          });
-        });
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
+        }
       };
       getPastAppointments();
     } else {
       const getPastAppointments = async () => {
-        const response = await axios.get(`/appointment/past-appointment/${id}`);
+        try {
+          setLoading(true);
+          const response = await axios.get(
+            `/appointment/past-appointment/${id}`
+          );
 
-        response.data.appointmentHistory.forEach(async (x) => {
-          const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
-            headers: {
-              Authorization: "Bearer " + currentUser,
-            },
+          response.data.appointmentHistory.forEach(async (x) => {
+            const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
+              headers: {
+                Authorization: "Bearer " + currentUser,
+              },
+            });
+            x.doctorInfo = doctor.data;
+            setTimeout(() => {
+              setHistoryData((prev) => {
+                return [...prev, x];
+              });
+              setLoading(false);
+            }, 1500);
           });
-          x.doctorInfo = doctor.data;
-          setHistoryData((prev) => {
-            return [...prev, x];
-          });
-        });
+        } catch (error) {}
       };
       getPastAppointments();
     }
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   if (userRole === "doctor") {
     return (
       <div className="past">

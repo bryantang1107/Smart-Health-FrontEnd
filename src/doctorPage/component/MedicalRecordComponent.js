@@ -5,19 +5,25 @@ import NoAppointment from "../../ChatRoom/NoAppointment";
 import { BsCloudUpload } from "react-icons/bs";
 import { motion } from "framer-motion";
 import Medical from "./Medical/Medical";
-
+import Loading from "../../covid/Loading";
 const MedicalRecordComponent = () => {
   const { userData } = useAuth();
   const [error, setError] = useState();
   const [id, setId] = useState();
   const [data, setData] = useState();
   const [state, setState] = useState(true);
+  const [loading, setLoading] = useState();
   useEffect(() => {
     const getData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`/appointment/${userData}`);
-        setData(response.data);
+        setTimeout(() => {
+          setData(response.data);
+          setLoading(false);
+        }, 1500);
       } catch (error) {
+        setLoading(false);
         setError(true);
       }
     };
@@ -27,6 +33,10 @@ const MedicalRecordComponent = () => {
     setId(id);
     setState(false);
   };
+  if (loading) {
+    return <Loading />;
+  }
+
   if (error || data?.length < 1) {
     return (
       <>

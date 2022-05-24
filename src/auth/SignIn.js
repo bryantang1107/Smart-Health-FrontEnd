@@ -31,7 +31,10 @@ const SignInComponent = () => {
     try {
       setLoading(true);
       await loginWithGoogle();
-      history.push("/");
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/");
+      }, 1500);
     } catch (err) {
       window.location.reload(false);
       console.log(err);

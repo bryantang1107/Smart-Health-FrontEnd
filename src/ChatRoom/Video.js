@@ -5,6 +5,10 @@ import VideoCall from "@material-ui/icons/VideoCall";
 import Peer from "simple-peer";
 import Timer from "./Timer";
 import "./video.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 const Video = ({
   name,
   socket,
@@ -19,12 +23,24 @@ const Video = ({
 }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
-  const [state, setState] = useState(true);
-
+  const { userRole } = useState();
   const userVideo = useRef();
   const connectionRef = useRef();
+  const notify = (text) => {
+    return toast.success(text, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      delay: 1000,
+    });
+  };
 
   const callUser = () => {
+    notify("Video Call has Started !");
     setCallerName(name);
     const peer = new Peer({
       initiator: true,
@@ -45,7 +61,6 @@ const Video = ({
     socket.emit("call", name);
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
-      setState(true);
       //setAppear(false);
       peer.signal(signal);
     });
@@ -55,7 +70,7 @@ const Video = ({
     return () => {};
   };
   const answerCall = () => {
-    setState(true);
+    notify("User joined the video call !");
     setCallAccepted(true);
     //setAppear(false);
     const peer = new Peer({
@@ -77,10 +92,6 @@ const Video = ({
     setCallEnded(true);
     connectionRef.current.destroy();
     window.location.reload(false);
-  };
-
-  const handleClick = () => {
-    setState(false);
   };
 
   return (
@@ -123,18 +134,19 @@ const Video = ({
             data-tooltip={"Join video"}
             onClick={handleClick}
           >
-            {!receivingCall && (
-              <IconButton
-                color="primary"
-                aria-label="call"
-                onClick={() => callUser()}
-              >
-                <VideoCall fontSize="large" />
-              </IconButton>
-            )}
+            {!receivingCall &&
+              userRole ===
+                "doctor"(
+                  <IconButton
+                    color="primary"
+                    aria-label="call"
+                    onClick={() => callUser()}
+                  >
+                    <VideoCall fontSize="large" />
+                  </IconButton>
+                )}
           </div>
         )}
-        {!state && <h1>Waiting for {name} to join...</h1>}
 
         {name !== callerName && (
           <div>

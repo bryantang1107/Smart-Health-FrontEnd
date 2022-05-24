@@ -6,7 +6,7 @@ import "../css/doctor.css";
 import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import NoDoctor from "./NoDoctor";
-
+import Loading from "../covid/Loading";
 
 const DoctorComponent = () => {
   const { currentUser } = useAuth();
@@ -18,11 +18,12 @@ const DoctorComponent = () => {
   const [doctorData, setDoctorData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [languages, setLanguages] = useState([]);
-
+  const [loading, setLoading] = useState();
   const [defaultData, setDefaultData] = useState([]);
 
   useEffect(() => {
     const getDoctorData = async () => {
+      setLoading(true);
       const response = await axios.get("/find-doctor", {
         headers: {
           Authorization: "Bearer " + currentUser,
@@ -50,6 +51,9 @@ const DoctorComponent = () => {
         let newLanguageType = new Set(languageType);
         setLanguages(["All", ...newLanguageType]);
         setCategories(["All", ...categoryType]);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
       }
     };
 
@@ -110,6 +114,10 @@ const DoctorComponent = () => {
 
   const [state, dispatch] = useReducer(reducer, doctorData);
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section>
       <div className="doctor-title">
@@ -124,7 +132,7 @@ const DoctorComponent = () => {
           languages={languages}
         ></Category>
 
-        {doctorData && doctorData.length > 0 ? (
+        {doctorData?.length > 0 ? (
           <DoctorItem items={doctorData} className="doctor-grid"></DoctorItem>
         ) : (
           <NoDoctor></NoDoctor>

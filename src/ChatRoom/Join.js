@@ -28,6 +28,7 @@ const Join = () => {
   const [error, setError] = useState();
   const passwordRef = useRef();
   const [loading, setLoading] = useState("");
+  const [credLoad, setCredLoad] = useState();
   const [successCopied, setSuccessCopied] = useState();
 
   const history = useHistory();
@@ -83,11 +84,16 @@ const Join = () => {
   const getRoomInfo = async () => {
     setState(true);
     try {
+      setCredLoad(true);
       const response = await axios.get(`/authroom/getRoomInfo/${userData}`);
-      setRoomId(response.data._id);
-      setRoomInfo(response.data.room_id);
-      setRoomPw(response.data.password);
+      setTimeout(() => {
+        setCredLoad(false);
+        setRoomId(response.data._id);
+        setRoomInfo(response.data.room_id);
+        setRoomPw(response.data.password);
+      }, 1500);
     } catch (error) {
+      setCredLoad(false);
       setRoomError(
         "Oops! Seems like you have not made a booking for consultation. Please Book your appointment to get the room credentials."
       );
@@ -108,6 +114,10 @@ const Join = () => {
       setSuccessCopied("");
     }, 1500);
   };
+
+  if (credLoad) {
+    return <Loading />;
+  }
 
   return (
     <motion.div

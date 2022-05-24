@@ -41,9 +41,6 @@ const DoctorItem = ({ items }) => {
       setDoctorList(doctorArr);
     };
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 1400);
     getDoctorPage();
   }, [items]);
 

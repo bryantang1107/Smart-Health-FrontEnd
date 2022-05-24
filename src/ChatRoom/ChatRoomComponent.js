@@ -8,6 +8,11 @@ import "./chat.css";
 import TextContainer from "./TextContainer";
 import Video from "./Video";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../context/AuthContext";
+
+toast.configure();
 
 let socket;
 
@@ -15,6 +20,7 @@ const ChatRoomComponent = () => {
   const [state, setState] = useState(false);
   const history = useHistory();
   const [file, setFile] = useState("");
+  const { userRole } = useAuth();
   const location = useLocation();
   const [name, setName] = useState();
   const [roomz, setRoom] = useState("");
@@ -28,6 +34,18 @@ const ChatRoomComponent = () => {
   const [callerName, setCallerName] = useState("");
   const [callerSignal, setCallerSignal] = useState();
   const myVideo = useRef();
+  const notify = (text) => {
+    return toast.info(text, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      delay: 1000,
+    });
+  };
 
   const toggleUser = () => {
     setState(!state);
@@ -44,6 +62,12 @@ const ChatRoomComponent = () => {
   });
 
   useEffect(() => {
+    if (userRole === "user") {
+      notify(
+        `Only doctor can start the video call, a "join video" button will appear.`
+      );
+    }
+
     const room = localStorage.getItem("room");
     const username = localStorage.getItem("username");
 
