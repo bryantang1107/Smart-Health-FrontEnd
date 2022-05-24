@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import Error from "../pages/Error";
 import "./auth.css";
 import { useAuth } from "../context/AuthContext";
-
+import Loading from "../covid/Loading";
 const SignInComponent = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -45,7 +45,10 @@ const SignInComponent = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/");
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/");
+      }, 1500);
     } catch (error) {
       if (
         error.toString() ===
@@ -62,6 +65,10 @@ const SignInComponent = () => {
       }
       setLoading(false);
     }
+  }
+
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (

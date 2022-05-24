@@ -15,6 +15,10 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import "./video.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 const OVERLAY_STYLES = {
   position: "fixed",
@@ -29,12 +33,30 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
   const [password, setPassword] = useState();
   const [id, setId] = useState();
   const [error, setError] = useState();
+
+  const notify = () => {
+    return toast.error(
+      "You are in the middle of a consultation, please ensure you leave the room before joining another",
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        delay: 1000,
+      }
+    );
+  };
+
   useEffect(() => {
     const consultBtn = async (roomInfo) => {
       try {
         const response = await axios.get(
           `/authroom/getRoomInfoDoctor/${roomInfo}`
         );
+
         setRoomId(response.data.room_id);
         setPassword(response.data.password);
         setId(response.data._id);
@@ -51,6 +73,9 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
     }
   }, [appointmentData]);
   const authenticateRoom = async () => {
+    if (localStorage.getItem("username")) {
+      return notify();
+    }
     try {
       localStorage.setItem("room", roomId);
       await axios.post("/authroom/login", {

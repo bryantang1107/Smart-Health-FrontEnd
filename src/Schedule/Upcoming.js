@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../covid/Loading";
 toast.configure();
 const Upcoming = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const Upcoming = () => {
   const [error, setError] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [state, setState] = useState(true);
+  const [loading, setLoading] = useState();
   const nameRef = useRef();
   const phoneRef = useRef();
   const dobRef = useRef();
@@ -41,11 +43,16 @@ const Upcoming = () => {
     if (userRole === "user") {
       const getAppointmentData = async () => {
         try {
+          setLoading(true);
           const response = await axios.get(`/appointment/detail/${userData}`);
-          setAppointmentData(response.data[0]);
-          setDoctorData(response.data[1]);
+          setTimeout(() => {
+            setLoading(false);
+            setAppointmentData(response.data[0]);
+            setDoctorData(response.data[1]);
+          }, 1500);
         } catch (error) {
           setError(true);
+          setLoading(false);
         }
       };
       getAppointmentData();
@@ -53,10 +60,15 @@ const Upcoming = () => {
     } else {
       const getAppointmentData = async () => {
         try {
+          setLoading(true);
           const response = await axios.get(`/appointment/detail/${id}`);
-          setAppointmentData(response.data[0]);
-          setDoctorData(response.data[1]);
+          setTimeout(() => {
+            setLoading(false);
+            setAppointmentData(response.data[0]);
+            setDoctorData(response.data[1]);
+          }, 1500);
         } catch (error) {
+          setLoading(false);
           setError(true);
         }
       };
@@ -83,6 +95,10 @@ const Upcoming = () => {
     }
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   if (error)
     return (
       <div id="schedule-container">
@@ -99,9 +115,12 @@ const Upcoming = () => {
       {appointmentData && state ? (
         <>
           <div className="appointment-information-container">
-            <span className="icon" onClick={toggle}>
-              <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-            </span>
+            {userRole === "user" && (
+              <span className="icon" onClick={toggle}>
+                <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+              </span>
+            )}
+
             <h4>Appointment Details</h4>
             {appointmentData?.gender === "male" ? (
               <img
@@ -233,6 +252,7 @@ const Upcoming = () => {
           </form>
         </>
       )}
+
       <div
         style={{
           width: "90%",

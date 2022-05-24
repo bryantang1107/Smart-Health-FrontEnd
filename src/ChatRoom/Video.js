@@ -75,10 +75,8 @@ const Video = ({
   };
   const leaveCall = () => {
     setCallEnded(true);
-
     connectionRef.current.destroy();
-
-    window.location.reload();
+    window.location.reload(false);
   };
 
   const handleClick = () => {

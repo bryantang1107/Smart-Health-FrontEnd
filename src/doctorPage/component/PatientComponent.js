@@ -10,7 +10,6 @@ import useDebounce from "../../hooks/useDebounce";
 import Loading from "../../covid/Loading";
 const PatientComponent = () => {
   const { userData } = useAuth();
-  const [patientInfo, setPatientInfo] = useState();
   const history = useHistory();
   const [error, setError] = useState();
   const [searchTerm, setSearchTerm] = useState();
@@ -18,10 +17,14 @@ const PatientComponent = () => {
   const [data, setData] = useState();
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
     const getData = async () => {
       try {
         const response = await axios.get(`/user/patient-record/${userData}`);
-        setPatientInfo(response.data.patient);
         setData(response.data.patient);
       } catch (error) {
         setError(true);
@@ -32,7 +35,6 @@ const PatientComponent = () => {
   const getData = async () => {
     try {
       const response = await axios.get(`/user/patient-record/${userData}`);
-      setPatientInfo(response.data.patient);
       setData(response.data.patient);
     } catch (error) {
       setError(true);

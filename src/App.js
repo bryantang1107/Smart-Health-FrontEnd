@@ -116,13 +116,11 @@ const App = () => {
             path="/covid-19/articles"
             component={Article}
           ></PrivateRoute>
-          {data.role === "user" && (
-            <PrivateRoute
-              exact
-              path="/health-forum"
-              component={HealthForum}
-            ></PrivateRoute>
-          )}
+          <PrivateRoute
+            exact
+            path="/health-forum"
+            component={HealthForum}
+          ></PrivateRoute>
           {data.role === "user" && (
             <PrivateRoute
               exact

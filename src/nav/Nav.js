@@ -1,5 +1,4 @@
 import NavItem, { Logo } from "./NavItem";
-
 import { NavBtnLink } from "./NavbarElements";
 import { NavBtn } from "./NavbarElements";
 import { Link } from "react-router-dom";
@@ -14,10 +13,10 @@ export default function Nav() {
   const [path, setPath] = useState(false);
 
   useEffect(() => {
-    if (window.location.pathname === "/room") {
+    if (window.location.pathname.includes("/room")) {
       setPath(true);
     }
-  }, []);
+  }, [window.location.pathname]);
 
   return (
     !path && (

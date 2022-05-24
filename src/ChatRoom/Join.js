@@ -12,6 +12,10 @@ import {
   faClipboard,
   faClipboardCheck,
 } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 const Join = () => {
   const roomIdRef = useRef();
@@ -27,12 +31,30 @@ const Join = () => {
   const [successCopied, setSuccessCopied] = useState();
 
   const history = useHistory();
+  const notify = () => {
+    return toast.error(
+      "You are in the middle of a consultation, please ensure you leave the room before joining another",
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        delay: 1000,
+      }
+    );
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
 
   const authenticateRoom = async () => {
+    if (localStorage.getItem("username")) {
+      return notify();
+    }
     try {
       setLoading(true);
       localStorage.setItem("room", roomIdRef.current.value);

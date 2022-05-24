@@ -37,6 +37,12 @@ const ChatRoomComponent = () => {
     setState(false);
   };
 
+  window.addEventListener("beforeunload", (e) => {
+    e.preventDefault();
+    localStorage.removeItem("username");
+    localStorage.removeItem("room");
+  });
+
   useEffect(() => {
     const room = localStorage.getItem("room");
     const username = localStorage.getItem("username");

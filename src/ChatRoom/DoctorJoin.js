@@ -5,6 +5,7 @@ import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import NoAppointment from "./NoAppointment";
 import { useHistory } from "react-router-dom";
+import Loading from "../covid/Loading";
 
 const DoctorJoin = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,11 +13,17 @@ const DoctorJoin = () => {
   const [appointmentData, setAppointmentData] = useState();
   const [currentData, setCurrentData] = useState();
   const history = useHistory();
+  const [loading, setLoading] = useState();
+
   useEffect(() => {
     const getAppointmentData = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`/appointment/${userData}`);
-        setAppointmentData(response.data);
+        setTimeout(() => {
+          setLoading(false);
+          setAppointmentData(response.data);
+        }, 1500);
       } catch (error) {
         console.log(error);
       }
@@ -26,6 +33,10 @@ const DoctorJoin = () => {
   const handleClick = (id) => {
     history.push(`/patient-info/${id}`);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div id="doctor-join-section">
       <div className="reminder-data-container">

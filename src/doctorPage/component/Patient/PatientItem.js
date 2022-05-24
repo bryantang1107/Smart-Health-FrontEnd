@@ -12,16 +12,17 @@ import { CgFileDocument } from "react-icons/cg";
 import { AiFillFileAdd, AiOutlineFieldTime } from "react-icons/ai";
 import { FaViruses } from "react-icons/fa";
 import { GoCalendar } from "react-icons/go";
+import { useParams } from "react-router-dom";
 
 const PatientItem = () => {
   const history = useHistory();
   const { userData } = useAuth();
-  const [patientInfo, setPatientInfo] = useState();
   const [patient, setPatient] = useState([]);
   const [appointmentHistory, setAppointmentHistory] = useState([]);
   const [past, setPast] = useState();
   const [upcoming, setUpcoming] = useState(true);
   const [nav, setNav] = useState("diagnosis");
+  const { id } = useParams();
 
   const handleClick = (type) => {
     setNav(type);
@@ -38,12 +39,18 @@ const PatientItem = () => {
     const getData = async () => {
       try {
         const response = await axios.get(`/user/patient-record/${userData}`);
-        setPatientInfo(response.data);
-        setPatient(Object.keys(response.data));
-        Object.keys(response.data).map(async (x) => {
-          const response = await axios.get(`/appointment/patient-record/${x}`);
-          setAppointmentHistory(response.data.appointmentHistory);
+        const find = response.data.patient.find((x) => {
+          return x.patientId === id;
         });
+        const filtered = response.data.patient.filter((x) => {
+          return x.patientId === id;
+        });
+        setPatient(filtered);
+
+        const response2 = await axios.get(
+          `/appointment/patient-record/${find.patientId}`
+        );
+        setAppointmentHistory(response2.data.appointmentHistory);
       } catch (error) {
         console.log(error);
       }
@@ -168,60 +175,58 @@ const PatientItem = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ stiffness: 100 }}
             >
-              {patient.map((x) => {
-                return patientInfo[x].map((y, index) => {
-                  return (
-                    <div key={index} className="patient-medical-info">
-                      <div className="header">
-                        <h3>Patient's Past Diagnosis</h3>
-                      </div>
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <BsJournalMedical className="icon" />
-                          <strong>Diagnosis </strong>
-                        </span>
-                        {y.info.diagnosis}
-                      </p>
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <BiCategory className="icon" />
-                          <strong>Category </strong>
-                        </span>
-                        {y.info.category}
-                      </p>
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <GiMedicinePills className="icon" />
-                          <strong>Drug Name </strong>
-                        </span>
-
-                        {y.info.drug}
-                      </p>
-
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <GiMedicines className="icon" />
-                          <strong>Administration Route </strong>
-                        </span>
-                        {y.info.route}
-                      </p>
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <CgFileDocument className="icon" />
-                          <strong>Doctor's Prescription: </strong>
-                        </span>
-                        {y.info.prescription}
-                      </p>
-                      <p className="patient-medical-item">
-                        <span className="patient-medical-icon">
-                          <AiFillFileAdd className="icon" />
-                          <strong>Additional Information: </strong>
-                        </span>
-                        {y.info.additional}
-                      </p>
+              {patient.map((y, index) => {
+                return (
+                  <div key={index} className="patient-medical-info">
+                    <div className="header">
+                      <h3>Patient's Past Diagnosis</h3>
                     </div>
-                  );
-                });
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <BsJournalMedical className="icon" />
+                        <strong>Diagnosis </strong>
+                      </span>
+                      {y.info.diagnosis}
+                    </p>
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <BiCategory className="icon" />
+                        <strong>Category </strong>
+                      </span>
+                      {y.info.category}
+                    </p>
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <GiMedicinePills className="icon" />
+                        <strong>Drug Name </strong>
+                      </span>
+
+                      {y.info.drug}
+                    </p>
+
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <GiMedicines className="icon" />
+                        <strong>Administration Route </strong>
+                      </span>
+                      {y.info.route}
+                    </p>
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <CgFileDocument className="icon" />
+                        <strong>Doctor's Prescription: </strong>
+                      </span>
+                      {y.info.prescription}
+                    </p>
+                    <p className="patient-medical-item">
+                      <span className="patient-medical-icon">
+                        <AiFillFileAdd className="icon" />
+                        <strong>Additional Information: </strong>
+                      </span>
+                      {y.info.additional}
+                    </p>
+                  </div>
+                );
               })}
             </motion.div>
           )}

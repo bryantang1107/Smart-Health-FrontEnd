@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./auth.css";
 import { useAuth } from "../context/AuthContext";
 import Error from "../pages/Error";
-import axios from "../axios";
+import Loading from "../covid/Loading";
 const SignUpComponent = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -25,7 +25,10 @@ const SignUpComponent = () => {
     try {
       setLoading(true);
       await loginWithGoogle();
-      history.push("/");
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/");
+      }, 1500);
     } catch (err) {
       console.log(err);
     }
@@ -60,6 +63,10 @@ const SignUpComponent = () => {
 
       setLoading(false);
     }
+  }
+
+  if (loading) {
+    return <Loading></Loading>;
   }
 
   return (
