@@ -81,7 +81,7 @@ const SignInComponent = () => {
         <>
           <div className="card">
             <div className="card-body">
-              <h2 className="heading">Sign In</h2>
+              <h2 className="heading">Sign In HEHE</h2>
               {error && <div className="alert-auth">{error}</div>}
               <form onSubmit={handleSubmit}>
                 <div id="email" className="form-group">
