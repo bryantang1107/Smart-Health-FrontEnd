@@ -32,7 +32,6 @@ const SignInComponent = () => {
       await loginWithGoogle();
       history.push("/");
     } catch (err) {
-      window.location.reload(false);
       console.log(err);
     }
   }
