@@ -15,7 +15,7 @@ import { BsPersonFill } from "react-icons/bs";
 
 const DoctorItem = ({ items }) => {
   const [doctorList, setDoctorList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const { userRole } = useAuth();
 
   const getDoctorPage = (page = 1) => {

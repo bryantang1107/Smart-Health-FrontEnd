@@ -24,36 +24,40 @@ const DoctorComponent = () => {
   useEffect(() => {
     const getDoctorData = async () => {
       setLoading(true);
-      const response = await axios.get("/find-doctor", {
-        headers: {
-          Authorization: "Bearer " + currentUser,
-        },
-      });
-      const data = response.data;
-      setDoctorData(data);
-      setDefaultData(data);
-      if (data) {
-        const categoryType = new Set(
-          data.map((item) => {
-            return item.category;
-          })
-        );
-        const languageArr = data.map((item) => {
-          return item.languages.split(",");
+      try {
+        const response = await axios.get("/find-doctor", {
+          headers: {
+            Authorization: "Bearer " + currentUser,
+          },
         });
-
-        let languageType = [];
-        languageArr.map((item) => {
-          return item.map((language) => {
-            return languageType.push(language);
+        const data = response.data;
+        setDoctorData(data);
+        setDefaultData(data);
+        if (data) {
+          const categoryType = new Set(
+            data.map((item) => {
+              return item.category;
+            })
+          );
+          const languageArr = data.map((item) => {
+            return item.languages.split(",");
           });
-        });
-        let newLanguageType = new Set(languageType);
-        setLanguages(["All", ...newLanguageType]);
-        setCategories(["All", ...categoryType]);
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
+
+          let languageType = [];
+          languageArr.map((item) => {
+            return item.map((language) => {
+              return languageType.push(language);
+            });
+          });
+          let newLanguageType = new Set(languageType);
+          setLanguages(["All", ...newLanguageType]);
+          setCategories(["All", ...categoryType]);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1500);
+        }
+      } catch (error) {
+        setLoading(false);
       }
     };
 
