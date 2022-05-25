@@ -37,6 +37,7 @@ const SignInComponent = () => {
       }, 1500);
     } catch (err) {
       window.location.reload(false);
+      console.log("error");
       console.log(err);
     }
   }

@@ -115,12 +115,12 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
           {appointmentData.gender === "male" ? (
             <img
               src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png"
-              alt="male-image"
+              alt="male"
             />
           ) : (
             <img
               src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png"
-              alt="female-image"
+              alt="female"
             />
           )}
           <div className="appointment-item-container">
