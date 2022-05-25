@@ -36,6 +36,7 @@ const SignInComponent = () => {
         history.push("/");
       }, 1500);
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   }
