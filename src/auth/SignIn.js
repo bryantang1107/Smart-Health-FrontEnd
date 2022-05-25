@@ -29,8 +29,12 @@ const SignInComponent = () => {
 
   async function signIn() {
     try {
+      setLoading(true);
       await loginWithGoogle();
-      history.push("/");
+      setTimeout(() => {
+        setLoading(false);
+        history.push("/");
+      }, 1500);
     } catch (err) {
       console.log(err);
     }
