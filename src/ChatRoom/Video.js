@@ -130,17 +130,15 @@ const Video = ({
           </div>
         ) : (
           <div className="call-button join-video" data-tooltip={"Join video"}>
-            {!receivingCall &&
-              userRole ===
-                "doctor"(
-                  <IconButton
-                    color="primary"
-                    aria-label="call"
-                    onClick={() => callUser()}
-                  >
-                    <VideoCall fontSize="large" />
-                  </IconButton>
-                )}
+            {!receivingCall && userRole === "doctor" && (
+              <IconButton
+                color="primary"
+                aria-label="call"
+                onClick={() => callUser()}
+              >
+                <VideoCall fontSize="large" />
+              </IconButton>
+            )}
           </div>
         )}
 
