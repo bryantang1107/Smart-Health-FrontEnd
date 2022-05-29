@@ -115,10 +115,6 @@ const Join = () => {
     }, 1500);
   };
 
-  if (credLoad) {
-    return <Loading />;
-  }
-
   return (
     <motion.div
       initial={{ x: 1000, opacity: 0 }}
@@ -136,50 +132,56 @@ const Join = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
               >
-                <div className="room-creds-container">
-                  {roomError ? (
-                    <p className="alert-primary">{roomError}</p>
-                  ) : (
-                    <>
-                      {successCopied && (
-                        <div className="success">
-                          <span onClick={copyToClipboard} className=" green">
-                            <FontAwesomeIcon icon={faClipboardCheck} />
-                            <p style={{ fontSize: "1rem" }}>{successCopied}</p>
-                          </span>
-                        </div>
-                      )}
-                      <h4
-                        className="room-credentials"
-                        style={{ color: "#00bbcf" }}
-                      >
-                        Room ID:{" "}
-                      </h4>
-                      <p className="room-credentials">{roomInfo}</p>
-                      <span
-                        onClick={copyToClipboard}
-                        className="clipboard"
-                        data-tooltip="Copy To Clipboard"
-                      >
-                        <FontAwesomeIcon icon={faClipboard} />
-                      </span>
-                      <h4
-                        className="room-credentials"
-                        style={{ color: "#00bbcf" }}
-                      >
-                        Password:
-                      </h4>
-                      <p className="room-credentials">{roomPw}</p>
-                      <span
-                        onClick={copyPassword}
-                        className="clipboard"
-                        data-tooltip="Copy To Clipboard"
-                      >
-                        <FontAwesomeIcon icon={faClipboard} />
-                      </span>
-                    </>
-                  )}
-                </div>
+                {credLoad ? (
+                  <Loading />
+                ) : (
+                  <div className="room-creds-container">
+                    {roomError ? (
+                      <p className="alert-primary">{roomError}</p>
+                    ) : (
+                      <>
+                        {successCopied && (
+                          <div className="success">
+                            <span onClick={copyToClipboard} className=" green">
+                              <FontAwesomeIcon icon={faClipboardCheck} />
+                              <p style={{ fontSize: "1rem" }}>
+                                {successCopied}
+                              </p>
+                            </span>
+                          </div>
+                        )}
+                        <h4
+                          className="room-credentials"
+                          style={{ color: "#00bbcf" }}
+                        >
+                          Room ID:{" "}
+                        </h4>
+                        <p className="room-credentials">{roomInfo}</p>
+                        <span
+                          onClick={copyToClipboard}
+                          className="clipboard"
+                          data-tooltip="Copy To Clipboard"
+                        >
+                          <FontAwesomeIcon icon={faClipboard} />
+                        </span>
+                        <h4
+                          className="room-credentials"
+                          style={{ color: "#00bbcf" }}
+                        >
+                          Password:
+                        </h4>
+                        <p className="room-credentials">{roomPw}</p>
+                        <span
+                          onClick={copyPassword}
+                          className="clipboard"
+                          data-tooltip="Copy To Clipboard"
+                        >
+                          <FontAwesomeIcon icon={faClipboard} />
+                        </span>
+                      </>
+                    )}
+                  </div>
+                )}
               </motion.div>
             )}
 
