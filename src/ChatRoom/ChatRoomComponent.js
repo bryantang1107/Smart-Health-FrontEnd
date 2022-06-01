@@ -75,7 +75,7 @@ const ChatRoomComponent = () => {
       return history.push("/join");
     }
 
-    socket = io("https://smarthealth-server.herokuapp.com/chat");
+    socket = io("http://localhost:6100/chat");
 
     setName(username);
     setRoom(room);
