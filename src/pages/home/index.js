@@ -14,14 +14,20 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "../../axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Appointment from "./Appointment";
 
 toast.configure();
+const customId = "random";
 const Home = () => {
   const [reminderData, setReminderData] = useState(false);
   const { userData, currentUser, userRole } = useAuth();
   const [reminderLength, setReminderLength] = useState();
+  const [canBook, setCanBook] = useState(true);
+  const [appointmentData, setAppointmentData] = useState();
+  const [doctorData, setDoctorData] = useState();
   const notify = () => {
     toast.info("Please Remember to constantly check your reminder !", {
+      toastId: customId,
       position: toast.POSITION.TOP_RIGHT,
       autoClose: false,
     });
@@ -47,6 +53,26 @@ const Home = () => {
       getReminder();
     }
   }, []);
+
+  useEffect(() => {
+    const checkAppointment = async () => {
+      try {
+        const response = await axios.get(`/authroom/appointment/${userData}`);
+        if (response.data) {
+          return setCanBook(true);
+        } else {
+          setCanBook(false);
+        }
+        const response2 = await axios.get(`/appointment/detail/${userData}`);
+        setAppointmentData(response2.data[0]);
+        setDoctorData(response2.data[1]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    checkAppointment();
+  }, []);
+
   return (
     <>
       <motion.div
@@ -55,6 +81,12 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
+        {!canBook && appointmentData && (
+          <Appointment
+            appointmentData={appointmentData}
+            doctorData={doctorData}
+          />
+        )}
         {currentUser && reminderData && userRole !== "doctor" && (
           <Reminder reminderLength={reminderLength}></Reminder>
         )}

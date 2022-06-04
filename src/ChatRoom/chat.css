@@ -170,6 +170,7 @@ button:focus {
 }
 
 .entire-chat {
+  min-height: 70vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 2fr 1.5fr;
@@ -227,27 +228,16 @@ button:focus {
             flex-direction: column;
   }
   .entire-chat .outerContainer {
-    height: 50vh;
+    height: 100vh;
     margin-top: 2em;
   }
   .entire-chat .outerContainer .chat-container {
-    width: 80%;
+    width: 100%;
     margin: auto;
   }
   .entire-chat .video-chat-container {
     margin-top: 4em;
     width: 100%;
-  }
-}
-
-@media (max-width: 960px) {
-  .outerContainer {
-    height: 50vh;
-    margin-top: 2em;
-    margin-bottom: 2em;
-  }
-  .outerContainer .chat-container {
-    height: 100%;
   }
 }
 
@@ -313,6 +303,15 @@ button:focus {
           align-items: center;
   margin-left: 5%;
   color: white;
+}
+
+@media (max-width: 870px) {
+  .infoBar {
+    padding: 1em;
+  }
+  .leftInnerContainer {
+    display: none;
+  }
 }
 
 .rightInnerContainer {

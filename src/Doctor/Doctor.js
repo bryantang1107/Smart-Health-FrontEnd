@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import AppointmentForm from "./AppointmentForm";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../covid/Loading";
 
 toast.configure();
 const customId = "custom-id-yes";
@@ -26,6 +27,7 @@ const Doctor = () => {
   const [registry, setRegistry] = useState();
   const [conditions, setConditions] = useState();
   const [service, setService] = useState();
+  const [loading, setLoading] = useState();
   const notify = (text, type) => {
     if (type) {
       return toast.error(text, {
@@ -59,6 +61,7 @@ const Doctor = () => {
       behavior: "smooth",
     });
     const getData = async () => {
+      setLoading(true);
       const response = await axios.get(`/authroom/appointment/${userData}`);
       if (response.data) {
         notify(
@@ -67,6 +70,7 @@ const Doctor = () => {
       } else {
         notify("It Seems Like You Have A Pending Appointment.", "danger");
       }
+      setLoading(false);
     };
     getData();
   }, []);
@@ -94,6 +98,10 @@ const Doctor = () => {
     };
     getDoctor(id);
   }, [id, currentUser]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (userRole === "doctor")
     return (

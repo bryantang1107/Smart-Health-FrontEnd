@@ -3,7 +3,7 @@ import axios from "../axios";
 import { useAuth } from "../context/AuthContext";
 import "./medical.css";
 import Modal from "./Modal";
-
+import Loading from "../covid/Loading";
 import MedicalItem from "./MedicalItem";
 
 import NoMedicalRecord from "../doctorPage/component/Medical/NoMedicalRecord";
@@ -12,18 +12,26 @@ const MedicalComponent = () => {
   const [medicalRecord, setMedicalRecord] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [doctorId, setDoctorId] = useState();
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
     const getMedicalRecord = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`/user/medical-record/${userData}`);
         setMedicalRecord(response.data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     };
     getMedicalRecord();
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (medicalRecord.length < 1) {
     return (

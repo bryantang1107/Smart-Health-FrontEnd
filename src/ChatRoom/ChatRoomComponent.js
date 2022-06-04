@@ -148,6 +148,7 @@ const ChatRoomComponent = () => {
             myVideo={myVideo}
             callerName={callerName}
             receivingCall={receivingCall}
+            users={users}
             callerSignal={callerSignal}
             caller={caller}
           />

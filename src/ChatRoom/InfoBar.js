@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri";
 import { ImUserTie } from "react-icons/im";
 import Modal from "./Modal";
-import axios from "../axios";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
@@ -37,6 +36,30 @@ const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
             label: "Yes",
             onClick: async () => {
               history.push("/");
+              window.location.reload(false);
+            },
+          },
+          {
+            label: "No",
+            onClick: () => {},
+          },
+        ],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const leaveRoomDoc = () => {
+    try {
+      confirmAlert({
+        title: "Leave Room",
+        message: `Are you sure you want to leave the room ?`,
+        buttons: [
+          {
+            label: "Yes",
+            onClick: async () => {
+              history.push("/upload/medical-record");
               window.location.reload(false);
             },
           },
@@ -96,7 +119,7 @@ const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
           <span
             className="leaveRoom"
             data-tooltip="leave room"
-            onClick={leaveRoom}
+            onClick={leaveRoomDoc}
           >
             <MdOutlineExitToApp style={{ fontSize: "2rem" }} />
           </span>

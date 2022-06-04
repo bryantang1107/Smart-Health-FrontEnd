@@ -7,6 +7,9 @@ import Timer from "./Timer";
 import "./video.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../context/AuthContext";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 toast.configure();
 const Video = ({
@@ -20,10 +23,12 @@ const Video = ({
   myVideo,
   callerName,
   setCallerName,
+  users,
 }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
-  const { userRole } = useState();
+  const { userRole } = useAuth();
+  const [endCall, setEndCall] = useState(false);
   const userVideo = useRef();
   const connectionRef = useRef();
   const notify = (text) => {
@@ -47,7 +52,6 @@ const Video = ({
       trickle: false,
       stream: stream,
     });
-
     peer.on("signal", (data) => {
       socket.emit("callUser", {
         signalData: data,
@@ -61,7 +65,6 @@ const Video = ({
     socket.emit("call", name);
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
-      //setAppear(false);
       peer.signal(signal);
     });
 
@@ -70,9 +73,7 @@ const Video = ({
     return () => {};
   };
   const answerCall = () => {
-    notify("User joined the video call !");
     setCallAccepted(true);
-    //setAppear(false);
     const peer = new Peer({
       initiator: false,
       trickle: false,
@@ -89,37 +90,57 @@ const Video = ({
     connectionRef.current = peer;
   };
   const leaveCall = () => {
-    setCallEnded(true);
-    connectionRef.current.destroy();
-    window.location.reload(false);
+    confirmAlert({
+      title: "End Call",
+      message: `Are you sure you want to end the call ?`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            setCallEnded(true);
+            setEndCall(true);
+            connectionRef.current.destroy();
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+
+    // window.location.reload(false);
   };
 
   return (
     <>
       <h1 style={{ textAlign: "center", color: "#3fbbc0" }}>Video Call</h1>
       <div className="video-call-container">
-        <div className="video-container">
-          <div className="video">
-            {stream && (
+        {!endCall && (
+          <div className="video-container">
+            <div className="video">
+              {stream && (
+                <video
+                  playsInline
+                  muted
+                  ref={myVideo}
+                  autoPlay
+                  className="videoDisplay"
+                />
+              )}
+            </div>
+
+            <div className="video">
               <video
                 playsInline
-                muted
-                ref={myVideo}
+                ref={userVideo}
                 autoPlay
                 className="videoDisplay"
               />
-            )}
+            </div>
           </div>
+        )}
 
-          <div className="video">
-            <video
-              playsInline
-              ref={userVideo}
-              autoPlay
-              className="videoDisplay"
-            />
-          </div>
-        </div>
         {callAccepted && !callEnded && <Timer />}
 
         {callAccepted && !callEnded ? (
@@ -129,19 +150,23 @@ const Video = ({
             </Button>
           </div>
         ) : (
-          <div className="call-button join-video" data-tooltip={"Join video"}>
-            {!receivingCall && userRole === "doctor" && (
-              <IconButton
-                color="primary"
-                aria-label="call"
-                onClick={() => callUser()}
-              >
-                <VideoCall fontSize="large" />
-              </IconButton>
-            )}
-          </div>
+          users.length > 1 && (
+            <div
+              className="call-button join-video"
+              data-tooltip={"Start Video Call"}
+            >
+              {!receivingCall && userRole === "doctor" && (
+                <IconButton
+                  color="primary"
+                  aria-label="call"
+                  onClick={() => callUser()}
+                >
+                  <VideoCall fontSize="large" />
+                </IconButton>
+              )}
+            </div>
+          )
         )}
-
         {name !== callerName && (
           <div>
             {receivingCall && !callAccepted ? (
