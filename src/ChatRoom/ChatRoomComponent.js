@@ -7,10 +7,10 @@ import Messages from "./Messages";
 import "./chat.css";
 import TextContainer from "./TextContainer";
 import Video from "./Video";
-import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../context/AuthContext";
+import axios from "../axios";
 
 toast.configure();
 
@@ -18,9 +18,8 @@ let socket;
 
 const ChatRoomComponent = () => {
   const [state, setState] = useState(false);
-  const history = useHistory();
   const [file, setFile] = useState("");
-  const { userRole } = useAuth();
+  const { userRole, userData } = useAuth();
   const location = useLocation();
   const [name, setName] = useState();
   const [roomz, setRoom] = useState("");
@@ -68,44 +67,44 @@ const ChatRoomComponent = () => {
       );
     }
 
-    const room = localStorage.getItem("room");
-    const username = localStorage.getItem("username");
+    const getCredentials = async () => {
+      const response = await axios.get(`/appointment/joinroom/${userData}`);
 
-    if (room === null || username === null) {
-      return history.push("/join");
-    }
+      socket = io("http://localhost:6100/chat");
+      const username = response.data.username;
+      const room = response.data.roomID;
+      setName(username);
+      setRoom(room);
 
-    socket = io("https://smarthealth-server.herokuapp.com/chat");
-
-    setName(username);
-    setRoom(room);
-
-    socket.emit("join", { username, room }, (error) => {
-      if (error) {
-        alert(error);
-      }
-    });
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        setStream(stream);
-        myVideo.current.srcObject = stream;
+      socket.emit("join", { username, room }, (error) => {
+        if (error) {
+          alert(error);
+        }
       });
-    socket.emit("join video");
-    socket.on("me", (id) => {
-      setMe(id);
-    });
-    socket.on("callUser", (data) => {
-      setReceivingCall(true);
-      setCaller(data.from);
-      setCallerSignal(data.signal);
-    });
-    socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
-    });
-    socket.on("roomData", ({ users }) => {
-      setUsers(users);
-    });
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then((stream) => {
+          setStream(stream);
+          myVideo.current.srcObject = stream;
+        });
+      socket.emit("join video");
+      socket.on("me", (id) => {
+        setMe(id);
+      });
+      socket.on("callUser", (data) => {
+        setReceivingCall(true);
+        setCaller(data.from);
+        setCallerSignal(data.signal);
+      });
+      socket.on("message", (message) => {
+        setMessages((messages) => [...messages, message]);
+      });
+      socket.on("roomData", ({ users }) => {
+        setUsers(users);
+      });
+    };
+
+    getCredentials();
 
     return () => {
       localStorage.removeItem("room");

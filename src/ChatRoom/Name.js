@@ -12,37 +12,31 @@ toast.configure();
 const Name = () => {
   const nameRef = useRef();
   const { userData } = useAuth();
-  const [canJoin, setCanJoin] = useState();
   const history = useHistory();
-  const notify = () => {
-    return toast.error(
-      "You are in the middle of a consultation, please ensure you leave the room before joining another",
-      {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        delay: 1000,
-      }
-    );
-  };
+
   const handleClick = () => {
     const check = async () => {
-      const response = await axios.get(`/authroom/join-room/${userData}`);
-      setCanJoin(response.data);
+      try {
+        await axios.post(`/appointment/joinroom/${userData}`, {
+          roomID: localStorage.getItem("room"),
+          username: nameRef.current.value,
+        });
+        setTimeout(() => {
+          history.goBack();
+        }, 1500);
+      } catch (error) {
+        console.log(error);
+      }
     };
     check();
-    setTimeout(() => {
-      history.goBack();
-    }, 1500);
-    console.log(localStorage.getItem("username"));
+
     localStorage.setItem("username", nameRef.current.value);
   };
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    if (localStorage.getItem("username")) {
+      history.goBack();
+    }
   }, []);
 
   return (
@@ -60,16 +54,14 @@ const Name = () => {
             style={{ textTransform: "none" }}
           />
         </div>
-        {!canJoin && (
-          <Link
-            to={`/room?room=${localStorage.getItem("room")}`}
-            target="_blank"
-            className="join-room-btn-34"
-            onClick={handleClick}
-          >
-            Join
-          </Link>
-        )}
+        <Link
+          to={`/room?room=${localStorage.getItem("room")}`}
+          target="_blank"
+          className="join-room-btn-34"
+          onClick={handleClick}
+        >
+          Join
+        </Link>
       </div>
     </div>
   );

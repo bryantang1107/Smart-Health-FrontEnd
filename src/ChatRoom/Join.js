@@ -71,6 +71,7 @@ const Join = () => {
         history.push("/join/name");
       }, 3000);
     } catch (error) {
+      console.log(error);
       setTimeout(() => {
         setTimeout(() => {
           setError("");

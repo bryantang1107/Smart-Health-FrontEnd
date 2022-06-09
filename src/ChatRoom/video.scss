@@ -5,17 +5,9 @@
   flex-direction: column;
 
   .videoDisplay {
-    width: 500px;
-    border-radius: 10px;
+    width: 700px;
   }
-  @media screen and (max-width: 1660px) {
-    .video-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-  }
+
   @media screen and (max-width: 570px) {
     .videoDisplay {
       width: 300px;
@@ -113,6 +105,7 @@
 .video-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   gap: 2em;
 }

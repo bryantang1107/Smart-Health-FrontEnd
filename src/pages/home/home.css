@@ -1210,7 +1210,6 @@
 .upcoming-appointment {
   background: linear-gradient(45deg, rgba(174, 173, 182, 0.8), rgba(62, 73, 62, 0.3)), url("https://images.pexels.com/photos/5998448/pexels-photo-5998448.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1");
   padding: 3em;
-  margin-top: 1em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

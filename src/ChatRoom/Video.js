@@ -8,8 +8,6 @@ import "./video.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../context/AuthContext";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 toast.configure();
 const Video = ({
@@ -21,14 +19,11 @@ const Video = ({
   callerSignal,
   receivingCall,
   myVideo,
-  callerName,
-  setCallerName,
   users,
 }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const { userRole } = useAuth();
-  const [endCall, setEndCall] = useState(false);
   const userVideo = useRef();
   const connectionRef = useRef();
   const notify = (text) => {
@@ -46,7 +41,6 @@ const Video = ({
 
   const callUser = () => {
     notify("Video Call has Started !");
-    setCallerName(name);
     const peer = new Peer({
       initiator: true,
       trickle: false,
@@ -85,61 +79,42 @@ const Video = ({
     peer.on("stream", (stream) => {
       userVideo.current.srcObject = stream;
     });
-
     peer.signal(callerSignal);
     connectionRef.current = peer;
   };
   const leaveCall = () => {
-    confirmAlert({
-      title: "End Call",
-      message: `Are you sure you want to end the call ?`,
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            setCallEnded(true);
-            setEndCall(true);
-            connectionRef.current.destroy();
-          },
-        },
-        {
-          label: "No",
-          onClick: () => {},
-        },
-      ],
-    });
-
-    // window.location.reload(false);
+    setCallEnded(true);
+    connectionRef.current.destroy();
+    window.location.reload(false);
   };
 
   return (
     <>
       <h1 style={{ textAlign: "center", color: "#3fbbc0" }}>Video Call</h1>
       <div className="video-call-container">
-        {!endCall && (
-          <div className="video-container">
-            <div className="video">
-              {stream && (
-                <video
-                  playsInline
-                  muted
-                  ref={myVideo}
-                  autoPlay
-                  className="videoDisplay"
-                />
-              )}
-            </div>
-
-            <div className="video">
+        <div className="video-container">
+          <div className="video">
+            {stream && (
+              <video
+                playsInline
+                muted
+                ref={myVideo}
+                autoPlay
+                className="videoDisplay"
+              />
+            )}
+          </div>
+          <div className="video">
+            {callAccepted && !callEnded && (
               <video
                 playsInline
                 ref={userVideo}
                 autoPlay
                 className="videoDisplay"
               />
-            </div>
+            )}
           </div>
-        )}
+        </div>
 
         {callAccepted && !callEnded && <Timer />}
 
@@ -167,21 +142,15 @@ const Video = ({
             </div>
           )
         )}
-        {name !== callerName && (
-          <div>
-            {receivingCall && !callAccepted ? (
-              <div className="caller">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={answerCall}
-                >
-                  Join Video
-                </Button>
-              </div>
-            ) : null}
-          </div>
-        )}
+        <div>
+          {receivingCall && !callAccepted ? (
+            <div className="caller">
+              <Button variant="contained" color="primary" onClick={answerCall}>
+                Join Video
+              </Button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   );
