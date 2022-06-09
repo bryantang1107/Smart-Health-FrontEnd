@@ -132,8 +132,8 @@ const ReminderDetail = ({ setView }) => {
 
   const getFormatDate = (date) => {
     const d = new Date(date);
-    let hours = d.getHours();
-    let minutes = d.getMinutes();
+    let hours = d.getUTCHours();
+    let minutes = d.getUTCMinutes();
     let ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
@@ -147,7 +147,6 @@ const ReminderDetail = ({ setView }) => {
   if (loading) {
     return <Loading />;
   }
-
   if (edit) {
     return (
       <section id="reminder-email">
