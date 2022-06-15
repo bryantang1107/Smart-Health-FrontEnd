@@ -54,11 +54,11 @@ const ChatRoomComponent = () => {
     setState(false);
   };
 
-  window.addEventListener("beforeunload", (e) => {
+  window.addEventListener("beforeunload", async (e) => {
     e.preventDefault();
+    localStorage.removeItem("join");
     localStorage.removeItem("username");
     localStorage.removeItem("room");
-    localStorage.removeItem("join");
   });
 
   useEffect(() => {
