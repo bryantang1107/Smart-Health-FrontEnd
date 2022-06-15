@@ -28,6 +28,7 @@ const Join = () => {
   const [error, setError] = useState();
   const passwordRef = useRef();
   const [loading, setLoading] = useState("");
+  const [consulting, setConsulting] = useState(false);
   const [credLoad, setCredLoad] = useState();
   const [successCopied, setSuccessCopied] = useState();
 
@@ -53,18 +54,20 @@ const Join = () => {
   }, []);
 
   const authenticateRoom = async () => {
-    if (localStorage.getItem("username")) {
+    const response = await axios.get(`/appointment/joinroom/${userData}`);
+    if (response) {
+      setConsulting(true);
       return notify();
     }
     try {
       setLoading(true);
-      localStorage.setItem("room", roomIdRef.current.value);
 
       await axios.post("/authroom/login", {
         id: roomId,
         room_id: roomIdRef.current.value,
         password: passwordRef.current.value,
       });
+      localStorage.setItem("room", roomIdRef.current.value);
 
       setTimeout(() => {
         setLoading(false);
@@ -114,6 +117,15 @@ const Join = () => {
     setTimeout(() => {
       setSuccessCopied("");
     }, 1500);
+  };
+
+  const endConsultation = async () => {
+    try {
+      await axios.delete(`/appointment/joinroom/${userData}`);
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -190,6 +202,11 @@ const Join = () => {
               Get Room Info
             </button>
           </div>
+          {consulting && (
+            <span onClick={endConsultation}>
+              Click here to end your current consultation
+            </span>
+          )}
           <div className="joinInnerContainer">
             <h1 className="chat-heading">Join A Room</h1>
             {error && (
