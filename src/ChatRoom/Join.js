@@ -55,7 +55,8 @@ const Join = () => {
 
   const authenticateRoom = async () => {
     const response = await axios.get(`/appointment/joinroom/${userData}`);
-    if (response) {
+    if (response.data) {
+      console.log(response.data);
       setConsulting(true);
       return notify();
     }
