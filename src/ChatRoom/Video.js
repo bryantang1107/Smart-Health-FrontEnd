@@ -143,7 +143,7 @@ const Video = ({
           )
         )}
         <div>
-          {receivingCall && !callAccepted ? (
+          {receivingCall && !callAccepted && userRole === "user" ? (
             <div className="caller">
               <Button variant="contained" color="primary" onClick={answerCall}>
                 Join Video

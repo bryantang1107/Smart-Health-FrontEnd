@@ -126,7 +126,11 @@ const CancelAppointment = () => {
             <form className="form" onSubmit={cancel}>
               <h2>Cancel Appointment</h2>
 
-              <p type="Reason of cancellation:" required>
+              <p
+                type="Reason of cancellation:"
+                required
+                style={{ textTransform: "none" }}
+              >
                 <input
                   type="text"
                   placeholder="Please tell us your reason of cancellation.."

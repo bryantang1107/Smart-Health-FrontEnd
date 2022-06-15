@@ -81,7 +81,7 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {!canBook && appointmentData && (
+        {!canBook && appointmentData && currentUser && (
           <Appointment
             appointmentData={appointmentData}
             doctorData={doctorData}
