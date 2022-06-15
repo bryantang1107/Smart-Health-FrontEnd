@@ -58,9 +58,12 @@ const ChatRoomComponent = () => {
     e.preventDefault();
     localStorage.removeItem("username");
     localStorage.removeItem("room");
+    localStorage.removeItem("join");
   });
 
   useEffect(() => {
+    localStorage.setItem("join", true);
+
     if (userRole === "user") {
       notify(
         `Only doctor can start the video call, a "join video" button will appear.`
@@ -69,7 +72,6 @@ const ChatRoomComponent = () => {
 
     const getCredentials = async () => {
       const response = await axios.get(`/appointment/joinroom/${userData}`);
-
       socket = io("https://smarthealth-server.herokuapp.com/chat");
       const username = response.data.username;
       const room = response.data.roomID;
