@@ -73,7 +73,7 @@ const AppointmentModal = ({ open, onClose, appointmentData }) => {
     }
   }, [appointmentData]);
   const authenticateRoom = async () => {
-    if (localStorage.getItem("username")) {
+    if (localStorage.getItem("join")) {
       return notify();
     }
     try {

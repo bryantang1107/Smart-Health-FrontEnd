@@ -147,7 +147,7 @@ const ReminderDetail = ({ setView }) => {
   if (loading) {
     return <Loading />;
   }
-  if (edit) {
+  if (edit && data) {
     return (
       <section id="reminder-email">
         <div className="subscribe">
@@ -238,13 +238,16 @@ const ReminderDetail = ({ setView }) => {
             >
               <IoIosArrowBack />
             </span>
-            <span
-              onClick={() => setEdit(!edit)}
-              className="join-video edit"
-              data-tooltip="Edit"
-            >
-              <AiOutlineEdit />
-            </span>
+            {data && (
+              <span
+                onClick={() => setEdit(!edit)}
+                className="join-video edit"
+                data-tooltip="Edit"
+              >
+                <AiOutlineEdit />
+              </span>
+            )}
+
             {data && (
               <div className="form">
                 <h3>Name</h3>

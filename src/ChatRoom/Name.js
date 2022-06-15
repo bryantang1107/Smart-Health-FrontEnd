@@ -15,9 +15,6 @@ const Name = () => {
   const history = useHistory();
 
   const handleClick = () => {
-    setTimeout(() => {
-      history.goBack();
-    }, 1500);
     const check = async () => {
       try {
         await axios.post(`/appointment/joinroom/${userData}`, {
