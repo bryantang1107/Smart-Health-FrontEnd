@@ -150,144 +150,148 @@ const AppointmentComponent = () => {
   };
 
   return (
-    <div className="calendar">
-      {slot && (
-        <Calendar
-          localizer={localizer}
-          events={slot}
-          startAccessor="start"
-          defaultView="week"
-          endAccessor="end"
-          style={{ height: 500 }}
-        ></Calendar>
-      )}
-      <div className="date">
-        <form className="add-schedule-container" onSubmit={handleAddEvent}>
-          <h3>Add Unavailable Dates</h3>
-          <div className="underline"></div>
-          {error && <p className="alert-primary">{error}</p>}
-          {success && (
-            <p className="alert-success" style={{ padding: "1em" }}>
-              {success}
-            </p>
-          )}
+    <>
+      <h1 style={{ textAlign: "center" }}>Schedule</h1>
+      <div className="underline"></div>
+      <div className="calendar">
+        {slot && (
+          <Calendar
+            localizer={localizer}
+            events={slot}
+            startAccessor="start"
+            defaultView="week"
+            endAccessor="end"
+            style={{ height: 500 }}
+          ></Calendar>
+        )}
+        <div className="date">
+          <form className="add-schedule-container" onSubmit={handleAddEvent}>
+            <h3>Add Unavailable Dates</h3>
+            <div className="underline"></div>
+            {error && <p className="alert-primary">{error}</p>}
+            {success && (
+              <p className="alert-success" style={{ padding: "1em" }}>
+                {success}
+              </p>
+            )}
 
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              InputProps={{
-                disableUnderline: true,
-              }}
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Select Start Date"
-              value={selectedDate}
-              minDate={getMinDate()}
-              maxDate={getMaxDate()}
-              autoOk={true}
-              onChange={(date) => {
-                setSelectedDate(date);
-                setTime();
-              }}
-              required
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-              TextFieldComponent={TextFieldComponent}
-            />
-          </MuiPickersUtilsProvider>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              InputProps={{
-                disableUnderline: true,
-              }}
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Select End Date"
-              value={endDate}
-              minDate={getMinDate()}
-              maxDate={getMaxDate()}
-              autoOk={true}
-              onChange={(date) => {
-                setEndDate(date);
-                setTime();
-              }}
-              required
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-              TextFieldComponent={TextFieldComponent}
-            />
-          </MuiPickersUtilsProvider>
-          <button onClick={handleAddEvent} className="btn green">
-            Add Event
-          </button>
-        </form>
-
-        <form onSubmit={handleRemoveEvent}>
-          <h3 style={{ textAlign: "center" }}>Remove Date</h3>
-          <div className="underline"></div>
-          {successRemove && (
-            <p className="alert-success" style={{ padding: "1em" }}>
-              {successRemove}
-            </p>
-          )}
-          <div className="select-box">
-            <div className="select-box__current" tabIndex="1">
-              <div className="select-box__value">
-                <input
-                  className="select-box__input"
-                  type="radio"
-                  id="0"
-                  value="1"
-                  name="Ben"
-                  defaultChecked="checked"
-                />
-                <p className="select-box__input-text">{removeDate}</p>
-              </div>
-
-              <img
-                className="select-box__icon"
-                src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
-                alt="Arrow Icon"
-                aria-hidden="true"
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                disableToolbar
+                variant="inline"
+                format="dd/MM/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Select Start Date"
+                value={selectedDate}
+                minDate={getMinDate()}
+                maxDate={getMaxDate()}
+                autoOk={true}
+                onChange={(date) => {
+                  setSelectedDate(date);
+                  setTime();
+                }}
+                required
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+                TextFieldComponent={TextFieldComponent}
               />
-            </div>
-            <ul className="select-box__list">
-              {unavailable?.map((time, index) => {
-                return (
-                  <li key={index} onClick={() => setRemoveDate(time)}>
-                    <label
-                      className="select-box__option"
-                      htmlFor="0"
-                      aria-hidden="aria-hidden"
-                    >
-                      {time}
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "1em",
-            }}
-          >
-            <button className="btn green" onClick={handleRemoveEvent}>
-              Remove
+            </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                disableToolbar
+                variant="inline"
+                format="dd/MM/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Select End Date"
+                value={endDate}
+                minDate={getMinDate()}
+                maxDate={getMaxDate()}
+                autoOk={true}
+                onChange={(date) => {
+                  setEndDate(date);
+                  setTime();
+                }}
+                required
+                KeyboardButtonProps={{
+                  "aria-label": "change date",
+                }}
+                TextFieldComponent={TextFieldComponent}
+              />
+            </MuiPickersUtilsProvider>
+            <button onClick={handleAddEvent} className="btn green">
+              Add Event
             </button>
-          </div>
-        </form>
+          </form>
+
+          <form onSubmit={handleRemoveEvent}>
+            <h3 style={{ textAlign: "center" }}>Remove Date</h3>
+            <div className="underline"></div>
+            {successRemove && (
+              <p className="alert-success" style={{ padding: "1em" }}>
+                {successRemove}
+              </p>
+            )}
+            <div className="select-box">
+              <div className="select-box__current" tabIndex="1">
+                <div className="select-box__value">
+                  <input
+                    className="select-box__input"
+                    type="radio"
+                    id="0"
+                    value="1"
+                    name="Ben"
+                    defaultChecked="checked"
+                  />
+                  <p className="select-box__input-text">{removeDate}</p>
+                </div>
+
+                <img
+                  className="select-box__icon"
+                  src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
+                  alt="Arrow Icon"
+                  aria-hidden="true"
+                />
+              </div>
+              <ul className="select-box__list">
+                {unavailable?.map((time, index) => {
+                  return (
+                    <li key={index} onClick={() => setRemoveDate(time)}>
+                      <label
+                        className="select-box__option"
+                        htmlFor="0"
+                        aria-hidden="aria-hidden"
+                      >
+                        {time}
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "1em",
+              }}
+            >
+              <button className="btn green" onClick={handleRemoveEvent}>
+                Remove
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
