@@ -24,7 +24,6 @@ import Join from "./ChatRoom/Join";
 import Contact from "./pages/Contact";
 import Pharmacy from "./pages/Pharmacy";
 import Location from "./pages/Location";
-import Discussion from "./pages/Discussion";
 import MedicalRecord from "./doctorPage/MedicalRecord";
 import Name from "./ChatRoom/Name";
 import Tnc from "./Doctor/Tnc";
@@ -133,13 +132,6 @@ const App = () => {
               exact
               path="/cancel-appointment"
               component={CancelAppointment}
-            ></PrivateRoute>
-          )}
-          {data.role === "user" && (
-            <PrivateRoute
-              exact
-              path="/medical-services/discussion"
-              component={Discussion}
             ></PrivateRoute>
           )}
 

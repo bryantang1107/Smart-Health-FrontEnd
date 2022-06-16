@@ -195,11 +195,6 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Discussion Forum",
-        path: "/medical-services/discussion",
-        icon: <MdForum className="sidebar-icon" />,
-      },
-      {
         title: "Health Forum",
         path: "/health-forum",
         icon: <IoIcons.IoIosPaper className="sidebar-icon" />,

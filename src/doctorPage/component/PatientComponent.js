@@ -25,7 +25,11 @@ const PatientComponent = () => {
     const getData = async () => {
       try {
         const response = await axios.get(`/user/patient-record/${userData}`);
-        setData(response.data.patient);
+        const data = new Set();
+        response.data.patient.forEach((x) => {
+          data.add(x.patientId);
+        });
+        setData(Array.from(data));
       } catch (error) {
         setError(true);
       }
@@ -35,7 +39,11 @@ const PatientComponent = () => {
   const getData = async () => {
     try {
       const response = await axios.get(`/user/patient-record/${userData}`);
-      setData(response.data.patient);
+      const data = new Set();
+      response.data.patient.forEach((x) => {
+        data.add(x.patientId);
+      });
+      setData(Array.from(data));
     } catch (error) {
       setError(true);
     }
@@ -65,6 +73,7 @@ const PatientComponent = () => {
       </>
     );
   }
+
   return (
     <div className="patient-container">
       <h1 style={{ textAlign: "center" }}>Patient Record</h1>

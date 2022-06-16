@@ -7,9 +7,7 @@ const Patient = ({ x, handleClick, debouncedSearchTerm }) => {
   useEffect(() => {
     const getPatientData = async () => {
       try {
-        const response = await axios.get(
-          `/appointment/patient-record/${x.patientId}`
-        );
+        const response = await axios.get(`/appointment/patient-record/${x}`);
         setPatientData(response.data.appointmentHistory);
         getData(response.data.appointmentHistory);
       } catch (error) {
@@ -61,10 +59,7 @@ const Patient = ({ x, handleClick, debouncedSearchTerm }) => {
               {patientData[0]?.dob.split("T")[0]}
             </p>
           </div>
-          <button
-            className="green btn"
-            onClick={() => handleClick(x.patientId)}
-          >
+          <button className="green btn" onClick={() => handleClick(x)}>
             View Patient
           </button>
         </div>
