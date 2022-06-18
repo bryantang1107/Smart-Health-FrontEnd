@@ -124,12 +124,6 @@ const SignInComponent = () => {
                   </p>
                 </div>
               </div>
-
-              <div className="forgot-password">
-                <Link to="/forgot-password" className="title">
-                  Forgot Password?
-                </Link>
-              </div>
             </div>
           </div>
           <div style={{ textAlign: "center", marginBottom: "3em" }}>

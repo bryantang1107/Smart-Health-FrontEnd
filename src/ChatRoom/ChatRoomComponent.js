@@ -69,44 +69,47 @@ const ChatRoomComponent = () => {
         `Only doctor can start the video call, a "join video" button will appear.`
       );
     }
+    try {
+      const getCredentials = async () => {
+        const response = await axios.get(`/appointment/joinroom/${userData}`);
+        socket = io("https://smarthealth-server.herokuapp.com/chat");
+        const username = response.data.username;
+        const room = response.data.roomID;
+        setName(username);
+        setRoom(room);
 
-    const getCredentials = async () => {
-      const response = await axios.get(`/appointment/joinroom/${userData}`);
-      socket = io("https://smarthealth-server.herokuapp.com/chat");
-      const username = response.data.username;
-      const room = response.data.roomID;
-      setName(username);
-      setRoom(room);
-
-      socket.emit("join", { username, room }, (error) => {
-        if (error) {
-          alert(error);
-        }
-      });
-      navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .then((stream) => {
-          setStream(stream);
-          myVideo.current.srcObject = stream;
+        socket.emit("join", { username, room }, (error) => {
+          if (error) {
+            alert(error);
+          }
         });
-      socket.emit("join video");
-      socket.on("me", (id) => {
-        setMe(id);
-      });
-      socket.on("callUser", (data) => {
-        setReceivingCall(true);
-        setCaller(data.from);
-        setCallerSignal(data.signal);
-      });
-      socket.on("message", (message) => {
-        setMessages((messages) => [...messages, message]);
-      });
-      socket.on("roomData", ({ users }) => {
-        setUsers(users);
-      });
-    };
+        navigator.mediaDevices
+          .getUserMedia({ video: true, audio: true })
+          .then((stream) => {
+            setStream(stream);
+            myVideo.current.srcObject = stream;
+          });
+        socket.emit("join video");
+        socket.on("me", (id) => {
+          setMe(id);
+        });
+        socket.on("callUser", (data) => {
+          setReceivingCall(true);
+          setCaller(data.from);
+          setCallerSignal(data.signal);
+        });
+        socket.on("message", (message) => {
+          setMessages((messages) => [...messages, message]);
+        });
+        socket.on("roomData", ({ users }) => {
+          setUsers(users);
+        });
+      };
 
-    getCredentials();
+      getCredentials();
+    } catch (error) {
+      console.log(error);
+    }
 
     return () => {
       localStorage.removeItem("room");

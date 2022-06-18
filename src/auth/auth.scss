@@ -145,21 +145,6 @@ $button-active-blue: #1669f2;
   border-color: #c3e6cb;
 }
 
-.forgot-password {
-  margin-top: 0.3em;
-  .title {
-    color: #0062cc;
-    font-size: 0.8em;
-  }
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.forgot-password {
-  text-align: center;
-  margin-top: 1em;
-}
 .title-login {
   &:hover {
     filter: brightness(1.2);
