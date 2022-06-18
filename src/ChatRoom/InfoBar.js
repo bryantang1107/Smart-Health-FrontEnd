@@ -10,14 +10,43 @@ import { ImUserTie } from "react-icons/im";
 import Modal from "./Modal";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 const InfoBar = ({ room, toggleUser, setFile, file, setMessage }) => {
   const { userRole } = useAuth();
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
+  const notify = () => {
+    return toast.error(
+      "Please ensure you attach the correct file type : PNG/JPEG",
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        delay: 1000,
+      }
+    );
+  };
   const selectFile = (e) => {
-    setMessage({ type: e.target.files[0].type, name: e.target.files[0].name });
-    setFile(e.target.files[0]);
+    if (
+      e.target.files[0].type === "image/png" ||
+      e.target.files[0].type === "image/jpeg"
+    ) {
+      setMessage({
+        type: e.target.files[0].type,
+        name: e.target.files[0].name,
+      });
+      setFile(e.target.files[0]);
+    } else {
+      notify();
+    }
   };
 
   const hiddenFileInput = useRef();
