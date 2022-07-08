@@ -43,8 +43,10 @@ const ActivityComponent = () => {
       try {
         const response = await axios.get(`/activity-log/${userData}`);
         const updated = response.data.map((x) => {
-          let d = new Date(x.date);
-          const result = formatDate(d);
+          let d = new Date(x.date).toLocaleTimeString("en-US", {
+            timeZone: "Asia/Kuala_Lumpur",
+          });
+          const result = formatDate(new Date(d));
           return { ...x, date: result };
         });
         setActivityData(updated.reverse());

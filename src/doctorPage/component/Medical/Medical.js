@@ -295,7 +295,7 @@ const Medical = ({ setState, id }) => {
                   {file ? file.name : <p>Upload File</p>}
                 </span>
                 <p style={{ fontSize: "0.8rem", color: "#ff6347" }}>
-                  *Acceptable file type: PNG, JPEG, TXT/Plain text
+                  *Acceptable file type: PNG, JPEG, TXT/Plain text & PDF
                 </p>
                 <input
                   type="file"

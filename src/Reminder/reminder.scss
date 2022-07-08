@@ -187,6 +187,14 @@
 #reminder-email {
   width: 90%;
   margin: 5em auto;
+  ::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: 4px solid transparent;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
   .subscribe {
     display: flex;
     flex-direction: column;

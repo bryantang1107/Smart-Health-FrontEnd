@@ -4,8 +4,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .google-btn-container .google-btn {
@@ -16,7 +16,7 @@
   background-color: #4285f4;
   border-radius: 2px;
   -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .google-btn-container .google-btn .google-icon-wrapper {
@@ -48,7 +48,7 @@
 
 .google-btn-container .google-btn:hover {
   -webkit-box-shadow: 0 0 6px #4285f4;
-  box-shadow: 0 0 6px #4285f4;
+          box-shadow: 0 0 6px #4285f4;
   cursor: pointer;
 }
 
@@ -65,7 +65,7 @@
   -ms-flex-direction: column;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  flex-direction: column;
+          flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
@@ -79,7 +79,7 @@
 .card .card-body {
   -ms-flex: 1 1 auto;
   -webkit-box-flex: 1;
-  flex: 1 1 auto;
+          flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
 }
@@ -110,13 +110,10 @@
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out,
-    -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out,
-    -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
-    -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 
 .card .card-body .email-group,
@@ -140,7 +137,7 @@
 
 .card .card-body .form-btn:hover {
   -webkit-filter: brightness(1.2);
-  filter: brightness(1.2);
+          filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -173,7 +170,7 @@
 
 .title-login:hover {
   -webkit-filter: brightness(1.2);
-  filter: brightness(1.2);
+          filter: brightness(1.2);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -185,11 +182,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .email-btn {
@@ -205,7 +202,7 @@
 
 .email-btn:hover {
   -webkit-filter: brightness(1.2);
-  filter: brightness(1.2);
+          filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -223,7 +220,7 @@
 .password-btn:hover,
 .passwordConfirm-btn:hover {
   -webkit-filter: brightness(1.2);
-  filter: brightness(1.2);
+          filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -236,15 +233,15 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .error-title {
@@ -277,37 +274,37 @@
 
 .pao-atras {
   -webkit-animation: leftright 1s alternate infinite;
-  animation: leftright 1s alternate infinite;
+          animation: leftright 1s alternate infinite;
   -webkit-transform-origin: center;
-  transform-origin: center;
+          transform-origin: center;
 }
 
 .pao-frente {
   -webkit-animation: leftright 1s 0.3s alternate infinite;
-  animation: leftright 1s 0.3s alternate infinite;
+          animation: leftright 1s 0.3s alternate infinite;
   -webkit-transform-origin: center;
-  transform-origin: center;
+          transform-origin: center;
 }
 
 .olho-esq {
   -webkit-animation: sad 2s alternate infinite;
-  animation: sad 2s alternate infinite;
+          animation: sad 2s alternate infinite;
   -webkit-transform-origin: center;
-  transform-origin: center;
+          transform-origin: center;
 }
 
 .olho-dir {
   -webkit-animation: sad 2s alternate infinite;
-  animation: sad 2s alternate infinite;
+          animation: sad 2s alternate infinite;
   -webkit-transform-origin: center;
-  transform-origin: center;
+          transform-origin: center;
 }
 
 .boca {
   -webkit-animation: sad 2s alternate infinite;
-  animation: sad 2s alternate infinite;
+          animation: sad 2s alternate infinite;
   -webkit-transform-origin: center;
-  transform-origin: center;
+          transform-origin: center;
 }
 
 .raios {
@@ -333,22 +330,22 @@
 @-webkit-keyframes scales {
   from {
     -webkit-transform: scale(0.98);
-    transform: scale(0.98);
+            transform: scale(0.98);
   }
   to {
     -webkit-transform: scale(1);
-    transform: scale(1);
+            transform: scale(1);
   }
 }
 
 @keyframes scales {
   from {
     -webkit-transform: scale(0.98);
-    transform: scale(0.98);
+            transform: scale(0.98);
   }
   to {
     -webkit-transform: scale(1);
-    transform: scale(1);
+            transform: scale(1);
   }
 }
 
@@ -608,44 +605,44 @@
 @-webkit-keyframes sad {
   0% {
     -webkit-transform: rotateX(0deg) rotateY(0deg);
-    transform: rotateX(0deg) rotateY(0deg);
+            transform: rotateX(0deg) rotateY(0deg);
   }
   100% {
     -webkit-transform: rotateX(10deg) rotateY(5deg);
-    transform: rotateX(10deg) rotateY(5deg);
+            transform: rotateX(10deg) rotateY(5deg);
   }
 }
 
 @keyframes sad {
   0% {
     -webkit-transform: rotateX(0deg) rotateY(0deg);
-    transform: rotateX(0deg) rotateY(0deg);
+            transform: rotateX(0deg) rotateY(0deg);
   }
   100% {
     -webkit-transform: rotateX(10deg) rotateY(5deg);
-    transform: rotateX(10deg) rotateY(5deg);
+            transform: rotateX(10deg) rotateY(5deg);
   }
 }
 
 @-webkit-keyframes leftright {
   0% {
     -webkit-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
   }
   100% {
     -webkit-transform: rotateZ(-15deg);
-    transform: rotateZ(-15deg);
+            transform: rotateZ(-15deg);
   }
 }
 
 @keyframes leftright {
   0% {
     -webkit-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
   }
   100% {
     -webkit-transform: rotateZ(-15deg);
-    transform: rotateZ(-15deg);
+            transform: rotateZ(-15deg);
   }
 }
 /*# sourceMappingURL=auth.css.map */

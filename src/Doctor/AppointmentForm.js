@@ -46,11 +46,7 @@ const AppointmentForm = () => {
   const dobRef = useRef();
   const symptomsRef = useRef();
   const [slot, setSlot] = useState();
-  const getMinDate = () => {
-    let date = new Date();
-    date.setDate(date.getDate() + 1);
-    return date;
-  };
+
   const [selectedDate, setSelectedDate] = useState(() => getMinDate());
   const termRef = useRef();
   const [loading, setLoading] = useState();
@@ -85,6 +81,12 @@ const AppointmentForm = () => {
 
     getDoctorInfo();
   }, [state]);
+
+  function getMinDate() {
+    let date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  }
 
   const handleError = () => {
     setSlotError(false);
@@ -221,7 +223,6 @@ const AppointmentForm = () => {
       </div>
     );
   }
-
   const getMaxDate = () => {
     const date = new Date();
     date.setMonth(date.getMonth() + 2);
@@ -237,6 +238,7 @@ const AppointmentForm = () => {
       newslot.includes(date.toLocaleString().split(",")[0])
     );
   };
+
   return (
     <>
       <form id="appointment-submit" onSubmit={handleSubmit}>
@@ -321,14 +323,14 @@ const AppointmentForm = () => {
               margin="normal"
               id="date-picker-inline"
               label="Select Date"
-              value={selectedDate}
-              minDate={getMinDate()}
-              maxDate={getMaxDate()}
-              autoOk={true}
               onChange={(date) => {
                 setSelectedDate(date);
                 setTime();
               }}
+              value={selectedDate}
+              minDate={getMinDate()}
+              maxDate={getMaxDate()}
+              autoOk={true}
               required
               shouldDisableDate={disableDates}
               KeyboardButtonProps={{
