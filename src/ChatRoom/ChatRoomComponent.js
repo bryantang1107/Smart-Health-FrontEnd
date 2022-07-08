@@ -72,7 +72,7 @@ const ChatRoomComponent = () => {
     try {
       const getCredentials = async () => {
         const response = await axios.get(`/appointment/joinroom/${userData}`);
-        socket = io("https://smarthealth-server.herokuapp.com/chat");
+        socket = io("https://smarthealth-server.herokuapp/chat");
         const username = response.data.username;
         const room = response.data.roomID;
         setName(username);
