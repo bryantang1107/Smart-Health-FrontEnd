@@ -22,15 +22,9 @@
 }
 
 .clock-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   min-height: 50vh;
   margin: 0;
 }
@@ -43,21 +37,14 @@
   --clock-hour-length: calc(var(--clock-width) * 0.2);
   --clock-thickness: 0.2rem;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   width: var(--clock-width);
   height: var(--clock-width);
   border: 3px solid var(--clock-color);
   border-radius: 50%;
 }
-
 .clock-loader::before, .clock-loader::after {
   position: absolute;
   content: "";
@@ -65,18 +52,15 @@
   width: var(--clock-thickness);
   background: var(--clock-color);
   border-radius: 10px;
-  -webkit-transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
-          transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
+  transform-origin: center calc(100% - var(--clock-thickness) / 2);
   -webkit-animation: spin infinite linear;
           animation: spin infinite linear;
 }
-
 .clock-loader::before {
   height: var(--clock-minute-length);
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
 }
-
 .clock-loader::after {
   top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
   height: var(--clock-hour-length);
@@ -86,15 +70,12 @@
 
 @-webkit-keyframes spin {
   to {
-    -webkit-transform: rotate(1turn);
-            transform: rotate(1turn);
+    transform: rotate(1turn);
   }
 }
 
 @keyframes spin {
   to {
-    -webkit-transform: rotate(1turn);
-            transform: rotate(1turn);
+    transform: rotate(1turn);
   }
-}
-/*# sourceMappingURL=loading.css.map */
+}/*# sourceMappingURL=loading.css.map */

@@ -3,34 +3,21 @@
   margin: auto;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
   padding: 2em;
   min-height: 40vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 .success-page .success-logo {
   font-size: 3rem;
   color: #9acd32;
 }
-
 .success-page h4 {
   color: #9acd32;
 }
-
 .success-page p {
   text-align: center;
 }
@@ -39,28 +26,22 @@
   margin-top: 2em;
   margin-bottom: 2em;
   padding: 2em;
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
 }
-
 .calendar .rbc-time-content::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   border: 4px solid transparent;
   border-radius: 10px;
 }
-
 .calendar .rbc-time-content::-webkit-scrollbar-track {
   background: transparent;
   cursor: pointer;
 }
 
 .date {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  background: #c4c4c46c;
+  justify-content: space-around;
+  background: rgba(196, 196, 196, 0.4235294118);
   padding: 2em;
   border-radius: 10px;
   width: 70%;
@@ -69,21 +50,11 @@
 }
 
 .add-schedule-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 .add-schedule-container .title-input {
   width: 50%;
   border: none;
@@ -97,30 +68,19 @@
   background-color: #f9f9f9;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
-  -webkit-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
-  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   gap: 2em;
   position: relative;
 }
-
 .file-input:hover {
   background: #b3c3df;
   color: #000;
-  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-
 .file-input::before, .file-input::after {
   --tooltip-color: #98d4d6;
   --arrow-size: 10px;
@@ -128,16 +88,10 @@
   bottom: -0.35rem;
   left: 50%;
   --scale: 0;
-  -webkit-transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-          transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  -webkit-transition: -webkit-transform 0.2s ease-in;
-  transition: -webkit-transform 0.2s ease-in;
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
   transition: transform 0.2s ease-in;
-  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
-  -webkit-transform-origin: top center;
-          transform-origin: top center;
+  transform-origin: top center;
 }
-
 .file-input::before {
   --translate-y: calc(100% + var(--arrow-size));
   font-size: 0.8rem;
@@ -150,21 +104,16 @@
   text-align: center;
   background: var(--tooltip-color);
 }
-
 .file-input:hover::before, .file-input:hover::after {
   --scale: 1;
 }
-
 .file-input::after {
   --translate-y: var(--arrow-size);
   content: "";
   border: var(--arrow-size) solid transparent;
   border-bottom-color: var(--tooltip-color);
-  -webkit-transform-origin: bottom center;
-          transform-origin: bottom center;
+  transform-origin: bottom center;
 }
-
 .file-input:hover {
   cursor: pointer;
-}
-/*# sourceMappingURL=success.css.map */
+}/*# sourceMappingURL=success.css.map */

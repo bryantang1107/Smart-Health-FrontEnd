@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
 .user-container {
   width: 80%;
   margin: auto;
@@ -6,9 +5,9 @@
 
 #schedule-container,
 .past {
+  @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Barlow+Condensed:wght@100&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
   margin-bottom: 5em;
 }
-
 #schedule-container h1,
 #schedule-container h2,
 #schedule-container h3,
@@ -25,46 +24,40 @@
   letter-spacing: 0.3rem;
   line-height: 2rem;
 }
-
 #schedule-container h1,
 .past h1 {
   text-align: center;
 }
-
 #schedule-container h3,
 .past h3 {
   color: #cd5c5c;
 }
-
 #schedule-container .appointment-information-container,
 .past .appointment-information-container {
   width: 70%;
   margin: auto;
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
   padding: 2em;
   border-radius: 10px;
   position: relative;
   margin-bottom: 5em;
 }
-
-#schedule-container .appointment-information-container input[type="date"],
-#schedule-container .appointment-information-container input[type="datetime-local"],
-.past .appointment-information-container input[type="date"],
-.past .appointment-information-container input[type="datetime-local"] {
+#schedule-container .appointment-information-container input[type=date],
+#schedule-container .appointment-information-container input[type=datetime-local],
+.past .appointment-information-container input[type=date],
+.past .appointment-information-container input[type=datetime-local] {
   text-transform: uppercase;
 }
-
 #schedule-container .appointment-information-container input,
 #schedule-container .appointment-information-container textarea,
-#schedule-container .appointment-information-container input[type="radio"] + label,
-#schedule-container .appointment-information-container input[type="checkbox"] + label:before,
+#schedule-container .appointment-information-container input[type=radio] + label,
+#schedule-container .appointment-information-container input[type=checkbox] + label:before,
 #schedule-container .appointment-information-container select option,
 #schedule-container .appointment-information-container select,
 .past .appointment-information-container input,
 .past .appointment-information-container textarea,
-.past .appointment-information-container input[type="radio"] + label,
-.past .appointment-information-container input[type="checkbox"] + label:before,
+.past .appointment-information-container input[type=radio] + label,
+.past .appointment-information-container input[type=checkbox] + label:before,
 .past .appointment-information-container select option,
 .past .appointment-information-container select {
   text-transform: none;
@@ -74,17 +67,13 @@
   background-color: #f9f9f9;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
-  -webkit-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
-  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-
-#schedule-container .appointment-information-container input[type="radio"] + label,
-.past .appointment-information-container input[type="radio"] + label {
+#schedule-container .appointment-information-container input[type=radio] + label,
+.past .appointment-information-container input[type=radio] + label {
   cursor: pointer;
 }
-
 #schedule-container .appointment-information-container input:focus,
 #schedule-container .appointment-information-container textarea:focus,
 .past .appointment-information-container input:focus,
@@ -92,37 +81,31 @@
   outline: 0;
   border-color: #3fbbc0;
 }
-
-#schedule-container .appointment-information-container input[type="reset"],
-.past .appointment-information-container input[type="reset"] {
+#schedule-container .appointment-information-container input[type=reset],
+.past .appointment-information-container input[type=reset] {
   border: none;
 }
-
-#schedule-container .appointment-information-container input[type="reset"]:hover,
-.past .appointment-information-container input[type="reset"]:hover {
+#schedule-container .appointment-information-container input[type=reset]:hover,
+.past .appointment-information-container input[type=reset]:hover {
   cursor: pointer;
   background: #f6f6f6;
   color: #3fbbc0;
 }
-
 #schedule-container .appointment-information-container input:focus + .input-icon:after,
 .past .appointment-information-container input:focus + .input-icon:after {
   border-right-color: #3fbbc0;
 }
-
 #schedule-container .appointment-information-container textarea:focus + .input-icon:after,
 .past .appointment-information-container textarea:focus + .input-icon:after {
   border-right-color: #3fbbc0;
 }
-
-#schedule-container .appointment-information-container input[type="radio"],
-.past .appointment-information-container input[type="radio"] {
+#schedule-container .appointment-information-container input[type=radio],
+.past .appointment-information-container input[type=radio] {
   display: none;
 }
-
-#schedule-container .appointment-information-container input[type="radio"] + label,
+#schedule-container .appointment-information-container input[type=radio] + label,
 #schedule-container .appointment-information-container select,
-.past .appointment-information-container input[type="radio"] + label,
+.past .appointment-information-container input[type=radio] + label,
 .past .appointment-information-container select {
   display: inline-block;
   width: 50%;
@@ -130,29 +113,25 @@
   float: left;
   border-radius: 0;
 }
-
-#schedule-container .appointment-information-container input[type="radio"] + label:first-of-type,
-.past .appointment-information-container input[type="radio"] + label:first-of-type {
+#schedule-container .appointment-information-container input[type=radio] + label:first-of-type,
+.past .appointment-information-container input[type=radio] + label:first-of-type {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-
-#schedule-container .appointment-information-container input[type="radio"] + label:last-of-type,
-.past .appointment-information-container input[type="radio"] + label:last-of-type {
+#schedule-container .appointment-information-container input[type=radio] + label:last-of-type,
+.past .appointment-information-container input[type=radio] + label:last-of-type {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-
-#schedule-container .appointment-information-container input[type="radio"] + label i,
-.past .appointment-information-container input[type="radio"] + label i {
+#schedule-container .appointment-information-container input[type=radio] + label i,
+.past .appointment-information-container input[type=radio] + label i {
   padding-right: 0.4em;
 }
-
-#schedule-container .appointment-information-container input[type="radio"]:checked + label,
+#schedule-container .appointment-information-container input[type=radio]:checked + label,
 #schedule-container .appointment-information-container input:checked + label:before,
 #schedule-container .appointment-information-container select:focus,
 #schedule-container .appointment-information-container select:active,
-.past .appointment-information-container input[type="radio"]:checked + label,
+.past .appointment-information-container input[type=radio]:checked + label,
 .past .appointment-information-container input:checked + label:before,
 .past .appointment-information-container select:focus,
 .past .appointment-information-container select:active {
@@ -160,21 +139,18 @@
   color: #fff;
   border-color: #3fbbc0;
 }
-
-#schedule-container .appointment-information-container input[type="checkbox"],
-.past .appointment-information-container input[type="checkbox"] {
+#schedule-container .appointment-information-container input[type=checkbox],
+.past .appointment-information-container input[type=checkbox] {
   display: none;
 }
-
-#schedule-container .appointment-information-container input[type="checkbox"] + label,
-.past .appointment-information-container input[type="checkbox"] + label {
+#schedule-container .appointment-information-container input[type=checkbox] + label,
+.past .appointment-information-container input[type=checkbox] + label {
   position: relative;
   display: block;
   padding-left: 1.6em;
 }
-
-#schedule-container .appointment-information-container input[type="checkbox"] + label:before,
-.past .appointment-information-container input[type="checkbox"] + label:before {
+#schedule-container .appointment-information-container input[type=checkbox] + label:before,
+.past .appointment-information-container input[type=checkbox] + label:before {
   position: absolute;
   top: 0.2em;
   left: 0;
@@ -184,9 +160,8 @@
   padding: 0;
   content: "";
 }
-
-#schedule-container .appointment-information-container input[type="checkbox"] + label:after,
-.past .appointment-information-container input[type="checkbox"] + label:after {
+#schedule-container .appointment-information-container input[type=checkbox] + label:after,
+.past .appointment-information-container input[type=checkbox] + label:after {
   position: absolute;
   top: 0.45em;
   left: 0.2em;
@@ -196,49 +171,41 @@
   font-family: FontAwesome;
   content: "\f00c";
 }
-
 #schedule-container .appointment-information-container input:checked + label:after,
 .past .appointment-information-container input:checked + label:after {
   opacity: 1;
 }
-
 #schedule-container .appointment-information-container select,
 .past .appointment-information-container select {
   height: 3.4em;
   line-height: 2;
 }
-
 #schedule-container .appointment-information-container select:first-of-type,
 .past .appointment-information-container select:first-of-type {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-
 #schedule-container .appointment-information-container select:last-of-type,
 .past .appointment-information-container select:last-of-type {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-
 #schedule-container .appointment-information-container select:focus,
 #schedule-container .appointment-information-container select:active,
 .past .appointment-information-container select:focus,
 .past .appointment-information-container select:active {
   outline: 0;
 }
-
 #schedule-container .appointment-information-container select option,
 .past .appointment-information-container select option {
   background-color: #3fbbc0;
   color: #fff;
 }
-
 #schedule-container .appointment-information-container .input-group,
 .past .appointment-information-container .input-group {
   margin-bottom: 1em;
   zoom: 1;
 }
-
 #schedule-container .appointment-information-container .input-group:before,
 #schedule-container .appointment-information-container .input-group:after,
 .past .appointment-information-container .input-group:before,
@@ -246,27 +213,22 @@
   content: "";
   display: table;
 }
-
 #schedule-container .appointment-information-container .input-group:after,
 .past .appointment-information-container .input-group:after {
   clear: both;
 }
-
 #schedule-container .appointment-information-container .input-group-icon,
 .past .appointment-information-container .input-group-icon {
   position: relative;
 }
-
 #schedule-container .appointment-information-container .input-group-icon input,
 .past .appointment-information-container .input-group-icon input {
   padding-left: 4.4em;
 }
-
 #schedule-container .appointment-information-container .input-group-icon textarea,
 .past .appointment-information-container .input-group-icon textarea {
   padding-left: 5.4em;
 }
-
 #schedule-container .appointment-information-container .input-group-icon .input-icon,
 .past .appointment-information-container .input-group-icon .input-icon {
   position: absolute;
@@ -278,7 +240,6 @@
   text-align: center;
   pointer-events: none;
 }
-
 #schedule-container .appointment-information-container .input-group-icon .input-icon:after,
 .past .appointment-information-container .input-group-icon .input-icon:after {
   position: absolute;
@@ -288,25 +249,18 @@
   display: block;
   border-right: 1px solid #e5e5e5;
   content: "";
-  -webkit-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
-  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-
 #schedule-container .appointment-information-container .input-group-icon .input-icon i,
 .past .appointment-information-container .input-group-icon .input-icon i {
-  -webkit-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
-  -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-
 #schedule-container .appointment-information-container .row-appointmnet,
 .past .appointment-information-container .row-appointmnet {
   zoom: 1;
 }
-
 #schedule-container .appointment-information-container .row-appointmnet:before,
 #schedule-container .appointment-information-container .row-appointmnet:after,
 .past .appointment-information-container .row-appointmnet:before,
@@ -314,32 +268,27 @@
   content: "";
   display: table;
 }
-
 #schedule-container .appointment-information-container .row-appointmnet:after,
 .past .appointment-information-container .row-appointmnet:after {
   clear: both;
 }
-
 #schedule-container .appointment-information-container .col-half,
 .past .appointment-information-container .col-half {
   padding-right: 10px;
   float: left;
   width: 50%;
 }
-
 #schedule-container .appointment-information-container .col-half:last-of-type,
 .past .appointment-information-container .col-half:last-of-type {
   padding-right: 0;
 }
-
 @media only screen and (max-width: 540px) {
   #schedule-container .appointment-information-container .col-half,
-  .past .appointment-information-container .col-half {
+.past .appointment-information-container .col-half {
     width: 100%;
     padding-right: 0;
   }
 }
-
 #schedule-container .appointment-information-container .icon,
 .past .appointment-information-container .icon {
   color: #00bbcf;
@@ -348,72 +297,53 @@
   top: 3%;
   right: 3%;
 }
-
 #schedule-container .appointment-information-container .appointment-item,
 .past .appointment-information-container .appointment-item {
-  border-bottom: 1px solid #c4c4c459;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.3490196078);
 }
-
 @media (max-width: 870px) {
   #schedule-container .appointment-information-container,
-  .past .appointment-information-container {
+.past .appointment-information-container {
     width: 90%;
     margin: auto;
   }
 }
-
 #schedule-container .doctor-information-container,
 .past .doctor-information-container {
   width: 95%;
   margin: auto;
   margin-top: 4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1em;
 }
-
 #schedule-container .doctor-information-container .doctor-image,
 .past .doctor-information-container .doctor-image {
-  border: 1px solid #c4c4c459;
+  border: 1px solid rgba(196, 196, 196, 0.3490196078);
   width: 50%;
   padding: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
 #schedule-container .doctor-information-container .doctor-image img,
 .past .doctor-information-container .doctor-image img {
   max-width: 400px;
   width: 100%;
 }
-
 @media (max-width: 870px) {
   #schedule-container .doctor-information-container .doctor-image,
-  .past .doctor-information-container .doctor-image {
+.past .doctor-information-container .doctor-image {
     width: 90%;
     margin: auto;
   }
 }
-
 #schedule-container .doctor-information-container .doctor-info,
 .past .doctor-information-container .doctor-info {
   background: #242222;
   color: #f6f6f6;
   padding: 2em;
 }
-
 #schedule-container .doctor-information-container .doctor-info .bg,
 .past .doctor-information-container .doctor-info .bg {
   padding: 1em;
@@ -422,22 +352,12 @@
 
 @media (max-width: 870px) {
   .doctor-information-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
-
 .user-entire-container {
   margin-top: 2em;
   min-height: 80vh;
@@ -447,7 +367,6 @@
   width: 80%;
   margin: auto;
 }
-
 .appointment-container .nav-bar-appointment {
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -457,7 +376,6 @@
   padding: 1.1em;
   margin-left: 2em;
 }
-
 .appointment-container .nav-bar-appointment .nav-btn {
   margin-right: 2em;
   padding: 1em;
@@ -465,55 +383,32 @@
   font-weight: 600;
   color: #4d4747;
 }
-
 .appointment-container .nav-bar-appointment .active {
   background: #fff;
   border-radius: 10px;
   color: #00bbcf;
-  -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
 }
 
 .past-appointment-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   gap: 1em;
 }
-
 .past-appointment-container .appointment-item {
   background: #fff;
-  -webkit-box-shadow: var(--light-shadow);
-          box-shadow: var(--light-shadow);
+  box-shadow: var(--light-shadow);
   padding: 1em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 3rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .past-appointment-container .appointment-item .doctor-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 500px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 @media (max-width: 600px) {
@@ -521,32 +416,25 @@
     width: 100%;
   }
   .appointment-container .nav-bar-appointment {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
+
   .appointment-details {
     margin: 0;
     padding: 0;
     width: 100%;
     margin-top: 2rem;
   }
+
   .past-appointment-container .appointment-item {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
     width: 100%;
   }
   .past-appointment-container .appointment-item .doctor-info {
     width: 300px;
   }
 }
-
 .past {
   position: relative;
 }
@@ -558,5 +446,4 @@
   color: #cd5c5c;
   font-weight: 300;
   text-decoration: underline;
-}
-/*# sourceMappingURL=schedule.css.map */
+}/*# sourceMappingURL=schedule.css.map */

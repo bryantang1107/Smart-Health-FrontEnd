@@ -162,8 +162,11 @@ const ActivityComponent = () => {
                     )}
                     <div className="activity-time">
                       <FontAwesomeIcon icon={faClock} className="logo small" />
-                      <p>{x.date}</p>
-                      <p>{x.time}</p>
+                      <strong>{x.date}</strong>
+                      <strong>{`${x.time.split(":")[0]}:${
+                        x.time.split(":")[1] +
+                        x.time.split(":")[2].split(" ")[1]
+                      }`}</strong>
                     </div>
                     {x.type === "appointment" && (
                       <div>

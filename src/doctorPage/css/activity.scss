@@ -3,6 +3,12 @@
   margin: auto;
   min-height: 70vh;
 }
+@media (max-width: 870px) {
+  .activity-body {
+    width: 85%;
+    min-width: 500px;
+  }
+}
 
 .activity-header {
   display: flex;
@@ -16,7 +22,7 @@
 }
 .activity-item {
   @import url("https://fonts.googleapis.com/css2?family=Antic+Didone&family=Lato:wght@300&family=Libre+Bodoni:ital@1&display=swap");
-
+  position: relative;
   h3,
   p,
   strong {
@@ -115,6 +121,9 @@
     display: flex;
     flex-direction: column;
     .activity-time {
+      position: absolute;
+      bottom: 0;
+      right: 1em;
       display: flex;
       align-items: center;
       gap: 2em;
@@ -132,6 +141,7 @@
   .email {
     color: #00bbcf;
     width: max-content;
+    margin-bottom: 1em;
   }
 }
 
@@ -140,9 +150,6 @@
     flex-direction: column;
     height: max-content;
     text-align: center;
-    .activity-time {
-      justify-content: center;
-    }
   }
 }
 .upload-btn {

@@ -1,13 +1,8 @@
 .google-btn-container {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 .google-btn-container .google-btn {
   width: 250px;
   height: 42px;
@@ -15,10 +10,8 @@
   margin-left: 1px;
   background-color: #4285f4;
   border-radius: 2px;
-  -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-          box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 }
-
 .google-btn-container .google-btn .google-icon-wrapper {
   position: absolute;
   margin-top: 1px;
@@ -28,7 +21,6 @@
   border-radius: 2px;
   background-color: #fff;
 }
-
 .google-btn-container .google-btn .google-icon {
   position: absolute;
   margin-top: 11px;
@@ -36,7 +28,6 @@
   width: 18px;
   height: 18px;
 }
-
 .google-btn-container .google-btn .btn-text {
   float: right;
   margin: 11px 11px 0 0;
@@ -45,13 +36,10 @@
   letter-spacing: 0.2px;
   font-family: "Roboto";
 }
-
 .google-btn-container .google-btn:hover {
-  -webkit-box-shadow: 0 0 6px #4285f4;
-          box-shadow: 0 0 6px #4285f4;
+  box-shadow: 0 0 6px #4285f4;
   cursor: pointer;
 }
-
 .google-btn-container .google-btn:active {
   background: #1669f2;
 }
@@ -59,13 +47,8 @@
 .card {
   max-width: 800px;
   position: relative;
-  display: -ms-flexbox;
-  display: -webkit-box;
   display: flex;
-  -ms-flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
@@ -75,19 +58,14 @@
   width: 80%;
   margin: 3em auto;
 }
-
 .card .card-body {
-  -ms-flex: 1 1 auto;
-  -webkit-box-flex: 1;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
 }
-
 .card .card-body .form-group {
   margin-bottom: 1rem;
 }
-
 .card .card-body .form-group .form-label {
   padding-top: calc(0.375rem + 1px);
   padding-bottom: calc(0.375rem + 1px);
@@ -95,7 +73,6 @@
   font-size: inherit;
   line-height: 1.5;
 }
-
 .card .card-body .form-group .form-control {
   display: block;
   text-transform: none !important;
@@ -110,19 +87,14 @@
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
-
 .card .card-body .email-group,
 .card .card-body .password-group,
 .card .card-body .password-confirm-group {
   border: 1px solid #c4c4c4;
   padding: 1em;
 }
-
 .card .card-body .form-btn {
   width: 100%;
   background: #3fbbc0;
@@ -134,10 +106,8 @@
   font-weight: 600;
   font-size: 1.1rem;
 }
-
 .card .card-body .form-btn:hover {
-  -webkit-filter: brightness(1.2);
-          filter: brightness(1.2);
+  filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -169,24 +139,16 @@
 }
 
 .title-login:hover {
-  -webkit-filter: brightness(1.2);
-          filter: brightness(1.2);
-  -webkit-transition: all 0.2s ease-in-out;
+  filter: brightness(1.2);
   transition: all 0.2s ease-in-out;
 }
 
 .email-update,
 .password-update,
 .password-confirm-update {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .email-btn {
@@ -199,10 +161,8 @@
   color: #fff;
   margin-left: 2em;
 }
-
 .email-btn:hover {
-  -webkit-filter: brightness(1.2);
-          filter: brightness(1.2);
+  filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -216,11 +176,9 @@
   color: #fff;
   margin-left: 2em;
 }
-
 .password-btn:hover,
 .passwordConfirm-btn:hover {
-  -webkit-filter: brightness(1.2);
-          filter: brightness(1.2);
+  filter: brightness(1.2);
   cursor: pointer;
 }
 
@@ -229,19 +187,10 @@
   margin: 0px auto;
   width: auto;
   max-width: 560px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .error-title {
@@ -275,36 +224,31 @@
 .pao-atras {
   -webkit-animation: leftright 1s alternate infinite;
           animation: leftright 1s alternate infinite;
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 
 .pao-frente {
   -webkit-animation: leftright 1s 0.3s alternate infinite;
           animation: leftright 1s 0.3s alternate infinite;
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 
 .olho-esq {
   -webkit-animation: sad 2s alternate infinite;
           animation: sad 2s alternate infinite;
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 
 .olho-dir {
   -webkit-animation: sad 2s alternate infinite;
           animation: sad 2s alternate infinite;
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 
 .boca {
   -webkit-animation: sad 2s alternate infinite;
           animation: sad 2s alternate infinite;
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 
 .raios {
@@ -329,29 +273,23 @@
 
 @-webkit-keyframes scales {
   from {
-    -webkit-transform: scale(0.98);
-            transform: scale(0.98);
+    transform: scale(0.98);
   }
   to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes scales {
   from {
-    -webkit-transform: scale(0.98);
-            transform: scale(0.98);
+    transform: scale(0.98);
   }
   to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
-
 @-webkit-keyframes flicker-4 {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   31.98% {
@@ -427,10 +365,8 @@
     opacity: 1;
   }
 }
-
 @keyframes flicker-4 {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   31.98% {
@@ -506,7 +442,6 @@
     opacity: 1;
   }
 }
-
 /* ----------------------------------------------
  * Generated by Animista on 2020-4-1 15:17:57
  * Licensed under FreeBSD License.
@@ -520,129 +455,94 @@
  */
 @-webkit-keyframes vibrate-1 {
   0% {
-    -webkit-transform: translate(0);
     transform: translate(0);
   }
   20% {
-    -webkit-transform: translate(-2px, 2px);
     transform: translate(-2px, 2px);
   }
   40% {
-    -webkit-transform: translate(-2px, -2px);
     transform: translate(-2px, -2px);
   }
   60% {
-    -webkit-transform: translate(2px, 2px);
     transform: translate(2px, 2px);
   }
   80% {
-    -webkit-transform: translate(2px, -2px);
     transform: translate(2px, -2px);
   }
   100% {
-    -webkit-transform: translate(0);
     transform: translate(0);
   }
 }
-
 @keyframes vibrate-1 {
   0% {
-    -webkit-transform: translate(0);
     transform: translate(0);
   }
   20% {
-    -webkit-transform: translate(-2px, 2px);
     transform: translate(-2px, 2px);
   }
   40% {
-    -webkit-transform: translate(-2px, -2px);
     transform: translate(-2px, -2px);
   }
   60% {
-    -webkit-transform: translate(2px, 2px);
     transform: translate(2px, 2px);
   }
   80% {
-    -webkit-transform: translate(2px, -2px);
     transform: translate(2px, -2px);
   }
   100% {
-    -webkit-transform: translate(0);
     transform: translate(0);
   }
 }
-
 @-webkit-keyframes wobble-ver-right {
-  0%,
-  100% {
-    -webkit-transform: translateY(0) rotate(0);
+  0%, 100% {
     transform: translateY(0) rotate(0);
-    -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
   }
   15% {
-    -webkit-transform: translateY(-30px) rotate(6deg);
     transform: translateY(-30px) rotate(6deg);
   }
   30% {
-    -webkit-transform: translateY(15px) rotate(-6deg);
     transform: translateY(15px) rotate(-6deg);
   }
   45% {
-    -webkit-transform: translateY(-15px) rotate(3.6deg);
     transform: translateY(-15px) rotate(3.6deg);
   }
   60% {
-    -webkit-transform: translateY(9px) rotate(-2.4deg);
     transform: translateY(9px) rotate(-2.4deg);
   }
   75% {
-    -webkit-transform: translateY(-6px) rotate(1.2deg);
     transform: translateY(-6px) rotate(1.2deg);
   }
 }
-
 @-webkit-keyframes sad {
   0% {
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-            transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
   }
   100% {
-    -webkit-transform: rotateX(10deg) rotateY(5deg);
-            transform: rotateX(10deg) rotateY(5deg);
+    transform: rotateX(10deg) rotateY(5deg);
   }
 }
-
 @keyframes sad {
   0% {
-    -webkit-transform: rotateX(0deg) rotateY(0deg);
-            transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
   }
   100% {
-    -webkit-transform: rotateX(10deg) rotateY(5deg);
-            transform: rotateX(10deg) rotateY(5deg);
+    transform: rotateX(10deg) rotateY(5deg);
   }
 }
-
 @-webkit-keyframes leftright {
   0% {
-    -webkit-transform: rotateZ(0deg);
-            transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
   }
   100% {
-    -webkit-transform: rotateZ(-15deg);
-            transform: rotateZ(-15deg);
+    transform: rotateZ(-15deg);
   }
 }
-
 @keyframes leftright {
   0% {
-    -webkit-transform: rotateZ(0deg);
-            transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
   }
   100% {
-    -webkit-transform: rotateZ(-15deg);
-            transform: rotateZ(-15deg);
+    transform: rotateZ(-15deg);
   }
-}
-/*# sourceMappingURL=auth.css.map */
+}/*# sourceMappingURL=auth.css.map */

@@ -8,96 +8,67 @@
   width: 80%;
   margin: auto;
 }
-
 .location-container .how-to-pharmacy {
   background: url("https://images.unsplash.com/photo-1640622308205-8ad9478c2386?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
   color: #fff;
   padding: 2em;
   border-radius: 10px;
 }
-
 .location-container .how-to-pharmacy:hover {
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
-  -webkit-transition: -webkit-transform 0.3s ease-in;
-  transition: -webkit-transform 0.3s ease-in;
+  transform: translateY(-5px);
   transition: transform 0.3s ease-in;
-  transition: transform 0.3s ease-in, -webkit-transform 0.3s ease-in;
 }
-
 .location-container li {
   text-transform: none;
   margin: 1em;
 }
-
 .location-container li:nth-child(2) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   text-transform: none;
 }
-
 .location-container li:nth-child(2) img {
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
-
 .location-container h1,
 .location-container i {
   text-align: center;
   line-height: 2em;
 }
-
 .location-container .location-pharmacy {
   width: 100%;
   margin: 5em auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   gap: 2em;
 }
-
 .location-container .location-pharmacy iframe {
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
   outline: none;
   border-radius: 10px;
   border: none;
   width: 100%;
 }
-
 @media (max-width: 870px) {
   .location-container .location-pharmacy {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
 }
 
-.gradient-container ol.gradient-list > li, .gradient-container ol.gradient-list > li::before {
-  -webkit-box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
-          box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+.gradient-container ol.gradient-list > li::before, .gradient-container ol.gradient-list > li {
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
 }
-
 .gradient-container ol.gradient-list {
   counter-reset: gradient-counter;
   list-style: none;
   margin: 1.75rem 0;
   padding-left: 1rem;
 }
-
 .gradient-container ol.gradient-list > li {
   background: transparent;
   border-radius: 0 0.5rem 0.5rem 0.5rem;
@@ -107,7 +78,6 @@
   padding: 1rem 1rem 1rem 3rem;
   position: relative;
 }
-
 .gradient-container ol.gradient-list > li::before, .gradient-container ol.gradient-list > li::after {
   background: linear-gradient(135deg, #83e4e2 0%, #3fbbc0 100%);
   border-radius: 1rem 1rem 0 1rem;
@@ -119,70 +89,49 @@
   top: -1rem;
   width: 3rem;
 }
-
 .gradient-container ol.gradient-list > li::before {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  align-items: flex-end;
   content: counter(gradient-counter);
   color: #1d1f20;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font: 900 1.5em/1 "Montserrat";
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   padding: 0.125em 0.25em;
   z-index: 1;
 }
-
 .gradient-container ol.gradient-list > li:hover {
-  -webkit-box-shadow: var(--dark-shadow);
-          box-shadow: var(--dark-shadow);
+  box-shadow: var(--dark-shadow);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 1):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+1):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.2) 0%, rgba(253, 220, 50, 0.2) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 2):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+2):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.4) 0%, rgba(253, 220, 50, 0.4) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 3):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+3):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.6) 0%, rgba(253, 220, 50, 0.6) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 4):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+4):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.8) 0%, rgba(253, 220, 50, 0.8) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 5):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+5):before {
   background: linear-gradient(135deg, #3fbbc0 0%, #fddc32 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 6):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+6):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.8) 0%, rgba(253, 220, 50, 0.8) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 7):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+7):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.6) 0%, rgba(253, 220, 50, 0.6) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 8):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+8):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.4) 0%, rgba(253, 220, 50, 0.4) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 9):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+9):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0.2) 0%, rgba(253, 220, 50, 0.2) 100%);
 }
-
-.gradient-container ol.gradient-list > li:nth-child(10n + 10):before {
+.gradient-container ol.gradient-list > li:nth-child(10n+10):before {
   background: linear-gradient(135deg, rgba(63, 187, 192, 0) 0%, rgba(253, 220, 50, 0) 100%);
 }
-
 .gradient-container ol.gradient-list > li + li {
   margin-top: 2rem;
-}
-/*# sourceMappingURL=location.css.map */
+}/*# sourceMappingURL=location.css.map */
