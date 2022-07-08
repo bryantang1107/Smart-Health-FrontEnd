@@ -111,7 +111,7 @@ export const SidebarData = [
   {
     id: 3,
     role: true,
-    title: "Join Consultation",
+    title: "Appointment",
     path: "/join",
     icon: <BsChatRightDotsFill className="sidebar-icon" />,
   },
