@@ -15,21 +15,8 @@ import {
 import NoAppointment from "../../ChatRoom/NoAppointment";
 
 const formatDate = (date) => {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  let strTime = hours + ":" + minutes + " " + ampm;
   return (
-    date.getDate() +
-    "/" +
-    (date.getMonth() + 1) +
-    "/" +
-    date.getFullYear() +
-    "  " +
-    strTime
+    date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
   );
 };
 
@@ -44,6 +31,7 @@ const ActivityComponent = () => {
         const response = await axios.get(`/activity-log/${userData}`);
         const updated = response.data.map((x) => {
           let d = new Date(x.date);
+          console.log(d);
           const result = formatDate(d);
           return { ...x, date: result };
         });
@@ -157,7 +145,10 @@ const ActivityComponent = () => {
                       <>
                         <h3>New Appointment</h3>
                         <p>{x.message.split("at")[0]}</p>
-                        <p>{x.message.split("at")[1]}</p>
+                        <p>
+                          <strong>Date:</strong>
+                          {x.message.split("at")[1]}
+                        </p>
                         <a href={`mailto: ${x.email}`} className="email">
                           Email {x.sender}
                         </a>
@@ -172,6 +163,7 @@ const ActivityComponent = () => {
                     <div className="activity-time">
                       <FontAwesomeIcon icon={faClock} className="logo small" />
                       <p>{x.date}</p>
+                      <p>{x.time}</p>
                     </div>
                     {x.type === "appointment" && (
                       <div>
