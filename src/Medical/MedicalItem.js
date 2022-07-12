@@ -22,6 +22,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
         const response = await axios.get(
           `/user/get-medical-record/${userData}?file=${m.filename}`
         );
+        console.log(response.data);
         if (!response.data) {
           const response2 = await axios.get(
             `/user/get-medical-file/${userData}?file=${m.filename}`
