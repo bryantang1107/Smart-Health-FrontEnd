@@ -15,6 +15,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
   const { userData } = useAuth();
   const [data, setData] = useState(false);
   const [image, setImage] = useState(false);
+  const [format, setFormat] = useState();
   useEffect(() => {
     const getdata = async () => {
       try {
@@ -25,6 +26,9 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
           const response2 = await axios.get(
             `/user/get-medical-file/${userData}?file=${m.filename}`
           );
+          if (response2.data.contentType) {
+            setFormat(response2.data.contentType);
+          }
           if (response2.data.filename) {
             setData(response2.data.filename);
           }
@@ -141,7 +145,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
                 <span
                   className="download"
                   data-tooltip="Download"
-                  onClick={data === "text/plain" ? downloadFile : downloadPdf}
+                  onClick={format === "text/plain" ? downloadFile : downloadPdf}
                 >
                   <BsCloudDownload style={{ color: "#FF6347" }} />
                 </span>
@@ -158,11 +162,6 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
                 >
                   No Downloadable Medical Record
                 </p>
-                <span
-                  className="download"
-                  data-tooltip="Download"
-                  onClick={data === "text/plain" ? downloadFile : downloadPdf}
-                ></span>
               </div>
             )}
           </motion.div>
