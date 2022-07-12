@@ -22,7 +22,6 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
         const response = await axios.get(
           `/user/get-medical-record/${userData}?file=${m.filename}`
         );
-        console.log(response.data);
         if (!response.data) {
           const response2 = await axios.get(
             `/user/get-medical-file/${userData}?file=${m.filename}`
@@ -128,7 +127,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
             {image ? (
               <div className="medical-record-content">
                 <img
-                  src={`/user/get-medical-record/${userData}?file=${m.filename}`}
+                  src={`https://smarthealth-server.herokuapp.com/user/get-medical-record/${userData}?file=${m.filename}`}
                 ></img>
               </div>
             ) : data ? (
