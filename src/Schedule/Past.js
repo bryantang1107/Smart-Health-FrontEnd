@@ -47,7 +47,6 @@ const Past = () => {
           const response = await axios.get(
             `/appointment/past-appointment/${id}`
           );
-
           response.data.appointmentHistory.forEach(async (x) => {
             const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
               headers: {
@@ -62,7 +61,9 @@ const Past = () => {
               setLoading(false);
             }, 1500);
           });
-        } catch (error) {}
+        } catch (error) {
+          console.log(error);
+        }
       };
       getPastAppointments();
     }
@@ -72,7 +73,7 @@ const Past = () => {
     return <Loading />;
   }
 
-  if (userRole === "doctor") {
+  if (historyData.length < 1 && userRole === "doctor") {
     return (
       <div className="past">
         <p style={{ marginBottom: "4em" }}>

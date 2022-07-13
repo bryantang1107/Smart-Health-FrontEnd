@@ -252,23 +252,25 @@ const Upcoming = () => {
           </form>
         </>
       )}
+      {userRole !== "doctor" && (
+        <div
+          style={{
+            width: "90%",
+            margin: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h4 style={{ marginRight: "1em" }}>
+            To Cancel your appointment, Click here:
+          </h4>
+          <Link to="/cancel-appointment" className="btn green">
+            Cancel
+          </Link>
+        </div>
+      )}
 
-      <div
-        style={{
-          width: "90%",
-          margin: "auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h4 style={{ marginRight: "1em" }}>
-          To Cancel your appointment, Click here:
-        </h4>
-        <Link to="/cancel-appointment" className="btn green">
-          Cancel
-        </Link>
-      </div>
       {doctorData && (
         <>
           <h1 style={{ marginTop: "2em" }}>Doctor Information</h1>
