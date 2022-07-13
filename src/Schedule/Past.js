@@ -63,6 +63,7 @@ const Past = () => {
           });
         } catch (error) {
           console.log(error);
+          setLoading(false);
         }
       };
       getPastAppointments();
