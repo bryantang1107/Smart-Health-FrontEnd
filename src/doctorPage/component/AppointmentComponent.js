@@ -51,7 +51,6 @@ const AppointmentComponent = () => {
   const { userData, currentUser } = useAuth();
   const [slot, setSlot] = useState();
   const [error, setError] = useState();
-  const [time, setTime] = useState("");
   const [success, setSuccess] = useState();
   const [successRemove, setSuccessRemove] = useState();
   const [removeDate, setRemoveDate] = useState();
@@ -74,13 +73,18 @@ const AppointmentComponent = () => {
       });
       const events = getEvent(response.data[0]);
 
-      const unavailable = {
-        title: "Unavailable For Appointment",
-        start: response.data[1][0],
-        end: response.data[1][response.data[1].length - 1],
-        allDay: true,
-      };
-      setSlot([...events, unavailable]);
+      if (response.data[1].length > 0) {
+        const unavailable = {
+          title: "Unavailable For Appointment",
+          start: response.data[1][0],
+          end: response.data[1][response.data[1].length - 1],
+          allDay: true,
+        };
+        setSlot([...events, unavailable]);
+      } else {
+        setSlot([...events]);
+      }
+
       setUnavailable(response.data[1]);
     };
 
@@ -125,7 +129,6 @@ const AppointmentComponent = () => {
       }, 3000);
     }
   };
-
   const handleRemoveEvent = async (e) => {
     e.preventDefault();
     try {
@@ -192,7 +195,6 @@ const AppointmentComponent = () => {
                 autoOk={true}
                 onChange={(date) => {
                   setSelectedDate(date);
-                  setTime();
                 }}
                 required
                 KeyboardButtonProps={{
@@ -218,7 +220,6 @@ const AppointmentComponent = () => {
                 autoOk={true}
                 onChange={(date) => {
                   setEndDate(date);
-                  setTime();
                 }}
                 required
                 KeyboardButtonProps={{
