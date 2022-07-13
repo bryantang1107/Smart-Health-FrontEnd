@@ -47,6 +47,9 @@ const Past = () => {
           const response = await axios.get(
             `/appointment/past-appointment/${id}`
           );
+          if (response.data.appointmentHistory.length < 1) {
+            return setLoading(false);
+          }
           response.data.appointmentHistory.forEach(async (x) => {
             const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
               headers: {
@@ -69,7 +72,6 @@ const Past = () => {
       getPastAppointments();
     }
   }, []);
-
   if (loading) {
     return <Loading />;
   }
@@ -102,39 +104,38 @@ const Past = () => {
         </Link>
       </div>
     );
-  } else {
-    return (
-      <div className="past">
-        <Link to="/medical-record" className="medical-link">
-          View Medical Record
-        </Link>
-        <h1 style={{ marginTop: "3em" }}>Past Appointment</h1>
-        <div className="underline"></div>
-        <div className="past-appointment-container">
-          {historyData?.map((x, index) => {
-            return (
-              <div className="appointment-item" key={index}>
-                <div className="doctor-info">
-                  <h3> {x.date}</h3>
-                  <p>
-                    {x.time} - {parseInt(x.time) + 1 + ":00"}
-                  </p>
-                </div>
-                <div className="doctor-info">
-                  <h3>Doctor</h3>
-                  <p> {x.doctorInfo.name}</p>
-                </div>
-                <div className="doctor-info">
-                  <h3>Status</h3>
-                  <p> {x.status}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
   }
+  return (
+    <div className="past">
+      <Link to="/medical-record" className="medical-link">
+        View Medical Record
+      </Link>
+      <h1 style={{ marginTop: "3em" }}>Past Appointment</h1>
+      <div className="underline"></div>
+      <div className="past-appointment-container">
+        {historyData?.map((x, index) => {
+          return (
+            <div className="appointment-item" key={index}>
+              <div className="doctor-info">
+                <h3> {x.date}</h3>
+                <p>
+                  {x.time} - {parseInt(x.time) + 1 + ":00"}
+                </p>
+              </div>
+              <div className="doctor-info">
+                <h3>Doctor</h3>
+                <p> {x.doctorInfo.name}</p>
+              </div>
+              <div className="doctor-info">
+                <h3>Status</h3>
+                <p> {x.status}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Past;
