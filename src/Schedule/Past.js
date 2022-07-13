@@ -19,7 +19,9 @@ const Past = () => {
           const response = await axios.get(
             `/appointment/past-appointment/${userData}`
           );
-
+          if (response.data.appointmentHistory.length < 1) {
+            return setLoading(false);
+          }
           response.data.appointmentHistory.forEach(async (x) => {
             const doctor = await axios.get(`/find-doctor/${x.doctorInfo}`, {
               headers: {
