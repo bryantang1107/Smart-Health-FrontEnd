@@ -127,7 +127,7 @@ const MedicalItem = ({ m, setDoctorId, setIsOpen }) => {
             {image ? (
               <div className="medical-record-content">
                 <img
-                  src={`http://localhost:6100/user/get-medical-record/${userData}?file=${m.filename}`}
+                  src={`https://smarthealthserver.herokuapp.com/user/get-medical-record/${userData}?file=${m.filename}`}
                 ></img>
               </div>
             ) : data ? (
