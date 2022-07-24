@@ -48,7 +48,6 @@ const CancelAppointment = () => {
         setRegistry(registry);
         setConditions(conditions);
         setService(service);
-
         setError(false);
       } catch (error) {
         setError(true);
@@ -71,18 +70,22 @@ const CancelAppointment = () => {
           {
             label: "Yes",
             onClick: async () => {
-              setLoading(true);
-              await axios.delete(`/appointment/${userData}`, {
-                data: {
-                  name,
-                  email: userInfo._delegate.email,
-                  reason,
-                },
-              });
-              setTimeout(() => {
-                setLoading(false);
-                setSuccess(true);
-              }, 3000);
+              try {
+                setLoading(true);
+                await axios.delete(`/appointment/${userData}`, {
+                  data: {
+                    name,
+                    email: userInfo._delegate.email,
+                    reason,
+                  },
+                });
+                setTimeout(() => {
+                  setLoading(false);
+                  setSuccess(true);
+                }, 3000);
+              } catch (err) {
+                console.log(err);
+              }
             },
             //cancel the appointment here,same as "done appointment" route
           },
