@@ -118,9 +118,10 @@ const ReminderComponent = () => {
 
   const handleDelete = async (index) => {
     try {
-      await axios.delete(`reminder/${index}`, {
+      await axios.delete(`/reminder/${index}`, {
         data: {
           userData,
+          index,
         },
       });
       const updatedData = reminderData.filter((x, i) => {
